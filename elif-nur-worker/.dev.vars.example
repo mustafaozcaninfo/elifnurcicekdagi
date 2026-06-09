@@ -1,0 +1,3 @@
+# Local development only — copy to .dev.vars (gitignored)
+# BREVO_API_KEY=
+# TURNSTILE_SECRET_KEY=
