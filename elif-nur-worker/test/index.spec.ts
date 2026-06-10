@@ -1,29 +1,73 @@
-import {
-	env,
-	createExecutionContext,
-	waitOnExecutionContext,
-	SELF,
-} from "cloudflare:test";
+import { SELF } from "cloudflare:test";
 import { describe, it, expect } from "vitest";
-import worker from "../src/index";
 
-// For now, you'll need to do something like this to get a correctly-typed
-// `Request` to pass to `worker.fetch()`.
-const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
+const SITE = "https://elifnurcicekdagi.com";
 
-describe("Hello World worker", () => {
-	it("responds with Hello World! (unit style)", async () => {
-		const request = new IncomingRequest("http://example.com");
-		// Create an empty context to pass to `worker.fetch()`.
-		const ctx = createExecutionContext();
-		const response = await worker.fetch(request, env, ctx);
-		// Wait for all `Promise`s passed to `ctx.waitUntil()` to settle before running test assertions
-		await waitOnExecutionContext(ctx);
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
+describe("elif-nur-worker", () => {
+	it("GET /health returns ok JSON with security headers", async () => {
+		const response = await SELF.fetch(`${SITE}/health`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("cache-control")).toBe("no-store");
+		expect(response.headers.get("x-content-type-options")).toBe("nosniff");
+		const body = await response.json<{ ok: boolean; site: string }>();
+		expect(body).toEqual({ ok: true, site: "elifnurcicekdagi.com" });
 	});
 
-	it("responds with Hello World! (integration style)", async () => {
-		const response = await SELF.fetch("https://example.com");
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
+	it("GET / serves the landing page HTML", async () => {
+		const response = await SELF.fetch(`${SITE}/`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("text/html");
+		const html = await response.text();
+		expect(html).toContain("Elif Nur Çiçekdağı");
+		expect(html).toContain("elifnurcicekdagi.com");
+	});
+
+	it("POST /api/contact rejects invalid JSON", async () => {
+		const response = await SELF.fetch(`${SITE}/api/contact`, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: "not-json",
+		});
+		expect(response.status).toBe(400);
+		const body = await response.json<{ error: string }>();
+		expect(body.error).toBe("Geçersiz JSON");
+	});
+
+	it("POST /api/contact rejects missing fields", async () => {
+		const response = await SELF.fetch(`${SITE}/api/contact`, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({ name: "", email: "", message: "" }),
+		});
+		expect(response.status).toBe(400);
+		const body = await response.json<{ error: string }>();
+		expect(body.error).toBe("Tüm alanlar zorunludur.");
+	});
+
+	it("POST /api/contact rejects invalid email", async () => {
+		const response = await SELF.fetch(`${SITE}/api/contact`, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({
+				name: "Test",
+				email: "not-an-email",
+				message: "Merhaba",
+			}),
+		});
+		expect(response.status).toBe(400);
+		const body = await response.json<{ error: string }>();
+		expect(body.error).toBe("Geçersiz e-posta adresi.");
+	});
+
+	it("POST /api/contact returns 405 for non-POST", async () => {
+		const response = await SELF.fetch(`${SITE}/api/contact`);
+		expect(response.status).toBe(405);
+	});
+
+	it("GET /robots.txt includes sitemap", async () => {
+		const response = await SELF.fetch(`${SITE}/robots.txt`);
+		expect(response.status).toBe(200);
+		const text = await response.text();
+		expect(text).toContain("Sitemap: https://elifnurcicekdagi.com/sitemap.xml");
 	});
 });
