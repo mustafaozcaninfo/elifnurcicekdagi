@@ -1,0 +1,5 @@
+Contact: https://elifnurcicekdagi.com/iletisim
+Preferred-Languages: tr, en
+Canonical: https://elifnurcicekdagi.com/.well-known/security.txt
+Policy: https://elifnurcicekdagi.com/gizlilik
+Expires: 2027-06-09T00:00:00.000Z

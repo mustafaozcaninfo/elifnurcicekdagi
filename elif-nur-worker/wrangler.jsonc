@@ -16,7 +16,24 @@
 	"assets": {
 		"directory": "./public",
 		"binding": "ASSETS",
-		"run_worker_first": ["/health"]
+		"run_worker_first": ["/health", "/api/*"]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "elif-nur-db",
+			"database_id": "453e2db6-d161-4a3a-86a9-55ad036097c1"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "RATE_LIMIT",
+			"id": "bb1ce06a5dd7457581a52bf584bde252"
+		}
+	],
+	"vars": {
+		"TURNSTILE_SITE_KEY": "0x4AAAAAADh3UKIeub4N8frd",
+		"CONTACT_NOTIFY_EMAIL": "info@elifnurcicekdagi.com"
 	},
 	"routes": [
 		{
