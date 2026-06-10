@@ -93,10 +93,41 @@ describe("elif-nur-worker", () => {
 		expect(response.status).toBe(405);
 	});
 
-	it("GET /robots.txt includes sitemap", async () => {
+	it("GET /robots.txt is dynamic and blocks private paths", async () => {
 		const response = await SELF.fetch(`${SITE}/robots.txt`);
 		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("text/plain");
 		const text = await response.text();
 		expect(text).toContain("Sitemap: https://elifnurcicekdagi.com/sitemap.xml");
+		expect(text).toContain("Disallow: /api/");
+		expect(text).toContain("Disallow: /health");
+	});
+
+	it("GET /sitemap.xml lists public routes dynamically", async () => {
+		const response = await SELF.fetch(`${SITE}/sitemap.xml`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("xml");
+		const xml = await response.text();
+		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/</loc>");
+		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/iletisim</loc>");
+		expect(xml).toContain("<lastmod>");
+	});
+
+	it("GET /llms.txt describes the site for LLMs", async () => {
+		const response = await SELF.fetch(`${SITE}/llms.txt`);
+		expect(response.status).toBe(200);
+		const text = await response.text();
+		expect(text).toContain("# Elif Nur Çiçekdağı");
+		expect(text).toContain("/iletisim");
+	});
+
+	it("GET unknown path returns custom 404 HTML", async () => {
+		const response = await SELF.fetch(`${SITE}/bu-sayfa-yok`, {
+			headers: { accept: "text/html" },
+		});
+		expect(response.status).toBe(404);
+		const html = await response.text();
+		expect(html).toContain("Sayfa bulunamadı");
+		expect(html).toContain('href="/"');
 	});
 });

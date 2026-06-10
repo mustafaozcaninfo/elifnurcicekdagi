@@ -173,6 +173,9 @@ export async function buildHealthReport(
 			live: [
 				{ method: "GET", path: "/health", description: "Sistem durumu (JSON)" },
 				{ method: "GET", path: "/health/dashboard", description: "Durum paneli (HTML)" },
+				{ method: "GET", path: "/robots.txt", description: "Robots (dinamik)" },
+				{ method: "GET", path: "/sitemap.xml", description: "Site haritası (dinamik)" },
+				{ method: "GET", path: "/llms.txt", description: "LLM özet dosyası" },
 				{ method: "POST", path: "/api/contact", description: "İletişim formu" },
 			],
 			planned: [

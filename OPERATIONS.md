@@ -287,6 +287,20 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | 2026-06-10 | `OPERATIONS.md` runbook eklendi |
 | 2026-06-10 | GitHub Actions → Node 24 (`checkout@v5`, `setup-node@v5`, `wrangler-action@v4`, `github-script@v8`) |
 | 2026-06-10 | `/health` genişletildi + `/health/dashboard` operasyon paneli |
+| 2026-06-10 | Dinamik `robots.txt`, `sitemap.xml`, `llms.txt` + özel `404` sayfası |
+
+---
+
+## SEO ve keşif dosyaları (Worker — dinamik)
+
+| URL | Kaynak | Not |
+|-----|--------|-----|
+| `/robots.txt` | `src/seo/robots.ts` | `/api/`, `/health` disallow |
+| `/sitemap.xml` | `src/seo/sitemap.ts` | `PUBLIC_ROUTES` listesinden üretilir |
+| `/llms.txt` | `src/seo/llms.ts` | LLM özet / sayfa linkleri |
+| `404` | `public/404.html` | Bilinmeyen HTML yolları |
+
+Yeni sayfa eklerken: `src/seo/site-routes.ts` → `PUBLIC_ROUTES` güncelle (sitemap + llms otomatik).
 
 ---
 
