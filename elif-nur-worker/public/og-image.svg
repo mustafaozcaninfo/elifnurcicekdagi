@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Elif Nur �i�ekda1">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Elif Nur Çiçekdağı — elifnurcicekdagi.com">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fdf6f0"/>
@@ -7,6 +7,7 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="600" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#2a1f1c">Elif Nur �i�ekda1</text>
-  <text x="600" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" fill="#9a7b72">elifnurcicekdagi.com</text>
+  <rect x="80" y="80" width="1040" height="470" rx="32" fill="rgba(255,255,255,0.55)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#2a1f1c">Elif Nur Çiçekdağı</text>
+  <text x="600" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#9a7b72">elifnurcicekdagi.com</text>
 </svg>

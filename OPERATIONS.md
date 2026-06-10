@@ -288,6 +288,7 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | 2026-06-10 | GitHub Actions → Node 24 (`checkout@v5`, `setup-node@v5`, `wrangler-action@v4`, `github-script@v8`) |
 | 2026-06-10 | `/health` genişletildi + `/health/dashboard` operasyon paneli |
 | 2026-06-10 | Dinamik `robots.txt`, `sitemap.xml`, `llms.txt` + özel `404` sayfası |
+| 2026-06-10 | Favicon/OG düzeltmesi — UTF-8 `ğı`, `og-image.png`, `apple-touch-icon.png` |
 
 ---
 

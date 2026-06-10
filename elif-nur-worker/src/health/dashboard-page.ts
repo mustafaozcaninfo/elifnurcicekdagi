@@ -7,6 +7,7 @@ export function renderHealthDashboard(): string {
   <meta name="robots" content="noindex, nofollow" />
   <title>Operasyon Paneli — elifnurcicekdagi.com</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   <link rel="stylesheet" href="/health/dashboard.css" />
 </head>
 <body>

@@ -121,6 +121,20 @@ describe("elif-nur-worker", () => {
 		expect(text).toContain("/iletisim");
 	});
 
+	it("GET /favicon.svg has valid UTF-8 Turkish name", async () => {
+		const response = await SELF.fetch(`${SITE}/favicon.svg`);
+		expect(response.status).toBe(200);
+		const svg = await response.text();
+		expect(svg).toContain("Çiçekdağı");
+		expect(svg).not.toMatch(/Çiçekda\x1f/);
+	});
+
+	it("GET /og-image.png returns social preview asset", async () => {
+		const response = await SELF.fetch(`${SITE}/og-image.png`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("image/png");
+	});
+
 	it("GET unknown path returns custom 404 HTML", async () => {
 		const response = await SELF.fetch(`${SITE}/bu-sayfa-yok`, {
 			headers: { accept: "text/html" },

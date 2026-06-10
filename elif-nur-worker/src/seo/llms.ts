@@ -23,6 +23,7 @@ ${pages}
 
 - Site: Cloudflare Workers
 - Site haritası: ${SITE_ORIGIN}/sitemap.xml
+- OG görsel: ${SITE_ORIGIN}/og-image.png
 - Güvenlik: ${SITE_ORIGIN}/.well-known/security.txt
 
 ## API (geliştirme aşamasında)
