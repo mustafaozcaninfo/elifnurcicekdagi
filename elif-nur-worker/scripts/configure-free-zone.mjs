@@ -63,7 +63,7 @@ const SECURITY_HEADER = {
 		enabled: true,
 		max_age: 31536000,
 		include_subdomains: true,
-		preload: false,
+		preload: true,
 		nosniff: true,
 	},
 };

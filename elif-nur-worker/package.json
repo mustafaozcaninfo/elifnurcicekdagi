@@ -12,7 +12,9 @@
     "dns:email": "node scripts/setup-email-dns.mjs",
     "analytics:apply": "node scripts/apply-analytics-token.mjs",
     "expiry:check": "node scripts/check-expiry.mjs",
-    "uptimerobot:setup": "node scripts/setup-uptimerobot.mjs"
+    "uptimerobot:setup": "node scripts/setup-uptimerobot.mjs",
+    "contacts:check": "node scripts/check-new-contacts.mjs",
+    "alerts:configure": "node scripts/configure-worker-alerts.mjs"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.12.4",

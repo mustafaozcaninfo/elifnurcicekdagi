@@ -146,6 +146,16 @@ export async function handleContact(
 		.bind(name, email, message, ipHash, 1)
 		.run();
 
+	console.log(
+		JSON.stringify({
+			event: "contact_submission",
+			name,
+			email,
+			messageLength: message.length,
+			brevo: Boolean(env.BREVO_API_KEY),
+		}),
+	);
+
 	if (env.BREVO_API_KEY && env.CONTACT_NOTIFY_EMAIL) {
 		await sendBrevoNotification(
 			env.BREVO_API_KEY,
