@@ -10,5 +10,8 @@
 /health
   Cache-Control: no-store
 
+/health/*
+  Cache-Control: no-store
+
 /api/*
   Cache-Control: no-store

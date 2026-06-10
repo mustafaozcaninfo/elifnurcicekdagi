@@ -286,6 +286,18 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | 2026-06-10 | Git `36edaed` — mail tooling + contact sender fix push |
 | 2026-06-10 | `OPERATIONS.md` runbook eklendi |
 | 2026-06-10 | GitHub Actions → Node 24 (`checkout@v5`, `setup-node@v5`, `wrangler-action@v4`, `github-script@v8`) |
+| 2026-06-10 | `/health` genişletildi + `/health/dashboard` operasyon paneli |
+
+---
+
+## Operasyon paneli
+
+| URL | Açıklama |
+|-----|----------|
+| `GET /health` | JSON — bindings, secrets (bool), D1 istatistik, probe’lar, infra özeti, API listesi |
+| `GET /health/dashboard` | HTML panel — canlı durum, 60s otomatik yenileme, `noindex` |
+
+UptimeRobot hâlâ `/health` + `"ok":true` ile çalışır (`ok` = D1 erişilebilir).
 
 ---
 

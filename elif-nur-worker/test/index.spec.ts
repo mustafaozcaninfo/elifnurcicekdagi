@@ -10,8 +10,19 @@ describe("elif-nur-worker", () => {
 		expect(response.headers.get("cache-control")).toBe("no-store");
 		expect(response.headers.get("x-content-type-options")).toBe("nosniff");
 		expect(response.headers.get("content-security-policy")).toContain("default-src 'self'");
-		const body = await response.json<{ ok: boolean; site: string }>();
-		expect(body).toEqual({ ok: true, site: "elifnurcicekdagi.com" });
+		const body = await response.json<{ ok: boolean; site: string; apis: { live: unknown[] } }>();
+		expect(body.ok).toBe(true);
+		expect(body.site).toBe("elifnurcicekdagi.com");
+		expect(body.apis.live.some((a: { path: string }) => a.path === "/health")).toBe(true);
+	});
+
+	it("GET /health/dashboard returns HTML ops panel", async () => {
+		const response = await SELF.fetch(`${SITE}/health/dashboard`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("text/html");
+		const html = await response.text();
+		expect(html).toContain("Operasyon Paneli");
+		expect(html).toContain("/health");
 	});
 
 	it("GET / serves the landing page HTML", async () => {
