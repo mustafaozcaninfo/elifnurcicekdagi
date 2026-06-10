@@ -1,18 +1,17 @@
 #!/usr/bin/env node
 /**
- * Create UptimeRobot monitors (idempotent): health + HTTPS with expiry alerts.
+ * Configure UptimeRobot monitors for elifnurcicekdagi.com (idempotent).
  *
- * UptimeRobot free plan sends SSL/domain expiry emails when enabled on HTTP monitors.
+ * Free plan: newMonitor via API is blocked — create extra monitors in the dashboard.
+ * This script configures the existing health monitor (keyword + email alerts).
  *
- * 1. UptimeRobot → My Settings → API → Main API Key
- * 2. Add to all.env: UPTIMEROBOT_API_KEY=...
- * 3. node scripts/setup-uptimerobot.mjs
+ * Usage: source ../all.env && npm run uptimerobot:setup
  */
 
 const API_KEY = process.env.UPTIMEROBOT_API_KEY;
 const DOMAIN = "elifnurcicekdagi.com";
-const URL = `https://${DOMAIN}`;
-const HEALTH = `${URL}/health`;
+const HEALTH_URL = `https://${DOMAIN}/health`;
+const SITE_URL = `https://${DOMAIN}/`;
 
 if (!API_KEY) {
 	console.error("UPTIMEROBOT_API_KEY required in all.env");
@@ -26,50 +25,97 @@ async function call(endpoint, params) {
 		headers: { "Content-Type": "application/x-www-form-urlencoded" },
 		body,
 	});
-	const data = await res.json();
+	const text = await res.text();
+	if (text.startsWith("Rate limit")) {
+		throw new Error(text);
+	}
+	const data = JSON.parse(text);
 	if (data.stat !== "ok") {
-		throw new Error(`${endpoint}: ${JSON.stringify(data)}`);
+		return { ok: false, data };
 	}
-	return data;
+	return { ok: true, data };
 }
 
-async function listMonitors() {
-	const data = await call("getMonitors", { ssl: "1" });
-	return data.monitors ?? [];
+async function listMonitors(search = "") {
+	const params = { ssl: "1", alert_contacts: "1" };
+	if (search) params.search = search;
+	const result = await call("getMonitors", params);
+	if (!result.ok) throw new Error(JSON.stringify(result.data));
+	return result.data.monitors ?? [];
 }
 
-async function ensureMonitor(createParams) {
-	const monitors = await listMonitors();
-	const existing = monitors.find(
-		(m) => m.friendly_name === createParams.friendly_name,
-	);
-	if (existing) {
-		console.log(`exists: ${createParams.friendly_name} (id ${existing.id})`);
-		return existing;
+async function listEmailContacts() {
+	const result = await call("getAlertContacts", {});
+	if (!result.ok) throw new Error(JSON.stringify(result.data));
+	return (result.data.alert_contacts ?? []).filter((c) => String(c.type) === "2");
+}
+
+function monitorAlertString(contacts) {
+	return contacts.map((id) => `${id}_0_0`).join("-");
+}
+
+async function editMonitor(id, params) {
+	const result = await call("editMonitor", { id: String(id), ...params });
+	return result.ok;
+}
+
+const monitors = await listMonitors(DOMAIN);
+const health = monitors.find((m) => m.url === HEALTH_URL || m.url === `${HEALTH_URL}/`);
+
+if (!health) {
+	console.error(`No health monitor found for ${HEALTH_URL}`);
+	console.error("Create one in UptimeRobot dashboard first (HTTP(s), 5 min).");
+	process.exit(1);
+}
+
+console.log(`health monitor: id ${health.id} status ${health.status}`);
+
+const emails = await listEmailContacts();
+const primaryEmail = emails.find((c) => String(c.status) === "1") ?? emails[0];
+if (!primaryEmail) {
+	console.warn("No email alert contact — add one in UptimeRobot → My Settings → Alert Contacts");
+} else {
+	const hasEmail = (health.alert_contacts ?? []).some((c) => c.id === primaryEmail.id);
+	if (!hasEmail) {
+		const ok = await editMonitor(health.id, {
+			alert_contacts: monitorAlertString([primaryEmail.id]),
+		});
+		console.log(ok ? `attached email alert: ${primaryEmail.value}` : "failed to attach email alert");
+	} else {
+		console.log(`email alert already set: ${primaryEmail.value}`);
 	}
-	const data = await call("newMonitor", createParams);
-	console.log(`created: ${createParams.friendly_name} (id ${data.monitor?.id})`);
-	return data.monitor;
 }
 
-// Health: uptime + keyword + domain expiry notifications from URL host
-await ensureMonitor({
+const keywordOk = await editMonitor(health.id, {
 	friendly_name: `${DOMAIN} — health`,
-	url: HEALTH,
 	type: "1",
+	url: HEALTH_URL,
 	keyword_type: "1",
 	keyword_value: '"ok":true',
-	interval: "300",
-	disable_domain_expire_notifications: "0",
 });
+console.log(keywordOk ? "keyword check enabled: \"ok\":true" : "keyword check skipped (plan limit)");
 
-// HTTPS: uptime + SSL cert expiry alerts (UptimeRobot checks cert on HTTPS URL)
-await ensureMonitor({
-	friendly_name: `${DOMAIN} — SSL`,
-	url: URL,
-	type: "1",
-	interval: "300",
-	disable_domain_expire_notifications: "1",
-});
+const sslMonitor = monitors.find(
+	(m) => m.url === SITE_URL || m.url === `https://${DOMAIN}`,
+);
+if (sslMonitor) {
+	console.log(`SSL/uptime monitor exists: id ${sslMonitor.id} (${sslMonitor.friendly_name})`);
+	if (primaryEmail) {
+		const hasEmail = (sslMonitor.alert_contacts ?? []).some((c) => c.id === primaryEmail.id);
+		if (!hasEmail) {
+			await editMonitor(sslMonitor.id, {
+				alert_contacts: monitorAlertString([primaryEmail.id]),
+			});
+			console.log(`attached email to SSL monitor ${sslMonitor.id}`);
+		}
+	}
+} else {
+	console.log("");
+	console.log("Manual step (free plan blocks API newMonitor):");
+	console.log(`  Dashboard → Add Monitor → HTTPS → ${SITE_URL}`);
+	console.log("  Enable SSL expiry + domain expiry notifications in monitor settings.");
+	console.log("  Re-run: npm run uptimerobot:setup");
+}
 
-console.log("done — add Alert Contact email in UptimeRobot if not set yet");
+console.log("");
+console.log("done — domain expiry via API blocked on free plan; use dashboard or GitHub expiry-check workflow");
