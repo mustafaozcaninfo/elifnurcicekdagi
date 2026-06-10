@@ -71,7 +71,7 @@ async function sendBrevoNotification(
 			accept: "application/json",
 		},
 		body: JSON.stringify({
-			sender: { name: "elifnurcicekdagi.com", email: "noreply@elifnurcicekdagi.com" },
+			sender: { name: "elifnurcicekdagi.com", email: "info@elifnurcicekdagi.com" },
 			to: [{ email: to }],
 			subject: `Yeni iletişim formu: ${name}`,
 			htmlContent: `<p><strong>Ad:</strong> ${escapeHtml(name)}</p><p><strong>E-posta:</strong> ${escapeHtml(email)}</p><p><strong>Mesaj:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,

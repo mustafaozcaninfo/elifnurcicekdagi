@@ -1,5 +1,6 @@
 # Secrets
 all.env
+new-hostinger.md
 .env
 .env.*
 !.env.example

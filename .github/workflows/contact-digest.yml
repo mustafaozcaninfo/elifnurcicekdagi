@@ -1,8 +1,8 @@
+# Scheduled digest disabled — live notifications via Brevo (Worker → info@).
+# Run manually from Actions tab only if Brevo is unavailable.
 name: Contact Form Digest
 
 on:
-  schedule:
-    - cron: "15 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -52,7 +52,7 @@ jobs:
             const rows = JSON.parse(fs.readFileSync("/tmp/new-contacts.json", "utf8"));
             const title = `📬 ${rows.length} yeni iletişim formu — elifnurcicekdagi.com`;
             const body = [
-              "Brevo kurulana kadar form bildirimleri bu issue üzerinden gelir (GitHub e-posta bildirimi).",
+              "Manuel digest (Brevo yedek). Normal bildirimler: Worker → Brevo → info@.",
               "",
               ...rows.map((r) => [
                 `### #${r.id} — ${r.created_at}`,
