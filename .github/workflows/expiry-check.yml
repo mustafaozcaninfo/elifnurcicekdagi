@@ -17,7 +17,7 @@ jobs:
       contents: read
       issues: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Check SSL and domain expiry
         id: expiry
@@ -27,7 +27,7 @@ jobs:
 
       - name: Open issue on expiry warning
         if: steps.expiry.outcome == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const title = "⚠️ SSL or domain expiry within 30 days — elifnurcicekdagi.com";

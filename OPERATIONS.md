@@ -284,6 +284,8 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | 2026-06-10 | Eski `setup-email-dns.mjs` (Zoho) silindi → `setup-hestia-mail-dns.mjs` |
 | 2026-06-10 | Saatlik `contact-digest` kapatıldı; `new-hostinger.md` gitignore |
 | 2026-06-10 | Git `36edaed` — mail tooling + contact sender fix push |
+| 2026-06-10 | `OPERATIONS.md` runbook eklendi |
+| 2026-06-10 | GitHub Actions → Node 24 (`checkout@v5`, `setup-node@v5`, `wrangler-action@v4`, `github-script@v8`) |
 
 ---
 
