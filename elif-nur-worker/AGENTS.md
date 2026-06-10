@@ -1,5 +1,7 @@
 # Cloudflare Workers
 
+**Project runbook (secrets, mail, DNS, deploy):** [`../OPERATIONS.md`](../OPERATIONS.md) — read before infra or mail tasks; update it after changes.
+
 STOP. Your knowledge of Cloudflare Workers APIs and limits may be outdated. Always retrieve current documentation before any Workers, KV, R2, D1, Durable Objects, Queues, Vectorize, AI, or Agents SDK task.
 
 ## Docs
