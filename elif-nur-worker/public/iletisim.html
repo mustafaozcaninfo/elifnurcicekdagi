@@ -6,6 +6,22 @@
   <meta name="description" content="Elif Nur Çiçekdağı ile iletişime geçin" />
   <title>İletişim — Elif Nur Çiçekdağı</title>
   <link rel="canonical" href="https://elifnurcicekdagi.com/iletisim" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="İletişim — Elif Nur Çiçekdağı" />
+  <meta property="og:description" content="Elif Nur Çiçekdağı ile iletişime geçin" />
+  <meta property="og:url" content="https://elifnurcicekdagi.com/iletisim" />
+  <meta property="og:image" content="https://elifnurcicekdagi.com/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "İletişim",
+    "url": "https://elifnurcicekdagi.com/iletisim",
+    "isPartOf": { "@type": "WebSite", "url": "https://elifnurcicekdagi.com/" }
+  }
+  </script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,6 +103,18 @@
     }
     #status.ok { color: #4a7c59; }
     #status.err { color: #a04444; }
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #5c4842;
+      margin-bottom: 1rem;
+    }
+    .consent input { width: auto; margin: 0.2rem 0 0; }
+    .consent a { color: #b07d6a; }
   </style>
 </head>
 <body>
@@ -104,61 +132,16 @@
         <textarea id="message" name="message" required maxlength="5000"></textarea>
         <label class="hp" for="website">Website</label>
         <input class="hp" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        <label class="consent">
+          <input id="consent" name="consent" type="checkbox" required />
+          <span><a href="/gizlilik">Gizlilik politikasını</a> okudum; kişisel verilerimin iletişim amacıyla işlenmesini kabul ediyorum.</span>
+        </label>
         <div class="turnstile cf-turnstile" data-sitekey="0x4AAAAAADh3UKIeub4N8frd"></div>
         <button type="submit" id="submit-btn">Gönder</button>
         <p id="status" role="status" aria-live="polite"></p>
       </form>
     </main>
   </div>
-  <script>
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("status");
-    const btn = document.getElementById("submit-btn");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      status.textContent = "";
-      status.className = "";
-      btn.disabled = true;
-
-      const token = form.querySelector("[name=cf-turnstile-response]")?.value;
-      if (!token) {
-        status.textContent = "Lütfen güvenlik doğrulamasını tamamlayın.";
-        status.className = "err";
-        btn.disabled = false;
-        return;
-      }
-
-      const body = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim(),
-        "cf-turnstile-response": token,
-        website: form.website.value,
-      };
-
-      try {
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        if (res.ok) {
-          status.textContent = data.message || "Mesajınız alındı. Teşekkürler!";
-          status.className = "ok";
-          form.reset();
-          if (window.turnstile) turnstile.reset();
-        } else {
-          status.textContent = data.error || "Bir hata oluştu.";
-          status.className = "err";
-        }
-      } catch {
-        status.textContent = "Bağlantı hatası. Lütfen tekrar deneyin.";
-        status.className = "err";
-      }
-      btn.disabled = false;
-    });
-  </script>
+  <script src="/iletisim.js" defer></script>
 </body>
 </html>

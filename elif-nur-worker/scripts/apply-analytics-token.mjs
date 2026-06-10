@@ -7,37 +7,24 @@
  * 3. node scripts/apply-analytics-token.mjs
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const token = process.env.CF_WEB_ANALYTICS_TOKEN;
+const token = process.env.CF_WEB_ANALYTICS_TOKEN?.trim();
 
-if (!token?.trim()) {
+if (!token) {
 	console.error("CF_WEB_ANALYTICS_TOKEN required (add to all.env or export)");
 	process.exit(1);
 }
 
-const wranglerPath = join(root, "wrangler.jsonc");
-let config = readFileSync(wranglerPath, "utf8");
-
-const varLine = `\t\t"CF_WEB_ANALYTICS_TOKEN": "${token.trim()}"`;
-if (config.includes("CF_WEB_ANALYTICS_TOKEN")) {
-	config = config.replace(
-		/"CF_WEB_ANALYTICS_TOKEN":\s*"[^"]*"/,
-		`"CF_WEB_ANALYTICS_TOKEN": "${token.trim()}"`,
-	);
-} else {
-	config = config.replace(
-		/"CONTACT_NOTIFY_EMAIL":\s*"[^"]*"/,
-		(match) => `${match},\n${varLine}`,
-	);
-}
-
-writeFileSync(wranglerPath, config);
-console.log("updated wrangler.jsonc CF_WEB_ANALYTICS_TOKEN");
+execSync(`npx wrangler secret put CF_WEB_ANALYTICS_TOKEN`, {
+	cwd: root,
+	stdio: ["pipe", "inherit", "inherit"],
+	input: token,
+});
+console.log("set CF_WEB_ANALYTICS_TOKEN secret");
 
 execSync("npx wrangler deploy", { cwd: root, stdio: "inherit" });
 console.log("deployed with Web Analytics beacon");

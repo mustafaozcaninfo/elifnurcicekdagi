@@ -5,9 +5,19 @@ type ContactPayload = {
 	name?: string;
 	email?: string;
 	message?: string;
+	consent?: boolean;
 	"cf-turnstile-response"?: string;
 	website?: string;
 };
+
+function escapeHtml(value: string): string {
+	return value
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;");
+}
 
 async function hashIp(ip: string): Promise<string> {
 	const data = new TextEncoder().encode(ip);
@@ -64,7 +74,7 @@ async function sendBrevoNotification(
 			sender: { name: "elifnurcicekdagi.com", email: "noreply@elifnurcicekdagi.com" },
 			to: [{ email: to }],
 			subject: `Yeni iletişim formu: ${name}`,
-			htmlContent: `<p><strong>Ad:</strong> ${name}</p><p><strong>E-posta:</strong> ${email}</p><p><strong>Mesaj:</strong></p><p>${message.replace(/\n/g, "<br>")}</p>`,
+			htmlContent: `<p><strong>Ad:</strong> ${escapeHtml(name)}</p><p><strong>E-posta:</strong> ${escapeHtml(email)}</p><p><strong>Mesaj:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
 			replyTo: { email, name },
 		}),
 	});
@@ -113,6 +123,12 @@ export async function handleContact(
 	if (!name || !email || !message) {
 		return Response.json({ error: "Tüm alanlar zorunludur." }, { status: 400 });
 	}
+	if (!payload.consent) {
+		return Response.json(
+			{ error: "KVKK kapsamında gizlilik politikasını kabul etmelisiniz." },
+			{ status: 400 },
+		);
+	}
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 		return Response.json({ error: "Geçersiz e-posta adresi." }, { status: 400 });
 	}
@@ -125,9 +141,9 @@ export async function handleContact(
 
 	const ipHash = await hashIp(ip);
 	await env.DB.prepare(
-		"INSERT INTO contact_submissions (name, email, message, ip_hash) VALUES (?, ?, ?, ?)",
+		"INSERT INTO contact_submissions (name, email, message, ip_hash, consent_given) VALUES (?, ?, ?, ?, ?)",
 	)
-		.bind(name, email, message, ipHash)
+		.bind(name, email, message, ipHash, 1)
 		.run();
 
 	if (env.BREVO_API_KEY && env.CONTACT_NOTIFY_EMAIL) {

@@ -9,6 +9,7 @@ describe("elif-nur-worker", () => {
 		expect(response.status).toBe(200);
 		expect(response.headers.get("cache-control")).toBe("no-store");
 		expect(response.headers.get("x-content-type-options")).toBe("nosniff");
+		expect(response.headers.get("content-security-policy")).toContain("default-src 'self'");
 		const body = await response.json<{ ok: boolean; site: string }>();
 		expect(body).toEqual({ ok: true, site: "elifnurcicekdagi.com" });
 	});
@@ -33,6 +34,22 @@ describe("elif-nur-worker", () => {
 		expect(body.error).toBe("Geçersiz JSON");
 	});
 
+	it("POST /api/contact rejects missing KVKK consent", async () => {
+		const response = await SELF.fetch(`${SITE}/api/contact`, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({
+				name: "Test",
+				email: "test@example.com",
+				message: "Merhaba",
+				consent: false,
+			}),
+		});
+		expect(response.status).toBe(400);
+		const body = await response.json<{ error: string }>();
+		expect(body.error).toContain("gizlilik politikasını");
+	});
+
 	it("POST /api/contact rejects missing fields", async () => {
 		const response = await SELF.fetch(`${SITE}/api/contact`, {
 			method: "POST",
@@ -52,6 +69,7 @@ describe("elif-nur-worker", () => {
 				name: "Test",
 				email: "not-an-email",
 				message: "Merhaba",
+				consent: true,
 			}),
 		});
 		expect(response.status).toBe(400);
