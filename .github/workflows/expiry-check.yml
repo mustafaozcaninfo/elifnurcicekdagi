@@ -1,0 +1,66 @@
+name: SSL & Domain Expiry Check
+
+on:
+  schedule:
+    # Mondays 09:00 UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: expiry-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SSL and domain expiry
+        id: expiry
+        working-directory: elif-nur-worker
+        run: node scripts/check-expiry.mjs
+        continue-on-error: true
+
+      - name: Open issue on expiry warning
+        if: steps.expiry.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "⚠️ SSL or domain expiry within 30 days — elifnurcicekdagi.com";
+            const body = [
+              "Automated expiry check failed.",
+              "",
+              "Run locally:",
+              "```bash",
+              "cd elif-nur-worker && node scripts/check-expiry.mjs",
+              "```",
+              "",
+              "Renew domain at **Spaceship**, verify SSL at **Cloudflare**.",
+              "",
+              `Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join("\n");
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "expiry-alert",
+            });
+            if (issues.length) {
+              core.info("Open expiry issue already exists");
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ["expiry-alert"],
+            });
+
+      - name: Fail workflow if expiry warning
+        if: steps.expiry.outcome == 'failure'
+        run: exit 1

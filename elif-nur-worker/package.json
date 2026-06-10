@@ -10,7 +10,9 @@
     "cf-typegen": "wrangler types",
     "zone:configure": "node scripts/configure-free-zone.mjs",
     "dns:email": "node scripts/setup-email-dns.mjs",
-    "analytics:apply": "node scripts/apply-analytics-token.mjs"
+    "analytics:apply": "node scripts/apply-analytics-token.mjs",
+    "expiry:check": "node scripts/check-expiry.mjs",
+    "uptimerobot:setup": "node scripts/setup-uptimerobot.mjs"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.12.4",
