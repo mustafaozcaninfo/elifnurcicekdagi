@@ -13,5 +13,11 @@
 /health/*
   Cache-Control: no-store
 
+/health/dashboard.css
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/health/dashboard.js
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
 /api/*
   Cache-Control: no-store
