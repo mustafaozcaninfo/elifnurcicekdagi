@@ -41,6 +41,9 @@ export default function PilotHud({
 	const departureVisible = phase === "departure" && !interactive;
 	const globePhaseVisible = phase === "globe" && !interactive;
 
+	// Decorative HUD must not intercept globe drag/zoom once explore mode is live.
+	if (interactive) return null;
+
 	return (
 		<div
 			className="pointer-events-none absolute inset-0 z-20 overflow-hidden"

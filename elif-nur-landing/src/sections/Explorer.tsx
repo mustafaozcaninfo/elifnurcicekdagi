@@ -92,13 +92,11 @@ export default function Explorer() {
 
 	const handlePanelClose = useCallback(() => {
 		setPanelOpen(false);
-		if (isMobile) {
-			window.clearTimeout(syncTimerRef.current);
-			syncTimerRef.current = window.setTimeout(() => {
-				setGlobeSyncKey((k) => k + 1);
-			}, 320);
-		}
-	}, [isMobile]);
+		window.clearTimeout(syncTimerRef.current);
+		syncTimerRef.current = window.setTimeout(() => {
+			setGlobeSyncKey((k) => k + 1);
+		}, 180);
+	}, []);
 
 	const handleRecenter = useCallback(() => {
 		setGlobeSyncKey((k) => k + 1);
@@ -188,7 +186,7 @@ export default function Explorer() {
 			/>
 
 			<GlobeRecenterButton
-				visible={interactive && isMobile && mapGesturesEnabled}
+				visible={interactive && mapGesturesEnabled}
 				onClick={handleRecenter}
 			/>
 

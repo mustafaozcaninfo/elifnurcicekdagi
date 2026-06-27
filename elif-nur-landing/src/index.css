@@ -44,6 +44,7 @@
 	}
 
 	.deck-vignette {
+		pointer-events: none;
 		background: radial-gradient(
 			ellipse at center,
 			transparent 42%,

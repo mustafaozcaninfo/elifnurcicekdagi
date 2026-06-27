@@ -257,16 +257,19 @@ export default function TravelGlobe({
 		}
 	}, [isDeck, phase]);
 
+	/** Re-apply orbit controls whenever explore mode or gesture lock changes. */
 	useEffect(() => {
+		if (!interactive) return;
+		applyInteractiveControls();
+	}, [interactive, gesturesEnabled, applyInteractiveControls]);
+
+	/** Intro / idle camera controls before explore handoff. */
+	useEffect(() => {
+		if (interactive) return;
 		const g = globeRef.current;
 		if (!g) return;
 		const ctrl = g.controls();
 		if (!ctrl) return;
-
-		if (interactive) {
-			applyInteractiveControls();
-			return;
-		}
 
 		if (!isDeck) {
 			applyControls(ctrl, "idle", isMobile);
@@ -275,14 +278,11 @@ export default function TravelGlobe({
 
 		if (phase === "departure" || phase === "cruise" || phase === "globe") {
 			applyControls(ctrl, "intro", isMobile);
-		} else if (phase === "reveal") {
-			applyControls(ctrl, "idle", isMobile);
-			ctrl.autoRotate = false;
 		} else {
 			applyControls(ctrl, "idle", isMobile);
 			ctrl.autoRotate = false;
 		}
-	}, [interactive, isDeck, phase, isMobile, applyInteractiveControls]);
+	}, [interactive, isDeck, phase, isMobile]);
 
 	/** Intro camera — one animation per phase, never re-triggered on flight ticks. */
 	useEffect(() => {
