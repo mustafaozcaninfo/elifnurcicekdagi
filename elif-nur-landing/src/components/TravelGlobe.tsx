@@ -4,6 +4,13 @@ import type { ActiveFlight } from "../hooks/useLiveFlights";
 import { useIsMobile } from "../hooks/useIsMobile";
 import type { TravelMapCity, TravelMapData } from "../data/travel-map";
 import { buildGlobePoints } from "../utils/globe-points";
+import {
+	flyToCity,
+	recenterOverview,
+	resetOrbitTarget,
+	type GlobeCameraApi,
+	type GlobeControls,
+} from "../utils/globe-camera";
 import { buildGlobeArcs } from "../utils/hub-arcs";
 
 const Globe = lazy(() => import("react-globe.gl"));
@@ -14,18 +21,6 @@ type CountryFeature = {
 	geometry: unknown;
 };
 
-type GlobeControls = {
-	autoRotate: boolean;
-	autoRotateSpeed: number;
-	enableZoom: boolean;
-	enableRotate: boolean;
-	enablePan: boolean;
-	zoomSpeed: number;
-	rotateSpeed: number;
-	minDistance: number;
-	maxDistance: number;
-};
-
 type Props = {
 	data: TravelMapData;
 	selectedId: string | null;
@@ -34,34 +29,42 @@ type Props = {
 	phase?: DeckPhase;
 	primaryFlight?: ActiveFlight | null;
 	focusCityId?: string | null;
+	focusNonce?: number;
+	recenterKey?: number;
 	interactive?: boolean;
-	gesturePriority?: boolean;
+	gesturesEnabled?: boolean;
+	layoutSyncKey?: number;
 };
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 function applyControls(
 	ctrl: GlobeControls,
-	mode: "intro" | "interactive" | "idle",
+	mode: "intro" | "interactive" | "idle" | "locked",
 	mobile: boolean,
 ) {
 	ctrl.autoRotate = mode === "intro";
 	ctrl.autoRotateSpeed = 0.12;
-	ctrl.enableRotate = true;
-	ctrl.enablePan = mode === "interactive" && mobile;
+	ctrl.enableRotate = mode === "interactive" || mode === "intro";
+	ctrl.enablePan = false;
 	ctrl.zoomSpeed = mobile ? 0.85 : 1.1;
 	ctrl.rotateSpeed = mobile ? 0.72 : 0.45;
-	ctrl.minDistance = mobile ? 82 : 101;
-	ctrl.maxDistance = mobile ? 420 : 480;
+	ctrl.minDistance = mobile ? 95 : 101;
+	ctrl.maxDistance = mobile ? 360 : 480;
 
 	if (mode === "interactive") {
 		ctrl.autoRotate = false;
 		ctrl.enableZoom = true;
 	} else if (mode === "intro") {
 		ctrl.enableZoom = false;
+	} else if (mode === "locked") {
+		ctrl.autoRotate = false;
+		ctrl.enableZoom = false;
+		ctrl.enableRotate = false;
 	} else {
 		ctrl.autoRotate = false;
 		ctrl.enableZoom = false;
+		ctrl.enableRotate = false;
 	}
 }
 
@@ -73,16 +76,16 @@ export default function TravelGlobe({
 	phase = "reveal",
 	primaryFlight = null,
 	focusCityId = null,
+	focusNonce = 0,
+	recenterKey = 0,
 	interactive = false,
-	gesturePriority = false,
+	gesturesEnabled = true,
+	layoutSyncKey = 0,
 }: Props) {
 	const isDeck = variant === "deck";
 	const isMobile = useIsMobile();
 	const containerRef = useRef<HTMLDivElement>(null);
-	const globeRef = useRef<{
-		pointOfView: (pov: { lat?: number; lng?: number; altitude?: number }, ms?: number) => void;
-		controls: () => GlobeControls;
-	} | null>(null);
+	const globeRef = useRef<GlobeCameraApi | null>(null);
 	const [dims, setDims] = useState({ w: 800, h: 600 });
 	const [countries, setCountries] = useState<CountryFeature[]>([]);
 	const [globeOpacity, setGlobeOpacity] = useState(isDeck ? 0 : 1);
@@ -94,6 +97,23 @@ export default function TravelGlobe({
 	const globeReadyRef = useRef(false);
 	const lastCameraPhaseRef = useRef<DeckPhase | null>(null);
 	const exploreHandoffRef = useRef(false);
+
+	const syncDimensions = useCallback(() => {
+		const el = containerRef.current;
+		if (!el) return;
+		const { width, height } = el.getBoundingClientRect();
+		if (width > 0 && height > 0) {
+			setDims({ w: width, h: height });
+		}
+	}, []);
+
+	const applyInteractiveControls = useCallback(() => {
+		const g = globeRef.current;
+		if (!g || !interactive) return;
+		const ctrl = g.controls();
+		if (!ctrl) return;
+		applyControls(ctrl, gesturesEnabled ? "interactive" : "locked", isMobile);
+	}, [interactive, gesturesEnabled, isMobile]);
 
 	const globeCenter =
 		data.cities.find((c) => c.id === "doha") ??
@@ -179,13 +199,40 @@ export default function TravelGlobe({
 	useEffect(() => {
 		const el = containerRef.current;
 		if (!el) return;
-		const ro = new ResizeObserver(([entry]) => {
-			const { width, height } = entry.contentRect;
-			setDims({ w: width, h: height });
-		});
+		const ro = new ResizeObserver(() => syncDimensions());
 		ro.observe(el);
+		syncDimensions();
 		return () => ro.disconnect();
-	}, []);
+	}, [syncDimensions]);
+
+	useEffect(() => {
+		if (!isMobile || typeof window === "undefined") return;
+		const vv = window.visualViewport;
+		if (!vv) return;
+
+		let timer: number | undefined;
+		const onViewportChange = () => {
+			window.clearTimeout(timer);
+			timer = window.setTimeout(syncDimensions, 120);
+		};
+
+		vv.addEventListener("resize", onViewportChange);
+		vv.addEventListener("scroll", onViewportChange);
+		return () => {
+			vv.removeEventListener("resize", onViewportChange);
+			vv.removeEventListener("scroll", onViewportChange);
+			window.clearTimeout(timer);
+		};
+	}, [isMobile, syncDimensions]);
+
+	useEffect(() => {
+		if (!layoutSyncKey) return;
+		syncDimensions();
+		const g = globeRef.current;
+		if (!g || !interactive) return;
+		resetOrbitTarget(g.controls());
+		applyInteractiveControls();
+	}, [layoutSyncKey, syncDimensions, interactive, applyInteractiveControls]);
 
 	useEffect(() => {
 		fetch(GEO_URL)
@@ -216,7 +263,7 @@ export default function TravelGlobe({
 		if (!ctrl) return;
 
 		if (interactive) {
-			applyControls(ctrl, "interactive", isMobile);
+			applyInteractiveControls();
 			return;
 		}
 
@@ -228,14 +275,13 @@ export default function TravelGlobe({
 		if (phase === "departure" || phase === "cruise" || phase === "globe") {
 			applyControls(ctrl, "intro", isMobile);
 		} else if (phase === "reveal") {
-			// Keep orbit locked until explore handoff — avoids control fight mid-animation
 			applyControls(ctrl, "idle", isMobile);
 			ctrl.autoRotate = false;
 		} else {
 			applyControls(ctrl, "idle", isMobile);
 			ctrl.autoRotate = false;
 		}
-	}, [interactive, isDeck, phase, isMobile]);
+	}, [interactive, isDeck, phase, isMobile, applyInteractiveControls]);
 
 	/** Intro camera — one animation per phase, never re-triggered on flight ticks. */
 	useEffect(() => {
@@ -288,16 +334,27 @@ export default function TravelGlobe({
 
 		const alreadyAtReveal = lastCameraPhaseRef.current === "reveal";
 		if (!alreadyAtReveal) {
-			g.pointOfView(
-				{
-					lat: globeCenter.lat,
-					lng: globeCenter.lng,
-					altitude: isMobile ? 2.2 : 2.05,
-				},
-				600,
-			);
+			recenterOverview(g, globeCenter.lat, globeCenter.lng, isMobile, 600);
 		}
 	}, [interactive, globeCenter, isMobile]);
+
+	useEffect(() => {
+		if (!focusCityId || !globeRef.current || !interactive) return;
+		const city = data.cities.find((c) => c.id === focusCityId);
+		if (!city) return;
+		flyToCity(
+			globeRef.current,
+			city.lat,
+			city.lng,
+			isMobile ? 1.82 : 1.55,
+			900,
+		);
+	}, [focusCityId, focusNonce, data.cities, isMobile, interactive]);
+
+	useEffect(() => {
+		if (!recenterKey || !globeRef.current || !interactive || !globeCenter) return;
+		recenterOverview(globeRef.current, globeCenter.lat, globeCenter.lng, isMobile);
+	}, [recenterKey, interactive, globeCenter, isMobile]);
 
 	useEffect(() => {
 		if (!interactive) {
@@ -308,18 +365,8 @@ export default function TravelGlobe({
 		return () => clearTimeout(t);
 	}, [interactive]);
 
-	useEffect(() => {
-		if (!focusCityId || !globeRef.current || !interactive) return;
-		const city = data.cities.find((c) => c.id === focusCityId);
-		if (!city) return;
-		globeRef.current.pointOfView(
-			{ lat: city.lat, lng: city.lng, altitude: isMobile ? 1.75 : 1.55 },
-			900,
-		);
-	}, [focusCityId, data.cities, isMobile, interactive]);
-
 	const shellClass = isDeck
-		? `deck-globe-shell relative h-full w-full overflow-hidden bg-[#030201] ${interactive ? "cursor-grab active:cursor-grabbing" : ""} ${gesturePriority ? "deck-globe-shell--gestures" : ""}`
+		? `deck-globe-shell relative h-full w-full overflow-hidden bg-[#030201] ${interactive && gesturesEnabled ? "cursor-grab active:cursor-grabbing" : ""} ${interactive && !gesturesEnabled ? "deck-globe-shell--locked" : ""}`
 		: "relative h-[min(72vh,640px)] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 shadow-gallery";
 
 	const polygonAlt = isMobile ? 0.008 : 0.014;

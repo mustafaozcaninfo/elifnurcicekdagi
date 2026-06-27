@@ -129,11 +129,22 @@
 		user-select: none;
 	}
 
-	.deck-globe-shell--gestures {
-		z-index: 1;
+	.deck-globe-shell--locked canvas {
+		pointer-events: none;
+	}
+
+	.explorer-shell {
+		height: 100dvh;
+		min-height: 560px;
 	}
 
 	@media (max-width: 767px) {
+		#explorer.explorer-shell,
+		.explorer-shell {
+			height: var(--app-h, 100dvh);
+			min-height: var(--app-h, 100dvh);
+		}
+
 		#explorer {
 			overscroll-behavior: none;
 		}

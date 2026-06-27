@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, Heart, Home, MapPin, Search, User, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { TravelMapCity, TravelMapCountry } from "../data/travel-map";
 import { cityLabel, roleBadge, visitBadge } from "../data/travel-map";
 import { useIsMobile } from "../hooks/useIsMobile";
@@ -61,6 +61,7 @@ export default function WaypointRail({
 	onOpenChange,
 }: Props) {
 	const isMobile = useIsMobile();
+	const searchRef = useRef<HTMLInputElement>(null);
 	const [railOpen, setRailOpen] = useState(!isMobile);
 	const [query, setQuery] = useState("");
 	const [collapsed, setCollapsed] = useState<Set<string>>(() =>
@@ -68,13 +69,16 @@ export default function WaypointRail({
 	);
 
 	useEffect(() => {
-		setRailOpen(!isMobile);
+		const open = !isMobile;
+		setRailOpen(open);
 		setCollapsed(defaultCollapsedCountries(countries, isMobile));
+		onOpenChange?.(open);
 	}, [isMobile]); // eslint-disable-line react-hooks/exhaustive-deps
 
-	useEffect(() => {
-		onOpenChange?.(railOpen);
-	}, [railOpen, onOpenChange]);
+	const setRailOpenState = (open: boolean) => {
+		setRailOpen(open);
+		onOpenChange?.(open);
+	};
 
 	const countryByIso = useMemo(
 		() => new Map(countries.map((c) => [c.iso2, c])),
@@ -120,7 +124,15 @@ export default function WaypointRail({
 		});
 	};
 
-	const closeRail = () => setRailOpen(false);
+	const closeRail = () => {
+		searchRef.current?.blur();
+		if (document.activeElement instanceof HTMLElement) {
+			document.activeElement.blur();
+		}
+		setRailOpenState(false);
+	};
+
+	const openRail = () => setRailOpenState(true);
 
 	if (!visible) return null;
 
@@ -135,7 +147,7 @@ export default function WaypointRail({
 						</p>
 						<p className="mt-1 font-ui text-[0.65rem] leading-relaxed text-warm-muted">
 							{isMobile
-								? "Close to drag the map with two fingers"
+								? "Close the list to drag the map with one finger"
 								: "Tap a name here — or a dot on the globe"}
 						</p>
 					</div>
@@ -155,7 +167,12 @@ export default function WaypointRail({
 				<label className="flex items-center gap-2 rounded-lg border border-white/8 bg-black/40 px-3 py-2.5">
 					<Search className="h-3.5 w-3.5 shrink-0 text-warm-muted" strokeWidth={1.5} />
 					<input
+						ref={searchRef}
 						type="search"
+						inputMode="search"
+						enterKeyHint="search"
+						autoComplete="off"
+						autoCorrect="off"
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 						placeholder="Search city or country…"
@@ -200,6 +217,7 @@ export default function WaypointRail({
 												<button
 													type="button"
 													onClick={() => {
+														searchRef.current?.blur();
 														onSelect(city);
 														if (isMobile) closeRail();
 													}}
@@ -251,7 +269,7 @@ export default function WaypointRail({
 		return (
 			<motion.button
 				type="button"
-				onClick={() => setRailOpen(true)}
+				onClick={openRail}
 				className="pointer-events-auto fixed left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full border border-warm-mustard/35 bg-[#080604]/92 px-5 py-3 font-ui text-[0.7rem] font-medium text-warm-light shadow-[0_8px_32px_rgba(0,0,0,0.55)] backdrop-blur-xl active:scale-[0.98]"
 				style={{ bottom: "max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem))" }}
 				initial={{ opacity: 0, y: 16 }}

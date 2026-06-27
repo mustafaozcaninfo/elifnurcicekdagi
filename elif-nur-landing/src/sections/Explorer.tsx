@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import CompanionFilterBar from "../components/CompanionFilter";
 import type { DeckPhase } from "../components/PilotHud";
 import DestinationPanel from "../components/DestinationPanel";
 import ExploreChrome from "../components/ExploreChrome";
+import GlobeRecenterButton from "../components/GlobeRecenterButton";
 import JourneyLedger from "../components/JourneyLedger";
 import Navbar from "../components/Navbar";
 import PilotHud from "../components/PilotHud";
@@ -13,6 +14,7 @@ import { useCompanionFilter } from "../hooks/useCompanionFilter";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useLiveFlights } from "../hooks/useLiveFlights";
 import { useSite } from "../hooks/useSite";
+import { useStableAppHeight } from "../hooks/useStableAppHeight";
 import { filterTravelMapByCompanion } from "../utils/companion-filter";
 
 /** ~10s cinematic intro — Boeing 777 departure from Doha. Skippable anytime. */
@@ -33,17 +35,22 @@ export default function Explorer() {
 		[travelMap, companion],
 	);
 	const isMobile = useIsMobile();
+	useStableAppHeight(isMobile);
 	const [phase, setPhase] = useState<DeckPhase>("boot");
 	const [exploreReady, setExploreReady] = useState(false);
 	const [selectedId, setSelectedId] = useState<string | null>(null);
 	const [panelOpen, setPanelOpen] = useState(false);
 	const [focusCityId, setFocusCityId] = useState<string | null>(null);
+	const [focusNonce, setFocusNonce] = useState(0);
+	const [recenterKey, setRecenterKey] = useState(0);
+	const [globeSyncKey, setGlobeSyncKey] = useState(0);
 	const [railOpen, setRailOpen] = useState(false);
+	const syncTimerRef = useRef<number | undefined>(undefined);
 
 	const interactive = exploreReady;
 	const flightsEnabled = phase === "departure" || phase === "cruise";
 	const { flights, primary } = useLiveFlights(mapView, flightsEnabled);
-	const mapGesturePriority = isMobile && !railOpen && !panelOpen;
+	const mapGesturesEnabled = !railOpen && !panelOpen;
 
 	const cityById = new Map(mapView.cities.map((c) => [c.id, c]));
 	const selected = selectedId ? (cityById.get(selectedId) ?? null) : null;
@@ -66,7 +73,45 @@ export default function Explorer() {
 	const selectCity = useCallback((city: TravelMapCity) => {
 		setSelectedId(city.id);
 		setFocusCityId(city.id);
+		setFocusNonce((n) => n + 1);
 		setPanelOpen(true);
+	}, []);
+
+	const handleRailOpenChange = useCallback(
+		(open: boolean) => {
+			setRailOpen(open);
+			if (!open && isMobile) {
+				window.clearTimeout(syncTimerRef.current);
+				syncTimerRef.current = window.setTimeout(() => {
+					setGlobeSyncKey((k) => k + 1);
+				}, 420);
+			}
+		},
+		[isMobile],
+	);
+
+	const handlePanelClose = useCallback(() => {
+		setPanelOpen(false);
+		if (isMobile) {
+			window.clearTimeout(syncTimerRef.current);
+			syncTimerRef.current = window.setTimeout(() => {
+				setGlobeSyncKey((k) => k + 1);
+			}, 320);
+		}
+	}, [isMobile]);
+
+	const handleRecenter = useCallback(() => {
+		setGlobeSyncKey((k) => k + 1);
+		if (selectedId) {
+			setFocusCityId(selectedId);
+			setFocusNonce((n) => n + 1);
+		} else {
+			setRecenterKey((k) => k + 1);
+		}
+	}, [selectedId]);
+
+	useEffect(() => {
+		return () => window.clearTimeout(syncTimerRef.current);
 	}, []);
 
 	const skipIntro = useCallback(() => {
@@ -89,7 +134,7 @@ export default function Explorer() {
 	}, [phase, exploreReady, isMobile]);
 
 	return (
-		<div id="explorer" className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden bg-[#030201] pt-0 md:pt-0">
+		<div id="explorer" className="explorer-shell relative w-full overflow-hidden bg-[#030201] pt-0 md:pt-0">
 			<Navbar variant="deck" visible={phase !== "boot"} />
 
 			<CompanionFilterBar
@@ -104,6 +149,8 @@ export default function Explorer() {
 					data={mapView}
 					selectedId={selectedId}
 					focusCityId={focusCityId}
+					focusNonce={focusNonce}
+					recenterKey={recenterKey}
 					onSelect={(city) => {
 						if (!interactive || !city) return;
 						selectCity(city);
@@ -111,7 +158,8 @@ export default function Explorer() {
 					phase={phase}
 					primaryFlight={primary}
 					interactive={interactive}
-					gesturePriority={mapGesturePriority}
+					gesturesEnabled={mapGesturesEnabled}
+					layoutSyncKey={globeSyncKey}
 				/>
 			</div>
 
@@ -136,7 +184,12 @@ export default function Explorer() {
 				selectedId={selectedId}
 				visible={interactive}
 				onSelect={selectCity}
-				onOpenChange={setRailOpen}
+				onOpenChange={handleRailOpenChange}
+			/>
+
+			<GlobeRecenterButton
+				visible={interactive && isMobile && mapGesturesEnabled}
+				onClick={handleRecenter}
 			/>
 
 			<JourneyLedger
@@ -153,7 +206,7 @@ export default function Explorer() {
 				siblingCities={siblingCities}
 				flightSummary={mapView.flightSummary}
 				open={panelOpen && interactive && selected !== null}
-				onClose={() => setPanelOpen(false)}
+				onClose={handlePanelClose}
 				onSelectCity={selectCity}
 			/>
 		</div>

@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import ContactButton from "./ContactButton";
 import type { AirportFlightSummary, TravelMapCity, TravelMapCountry } from "../data/travel-map";
 import { cityLabel, roleBadge, visitBadge } from "../data/travel-map";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 type Props = {
 	city: TravelMapCity | null;
@@ -30,6 +31,7 @@ export default function DestinationPanel({
 	onClose,
 	onSelectCity,
 }: Props) {
+	const isMobile = useIsMobile();
 	const country = city ? countries.find((c) => c.iso2 === city.country) : null;
 	const iata = city?.airportCode?.toUpperCase();
 	const pilotLog = iata && flightSummary ? flightSummary[iata] : undefined;
@@ -48,15 +50,27 @@ export default function DestinationPanel({
 						aria-label="Close destination panel"
 					/>
 					<motion.aside
-						className="pointer-events-auto fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l border-white/10 bg-warm-dark/98 shadow-2xl md:bg-warm-dark/95 md:backdrop-blur-xl"
-						initial={{ x: "100%" }}
-						animate={{ x: 0 }}
-						exit={{ x: "100%" }}
+						className={`pointer-events-auto fixed z-50 flex flex-col overflow-hidden bg-warm-dark/98 shadow-2xl md:bg-warm-dark/95 md:backdrop-blur-xl ${
+							isMobile
+								? "inset-x-0 bottom-0 max-h-[min(78dvh,calc(100dvh-6rem))] rounded-t-[1.35rem] border border-white/10 border-b-0"
+								: "inset-y-0 right-0 w-full max-w-md border-l border-white/10"
+						}`}
+						style={
+							isMobile
+								? { paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }
+								: undefined
+						}
+						initial={isMobile ? { y: "100%" } : { x: "100%" }}
+						animate={isMobile ? { y: 0 } : { x: 0 }}
+						exit={isMobile ? { y: "100%" } : { x: "100%" }}
 						transition={{ type: "spring", damping: 28, stiffness: 260 }}
 						role="dialog"
 						aria-labelledby="destination-title"
 					>
-						<header className="flex items-start justify-between gap-4 border-b border-white/8 px-6 py-5">
+						{isMobile && (
+							<div className="mx-auto mt-2.5 h-1 w-10 shrink-0 rounded-full bg-white/25" aria-hidden />
+						)}
+						<header className="flex items-start justify-between gap-4 border-b border-white/8 px-5 py-4 md:px-6 md:py-5">
 							<div className="min-w-0">
 								<p className="font-kanit text-[0.6rem] uppercase tracking-[0.32em] text-warm-terracotta">
 									{city.story?.tag ?? roleBadge(city.role)}
@@ -82,7 +96,7 @@ export default function DestinationPanel({
 							</button>
 						</header>
 
-						<div className="flex-1 overflow-y-auto px-6 py-6">
+						<div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 md:px-6 md:py-6">
 							{pilotLog && (
 								<div className="mb-6 rounded-xl border border-warm-mustard/25 bg-warm-mustard/8 p-4">
 									<p className="font-kanit text-[0.55rem] uppercase tracking-[0.28em] text-warm-mustard">

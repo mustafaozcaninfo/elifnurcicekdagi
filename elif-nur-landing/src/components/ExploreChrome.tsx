@@ -53,7 +53,6 @@ export default function ExploreChrome({ visible, onSkip, showSkip }: Props) {
 						<>
 							<Hint icon={Hand} text="One finger · rotate" />
 							<Hint icon={ZoomIn} text="Pinch · zoom" />
-							<Hint icon={Move} text="Two fingers · pan" />
 							<Hint icon={MousePointerClick} text="Tap a dot on the map" />
 						</>
 					) : (
