@@ -49,6 +49,8 @@ type GlobeInstance = GlobeCameraApi & {
 	enablePointerInteraction?: (enabled: boolean) => unknown;
 };
 
+const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
 function applyControls(
 	ctrl: GlobeControls,
 	mode: "intro" | "interactive" | "idle" | "locked",
