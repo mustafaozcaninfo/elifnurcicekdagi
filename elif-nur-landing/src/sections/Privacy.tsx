@@ -182,6 +182,9 @@ export default function Privacy() {
 						&copy; {year} {branding.siteName}. All rights reserved.
 					</p>
 					<nav className="flex gap-6" aria-label="Footer links">
+						<a href="/about" className="transition-colors hover:text-warm-light">
+							About
+						</a>
 						<a href="/contact" className="transition-colors hover:text-warm-light">
 							Contact
 						</a>

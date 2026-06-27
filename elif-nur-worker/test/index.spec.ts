@@ -118,6 +118,7 @@ describe("elif-nur-worker", () => {
 		const xml = await response.text();
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/</loc>");
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/contact</loc>");
+		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/about</loc>");
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/privacy</loc>");
 		expect(xml).toContain("<lastmod>");
 	});
@@ -129,6 +130,28 @@ describe("elif-nur-worker", () => {
 		expect(text).toContain("# Elif Nur Çiçekdağı");
 		expect(text).toContain("/contact");
 		expect(text).toContain("/api/v1");
+	});
+
+	it("GET /about serves the about page HTML", async () => {
+		const response = await SELF.fetch(`${SITE}/about`, {
+			headers: { accept: "text/html" },
+		});
+		expect(response.status).toBe(200);
+		const html = await response.text();
+		expect(html).toContain("About");
+		expect(html).toContain("/assets/");
+	});
+
+	it("GET /media/elif-pilot-cockpit.jpg serves portrait asset", async () => {
+		const response = await SELF.fetch(`${SITE}/media/elif-pilot-cockpit.jpg`);
+		expect(response.status).toBe(200);
+		expect(response.headers.get("content-type")).toContain("image/jpeg");
+	});
+
+	it("GET /hakkimda redirects to /about", async () => {
+		const response = await SELF.fetch(`${SITE}/hakkimda`, { redirect: "manual" });
+		expect(response.status).toBe(301);
+		expect(response.headers.get("location")).toContain("/about");
 	});
 
 	it("GET /favicon.svg has valid UTF-8 Turkish name", async () => {

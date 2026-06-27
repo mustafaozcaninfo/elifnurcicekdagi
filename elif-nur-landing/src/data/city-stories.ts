@@ -1,4 +1,4 @@
-import { ABOUT_TEXT, EXPERIENCES, HERO_PORTRAIT } from "./images";
+import { ABOUT_TEXT, EXPERIENCES, PILOT_COCKPIT_PORTRAIT } from "./images";
 import type { CityStory } from "./travel-map-types";
 
 /** Hand-crafted narrative panels for origin and base city. */
@@ -7,7 +7,7 @@ export const CITY_STORIES: Record<string, CityStory> = {
 		tag: "Origin · Turkey",
 		headline: "Hi, I'm Elif",
 		lead: "Airline Pilot · Born between continents · This is where the story starts before every climb.",
-		portraitUrl: HERO_PORTRAIT,
+		portraitUrl: PILOT_COCKPIT_PORTRAIT,
 		showContact: true,
 		sections: [
 			{

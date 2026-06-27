@@ -87,6 +87,27 @@ export default {
 			}
 		}
 
+		if (url.pathname === "/about" || url.pathname === "/about/") {
+			const aboutPage = await env.ASSETS.fetch(
+				new Request(new URL("/about/index.html", url.origin), request),
+			);
+			if (aboutPage.ok) {
+				return applySecurityHeaders(
+					new Response(aboutPage.body, {
+						status: 200,
+						headers: {
+							"content-type": "text/html; charset=utf-8",
+							"cache-control": "public, max-age=60, s-maxage=300",
+						},
+					}),
+				);
+			}
+		}
+
+		if (url.pathname === "/hakkimda" || url.pathname === "/hakkimda/") {
+			return Response.redirect(new URL("/about", url.origin).toString(), 301);
+		}
+
 		if (url.pathname === "/admin" || url.pathname === "/admin/") {
 			const adminPage = await env.ASSETS.fetch(
 				new Request(new URL("/admin/index.html", url.origin), request),

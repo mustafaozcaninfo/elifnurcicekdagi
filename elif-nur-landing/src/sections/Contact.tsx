@@ -112,6 +112,9 @@ export default function Contact() {
 				<div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 font-ui text-xs text-warm-muted/70 md:flex-row">
 					<p>&copy; {year} {branding.siteName}. All rights reserved.</p>
 					<nav className="flex gap-6" aria-label="Footer links">
+						<a href="/about" className="transition-colors hover:text-warm-light">
+							About
+						</a>
 						<a href="/contact" className="text-warm-light transition-colors hover:text-warm-mustard">
 							Contact
 						</a>

@@ -2,7 +2,10 @@
 const u = (id: string, w = 840, h = 540) =>
 	`https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
 
-export const HERO_PORTRAIT = u("photo-1573496359142-b8d87734a5a2", 900, 1100);
+/** Elif in the B777 flight deck — served from /media on deploy. */
+export const PILOT_COCKPIT_PORTRAIT = "/media/elif-pilot-cockpit.jpg";
+
+export const HERO_PORTRAIT = PILOT_COCKPIT_PORTRAIT;
 
 /** 21 marquee frames — cockpit, coast, cities, islands, tropics */
 export const MARQUEE_ROW_1 = [

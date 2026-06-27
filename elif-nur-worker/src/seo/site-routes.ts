@@ -19,6 +19,13 @@ export const PUBLIC_ROUTES: SiteRoute[] = [
 		description: "Elif Nur Çiçekdağı Özcan — pilot, gezgin ve içerik üreticisi",
 	},
 	{
+		path: "/about",
+		changefreq: "monthly",
+		priority: 0.85,
+		title: "About",
+		description: "Airline pilot · Istanbul origin · Boeing 777 flight deck story",
+	},
+	{
 		path: "/contact",
 		changefreq: "monthly",
 		priority: 0.8,

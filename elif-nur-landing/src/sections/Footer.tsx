@@ -34,6 +34,9 @@ export default function Footer() {
 			<div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 font-body text-xs text-warm-muted/60 md:flex-row">
 				<p>&copy; {year} Elif Nur Çiçekdağı Özcan. All rights reserved.</p>
 				<nav className="flex gap-6" aria-label="Alt bağlantılar">
+					<a href="/about" className="transition-colors hover:text-warm-light">
+						About
+					</a>
 					<a href="/contact" className="transition-colors hover:text-warm-light">
 						Contact
 					</a>

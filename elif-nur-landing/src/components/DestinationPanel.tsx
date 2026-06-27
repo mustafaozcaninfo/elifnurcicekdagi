@@ -214,7 +214,14 @@ export default function DestinationPanel({
 
 						{city.story?.showContact && (
 							<footer className="border-t border-white/8 px-6 py-5">
-								<ContactButton className="w-full justify-center" />
+								<div className="flex flex-col gap-3">
+									{city.id === "istanbul" && (
+										<ContactButton href="/about" variant="secondary" className="w-full justify-center">
+											Full origin story
+										</ContactButton>
+									)}
+									<ContactButton className="w-full justify-center" />
+								</div>
 							</footer>
 						)}
 					</motion.aside>
