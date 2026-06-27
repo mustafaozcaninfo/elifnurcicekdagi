@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useSite } from "../hooks/useSite";
+import NavbarBrand from "./NavbarBrand";
 
 export default function Navbar({
 	variant = "default",
@@ -17,7 +18,7 @@ export default function Navbar({
 
 	return (
 		<motion.header
-			className="fixed inset-x-0 top-0 z-50 px-6 py-5 md:px-10"
+			className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6 sm:py-5 md:px-10"
 			initial={isDeck ? { opacity: 0, y: -12 } : false}
 			animate={
 				isDeck
@@ -27,22 +28,26 @@ export default function Navbar({
 			transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
 		>
 			<nav
-				className={`mx-auto flex max-w-7xl items-center justify-between ${
+				className={`mx-auto flex max-w-7xl items-center justify-between gap-3 ${
 					isDeck
-						? "rounded-full border border-white/10 bg-black/35 px-5 py-3 backdrop-blur-md"
+						? "rounded-2xl border border-white/10 bg-[#080604]/55 px-3 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:rounded-full sm:px-5 sm:py-3"
 						: ""
 				}`}
 				aria-label="Primary navigation"
 			>
-				<a
-					href="/"
-					className="font-kanit text-lg font-semibold tracking-wide text-warm-light transition-opacity hover:opacity-80 md:text-xl"
-				>
-					{branding.siteName}
-				</a>
+				{isDeck ? (
+					<NavbarBrand siteName={branding.siteName} />
+				) : (
+					<a
+						href="/"
+						className="font-kanit text-lg font-semibold tracking-wide text-warm-light transition-opacity hover:opacity-80 md:text-xl"
+					>
+						{branding.siteName}
+					</a>
+				)}
 				<a
 					href={linkHref}
-					className="font-kanit text-[0.62rem] font-medium uppercase tracking-[0.18em] text-warm-light/85 transition-opacity hover:opacity-70"
+					className="shrink-0 rounded-full border border-white/10 bg-black/30 px-3 py-1.5 font-kanit text-[0.58rem] font-medium uppercase tracking-[0.16em] text-warm-light/90 transition-all hover:border-warm-mustard/35 hover:bg-warm-mustard/10 hover:text-warm-light sm:border-transparent sm:bg-transparent sm:px-0 sm:py-0 sm:text-[0.62rem] sm:tracking-[0.18em]"
 				>
 					{linkLabel}
 				</a>

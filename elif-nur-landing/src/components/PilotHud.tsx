@@ -81,12 +81,6 @@ export default function PilotHud({
 			/>
 			<div className={`deck-scanlines absolute inset-0 ${hudVisible ? "opacity-30" : "opacity-0"}`} />
 
-			{interactive && (
-				<div className="absolute left-1/2 top-24 z-10 -translate-x-1/2 font-kanit text-[0.58rem] uppercase tracking-[0.32em] text-warm-light/70">
-					{branding.siteName}
-				</div>
-			)}
-
 			{/* SVG HUD frame */}
 			<motion.svg
 				className="absolute inset-0 h-full w-full"
