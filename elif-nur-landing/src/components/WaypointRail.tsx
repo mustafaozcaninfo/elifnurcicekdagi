@@ -72,12 +72,12 @@ export default function WaypointRail({
 		const open = !isMobile;
 		setRailOpen(open);
 		setCollapsed(defaultCollapsedCountries(countries, isMobile));
-		onOpenChange?.(open);
+		onOpenChange?.(isMobile && open);
 	}, [isMobile]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const setRailOpenState = (open: boolean) => {
 		setRailOpen(open);
-		onOpenChange?.(open);
+		if (isMobile) onOpenChange?.(open);
 	};
 
 	const countryByIso = useMemo(

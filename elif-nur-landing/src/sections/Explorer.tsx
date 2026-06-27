@@ -50,7 +50,7 @@ export default function Explorer() {
 	const interactive = exploreReady;
 	const flightsEnabled = phase === "departure" || phase === "cruise";
 	const { flights, primary } = useLiveFlights(mapView, flightsEnabled);
-	const mapGesturesEnabled = !railOpen && !panelOpen;
+	const mapGesturesEnabled = !panelOpen && !(isMobile && railOpen);
 
 	const cityById = new Map(mapView.cities.map((c) => [c.id, c]));
 	const selected = selectedId ? (cityById.get(selectedId) ?? null) : null;
