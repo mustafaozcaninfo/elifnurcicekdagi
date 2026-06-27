@@ -13,7 +13,6 @@ export type GlobeArc = {
 };
 
 const ARC_GOLD = "#D4A017";
-const ARC_MUTED: [string, string] = ["rgba(212,160,23,0.14)", "rgba(194,91,63,0.05)"];
 const ARC_INTRO: [string, string] = ["rgba(212,160,23,0.55)", "rgba(194,91,63,0.12)"];
 const ARC_ACTIVE: [string, string] = ["rgba(212,160,23,0.95)", "rgba(240,193,75,0.35)"];
 
@@ -68,14 +67,14 @@ export function buildGlobeArcs(
 				color = [arcColor, "rgba(194,91,63,0.1)"];
 				stroke = isOriginLink ? 0.65 : 0.45;
 				altitude = 0.28;
-				dashAnimateTime = opts.mobile ? 0 : 2200;
+				dashAnimateTime = opts.mobile ? 2800 : 2200;
 			} else if (opts.interactive) {
 				color = isOriginLink
-					? ["rgba(194,91,63,0.28)", "rgba(194,91,63,0.08)"]
-					: ARC_MUTED;
-				stroke = isOriginLink ? 0.35 : 0.22;
-				altitude = 0.22;
-				dashAnimateTime = opts.mobile ? 0 : 4800;
+					? ["rgba(194,91,63,0.42)", "rgba(194,91,63,0.12)"]
+					: ["rgba(212,160,23,0.32)", "rgba(194,91,63,0.08)"];
+				stroke = isOriginLink ? 0.42 : 0.3;
+				altitude = 0.24;
+				dashAnimateTime = opts.mobile ? 4200 : 3600;
 			} else {
 				color = ARC_INTRO;
 				stroke = 0.4;
@@ -96,21 +95,6 @@ export function buildGlobeArcs(
 			};
 		})
 		.filter((a): a is GlobeArc => a !== null);
-
-	// Mobile interactive: only origin link + selected route — avoids visual noise + GPU load
-	if (opts.mobile && opts.interactive && !opts.introMode) {
-		if (!opts.selectedId) {
-			mapped = mapped.filter((a) => a.id === "istanbul-doha");
-		} else {
-			mapped = mapped.filter(
-				(a) =>
-					a.id === "istanbul-doha" ||
-					a.id.includes(opts.selectedId!) ||
-					a.id.startsWith(`doha-${opts.selectedId}`) ||
-					a.id.endsWith(`-${opts.selectedId}`),
-			);
-		}
-	}
 
 	return mapped;
 }

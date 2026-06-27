@@ -12,6 +12,13 @@ import {
 	type GlobeControls,
 } from "../utils/globe-camera";
 import { buildGlobeArcs } from "../utils/hub-arcs";
+import {
+	buildGlobeLabelCities,
+	globeLabelAltitude,
+	globeLabelColor,
+	globeLabelSize,
+	globeLabelText,
+} from "../utils/globe-labels";
 
 const Globe = lazy(() => import("react-globe.gl"));
 
@@ -173,14 +180,8 @@ export default function TravelGlobe({
 
 	const labelCities = useMemo(() => {
 		if (!interactive) return [];
-		const ids = new Set<string>();
-		if (selectedId) ids.add(selectedId);
-		if (!isMobile && hoverId) ids.add(hoverId);
-		for (const c of data.cities) {
-			if (c.role === "home") ids.add(c.id);
-		}
-		return data.cities.filter((c) => ids.has(c.id));
-	}, [data.cities, selectedId, hoverId, interactive, isMobile]);
+		return buildGlobeLabelCities(data.cities);
+	}, [data.cities, interactive]);
 
 	const onGlobeReady = useCallback(() => {
 		const g = globeRef.current;
@@ -411,8 +412,11 @@ export default function TravelGlobe({
 						arcColor={(d: object) => (d as { color: string[] }).color}
 						arcAltitude={(d: object) => (d as { altitude: number }).altitude}
 						arcStroke={(d: object) => (d as { stroke: number }).stroke}
-						arcDashLength={isMobile ? 1 : 0.42}
-						arcDashGap={isMobile ? 0 : 0.14}
+						arcDashLength={0.38}
+						arcDashGap={0.14}
+						arcDashInitialGap={(d: object) =>
+							(d as { id: string }).id === "istanbul-doha" ? 0.08 : 0.22
+						}
 						arcDashAnimateTime={(d: object) => (d as { dashAnimateTime: number }).dashAnimateTime}
 						pointsData={showPoints ? points : []}
 						pointLat={(d: object) => (d as TravelMapCity).lat}
@@ -441,13 +445,18 @@ export default function TravelGlobe({
 						labelsData={labelCities}
 						labelLat={(d: object) => (d as TravelMapCity).lat}
 						labelLng={(d: object) => (d as TravelMapCity).lng}
-						labelText={(d: object) =>
-							(d as TravelMapCity).airportCode ?? (d as TravelMapCity).name
+						labelText={(d: object) => globeLabelText(d as TravelMapCity)}
+						labelSize={(d: object) =>
+							globeLabelSize(d as TravelMapCity, selectedId, hoverId, isMobile)
 						}
-						labelSize={isMobile ? 1.05 : 1.2}
-						labelColor={() => "rgba(245, 237, 228, 0.92)"}
-						labelDotRadius={0}
-						labelAltitude={0.038}
+						labelColor={(d: object) =>
+							globeLabelColor(d as TravelMapCity, selectedId, hoverId)
+						}
+						labelAltitude={(d: object) =>
+							globeLabelAltitude(d as TravelMapCity, selectedId, isMobile)
+						}
+						labelDotRadius={0.22}
+						labelResolution={2}
 					/>
 				</Suspense>
 			</div>
@@ -459,8 +468,14 @@ export default function TravelGlobe({
 			)}
 			{interactive && !isMobile && (
 				<div className="pointer-events-none absolute bottom-4 right-4 z-10 hidden rounded-xl border border-white/8 bg-black/40 px-3 py-2 backdrop-blur-sm md:block">
-					<p className="font-ui text-[0.58rem] font-medium text-warm-muted">Waypoints</p>
+					<p className="font-ui text-[0.58rem] font-medium text-warm-muted">Map legend</p>
 					<ul className="mt-1.5 space-y-1 font-ui text-[0.58rem] text-warm-light/75">
+						<li className="flex items-center gap-1.5">
+							<span className="font-mono text-[0.52rem] text-warm-mustard/90">JFK</span> IATA codes
+						</li>
+						<li className="flex items-center gap-1.5">
+							<span className="h-px w-4 bg-gradient-to-r from-warm-mustard/80 to-transparent" /> Hub flow
+						</li>
 						<li className="flex items-center gap-1.5">
 							<span className="h-2 w-2 rounded-full bg-[#C25B3F]" /> Origin
 						</li>
