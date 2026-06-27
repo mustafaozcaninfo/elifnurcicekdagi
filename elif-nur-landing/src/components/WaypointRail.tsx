@@ -270,16 +270,16 @@ export default function WaypointRail({
 			<motion.button
 				type="button"
 				onClick={openRail}
-				className="pointer-events-auto fixed left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full border border-warm-mustard/35 bg-[#080604]/92 px-5 py-3 font-ui text-[0.7rem] font-medium text-warm-light shadow-[0_8px_32px_rgba(0,0,0,0.55)] backdrop-blur-xl active:scale-[0.98]"
-				style={{ bottom: "max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem))" }}
+				className="pointer-events-auto fixed left-1/2 z-30 flex max-w-[min(100%,calc(100vw-8.5rem))] -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-warm-mustard/35 bg-[#080604]/95 px-4 py-3 font-ui text-[0.68rem] font-medium text-warm-light shadow-[0_8px_32px_rgba(0,0,0,0.55)] backdrop-blur-xl active:scale-[0.98]"
+				style={{ bottom: "max(1rem, calc(env(safe-area-inset-bottom) + 0.75rem))" }}
 				initial={{ opacity: 0, y: 16 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.35 }}
 				aria-label="Open city list"
 			>
-				<MapPin className="h-4 w-4 text-warm-mustard" strokeWidth={1.5} />
-				{cities.length} cities · Browse
-				<ChevronUp className="h-3.5 w-3.5 text-warm-muted" strokeWidth={1.5} />
+				<MapPin className="h-4 w-4 shrink-0 text-warm-mustard" strokeWidth={1.5} />
+				<span className="truncate">{cities.length} cities · Browse</span>
+				<ChevronUp className="h-3.5 w-3.5 shrink-0 text-warm-muted" strokeWidth={1.5} />
 			</motion.button>
 		);
 	}
@@ -289,12 +289,12 @@ export default function WaypointRail({
 			<>
 				<button
 					type="button"
-					className="pointer-events-auto fixed inset-0 z-30 bg-black/55 backdrop-blur-[2px]"
+					className="pointer-events-auto fixed inset-0 z-40 bg-[#030201]/92 backdrop-blur-md"
 					aria-label="Close city list backdrop"
 					onClick={closeRail}
 				/>
 				<motion.nav
-					className="pointer-events-auto fixed inset-x-0 bottom-0 z-40 flex max-h-[min(68dvh,calc(100dvh-7.5rem))] flex-col overflow-hidden rounded-t-[1.35rem] border border-white/10 border-b-0 bg-[#080604]/96 shadow-[0_-12px_48px_rgba(0,0,0,0.65)] backdrop-blur-xl"
+					className="pointer-events-auto fixed inset-x-0 bottom-0 z-50 flex max-h-[min(68dvh,calc(100dvh-7.5rem))] flex-col overflow-hidden rounded-t-[1.35rem] border border-white/10 border-b-0 bg-[#080604] shadow-[0_-12px_48px_rgba(0,0,0,0.75)]"
 					style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
 					initial={{ y: "100%" }}
 					animate={{ y: 0 }}
