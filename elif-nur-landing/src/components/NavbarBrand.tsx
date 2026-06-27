@@ -1,5 +1,5 @@
 import { useIsMobile } from "../hooks/useIsMobile";
-import { BOEING_777_COMPACT } from "./svg/boeing777";
+import B777LogoMark from "./B777LogoMark";
 
 function fullName(siteName: string): string {
 	if (siteName.includes("Özcan") || siteName.includes("Çiçekdağı")) return siteName;
@@ -27,16 +27,14 @@ export default function NavbarBrand({ siteName }: { siteName: string }) {
 	return (
 		<a
 			href="/"
-			className="group flex min-w-0 max-w-[min(100%,14.5rem)] items-center gap-2.5 transition-opacity hover:opacity-95 sm:max-w-none md:gap-3"
+			className="group flex min-w-0 max-w-[min(100%,16rem)] items-center gap-2.5 transition-opacity hover:opacity-95 sm:max-w-none md:gap-3"
 			aria-label={aria}
 		>
 			<span className="relative shrink-0">
-				<span className="flex h-9 w-9 items-center justify-center rounded-lg border border-warm-mustard/30 bg-[#080604]/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_22px_rgba(212,160,23,0.12)] transition-all group-hover:border-warm-mustard/50 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_28px_rgba(212,160,23,0.22)] md:h-10 md:w-10 md:rounded-xl">
-					<span
-						className="deck-brand-icon flex h-[1.35rem] w-[1.35rem] items-center justify-center opacity-95 transition-transform duration-300 group-hover:scale-110 md:h-6 md:w-6"
-						dangerouslySetInnerHTML={{ __html: BOEING_777_COMPACT }}
-						aria-hidden
-					/>
+				<span className="flex h-9 w-[3.55rem] items-center justify-center overflow-hidden rounded-lg border border-warm-mustard/30 bg-gradient-to-b from-[#0c0a08] to-[#050403]/95 px-1 py-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_22px_rgba(212,160,23,0.12)] transition-all group-hover:border-warm-mustard/50 group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_28px_rgba(212,160,23,0.22)] md:h-10 md:w-[4rem] md:rounded-xl md:px-1.5">
+					<span className="deck-brand-icon flex h-[1.65rem] w-full items-center justify-center opacity-[0.97] transition-transform duration-300 group-hover:scale-[1.04] md:h-[1.85rem]">
+						<B777LogoMark />
+					</span>
 				</span>
 				<span
 					className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-[#030201] bg-warm-sage deck-blink"
@@ -62,9 +60,7 @@ export default function NavbarBrand({ siteName }: { siteName: string }) {
 					<span className="shrink-0 text-white/15" aria-hidden>
 						│
 					</span>
-					<span className="truncate text-warm-mustard/75">
-						{isMobile ? "Triple seven · Commander" : "Boeing 777 · Airline commander"}
-					</span>
+					<span className="truncate text-warm-mustard/75">AIRLINE PILOT</span>
 				</span>
 			</span>
 		</a>
