@@ -118,6 +118,7 @@ describe("elif-nur-worker", () => {
 		const xml = await response.text();
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/</loc>");
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/contact</loc>");
+		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/privacy</loc>");
 		expect(xml).toContain("<lastmod>");
 	});
 

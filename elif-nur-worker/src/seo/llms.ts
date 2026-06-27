@@ -17,7 +17,7 @@ ${pages}
 ## İletişim
 
 - E-posta: [info@elifnurcicekdagi.com](mailto:info@elifnurcicekdagi.com)
-- Form: ${absoluteUrl("/iletisim")}
+- Form: ${absoluteUrl("/contact")}
 
 ## Teknik
 

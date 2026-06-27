@@ -14,6 +14,7 @@ export default defineConfig({
 				main: resolve(__dirname, "index.html"),
 				admin: resolve(__dirname, "admin/index.html"),
 				contact: resolve(__dirname, "contact/index.html"),
+				privacy: resolve(__dirname, "privacy/index.html"),
 			},
 		},
 	},

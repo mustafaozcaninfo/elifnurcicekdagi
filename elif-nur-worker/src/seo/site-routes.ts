@@ -26,11 +26,11 @@ export const PUBLIC_ROUTES: SiteRoute[] = [
 		description: "Secure contact form with privacy consent",
 	},
 	{
-		path: "/gizlilik",
+		path: "/privacy",
 		changefreq: "yearly",
 		priority: 0.5,
-		title: "Gizlilik politikası",
-		description: "Kişisel verilerin işlenmesi ve KVKK aydınlatması",
+		title: "Privacy Policy",
+		description: "How personal data is collected, used, and protected on elifnurcicekdagi.com",
 	},
 ];
 

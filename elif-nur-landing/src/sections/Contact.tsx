@@ -115,7 +115,7 @@ export default function Contact() {
 						<a href="/contact" className="text-warm-light transition-colors hover:text-warm-mustard">
 							Contact
 						</a>
-						<a href="/gizlilik" className="transition-colors hover:text-warm-light">
+						<a href="/privacy" className="transition-colors hover:text-warm-light">
 							Privacy
 						</a>
 					</nav>

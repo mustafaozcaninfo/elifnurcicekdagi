@@ -50,7 +50,7 @@ export default function About() {
 					<ContactButton href="#journeys" variant="secondary">
 						View My Journeys
 					</ContactButton>
-					<ContactButton href="/iletisim">Contact Me</ContactButton>
+					<ContactButton href="/contact">Contact Me</ContactButton>
 				</FadeIn>
 			</div>
 		</section>

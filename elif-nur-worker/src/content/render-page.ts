@@ -72,7 +72,7 @@ export function renderDynamicPageHtml(page: ContentPageRow): string {
       ${body}
     </main>
     <footer>
-      <a href="/iletisim">İletişim</a> · <a href="/gizlilik">Gizlilik</a>
+      <a href="/contact">Contact</a> · <a href="/privacy">Privacy</a>
     </footer>
   </div>
 </body>

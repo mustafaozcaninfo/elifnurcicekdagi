@@ -181,7 +181,7 @@ export default function ContactForm() {
 					/>
 					<span className="font-ui text-[0.72rem] leading-relaxed text-warm-muted">
 						I have read the{" "}
-						<a href="/gizlilik" className="text-warm-mustard underline-offset-2 hover:underline">
+						<a href="/privacy" className="text-warm-mustard underline-offset-2 hover:underline">
 							privacy policy
 						</a>{" "}
 						and agree to my personal data being processed for contact purposes.

@@ -66,6 +66,27 @@ export default {
 			return Response.redirect(new URL("/contact", url.origin).toString(), 301);
 		}
 
+		if (url.pathname === "/gizlilik" || url.pathname === "/gizlilik/") {
+			return Response.redirect(new URL("/privacy", url.origin).toString(), 301);
+		}
+
+		if (url.pathname === "/privacy" || url.pathname === "/privacy/") {
+			const privacyPage = await env.ASSETS.fetch(
+				new Request(new URL("/privacy/index.html", url.origin), request),
+			);
+			if (privacyPage.ok) {
+				return applySecurityHeaders(
+					new Response(privacyPage.body, {
+						status: 200,
+						headers: {
+							"content-type": "text/html; charset=utf-8",
+							"cache-control": "public, max-age=60, s-maxage=300",
+						},
+					}),
+				);
+			}
+		}
+
 		if (url.pathname === "/admin" || url.pathname === "/admin/") {
 			const adminPage = await env.ASSETS.fetch(
 				new Request(new URL("/admin/index.html", url.origin), request),

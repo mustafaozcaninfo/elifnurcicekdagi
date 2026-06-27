@@ -37,7 +37,7 @@ export default function Footer() {
 					<a href="/contact" className="transition-colors hover:text-warm-light">
 						Contact
 					</a>
-					<a href="/gizlilik" className="transition-colors hover:text-warm-light">
+					<a href="/privacy" className="transition-colors hover:text-warm-light">
 						Privacy
 					</a>
 				</nav>
