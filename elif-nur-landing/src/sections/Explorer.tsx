@@ -135,7 +135,7 @@ export default function Explorer() {
 
 	return (
 		<div id="explorer" className="explorer-shell relative w-full overflow-hidden bg-[#030201] pt-0 md:pt-0">
-			<Navbar variant="deck" visible={phase !== "boot"} />
+			<Navbar variant="deck" visible={phase !== "boot"} layer="back" />
 
 			<CompanionFilterBar
 				value={companion}

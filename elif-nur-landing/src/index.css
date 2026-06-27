@@ -154,8 +154,15 @@
 	}
 
 	.explorer-shell {
+		--deck-nav-height: 3.35rem;
 		height: 100dvh;
 		min-height: 560px;
+	}
+
+	@media (min-width: 768px) {
+		.explorer-shell {
+			--deck-nav-height: 5rem;
+		}
 	}
 
 	@media (max-width: 767px) {

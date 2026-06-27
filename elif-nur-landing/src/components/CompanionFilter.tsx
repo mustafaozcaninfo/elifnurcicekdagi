@@ -60,8 +60,10 @@ export default function CompanionFilterBar({ value, onChange, visible }: Props) 
 	if (isMobile) {
 		return (
 			<motion.div
-				className="pointer-events-auto fixed inset-x-0 z-40 px-3"
-				style={{ top: "calc(max(0.25rem, env(safe-area-inset-top)) + 4.35rem)" }}
+				className="pointer-events-auto fixed inset-x-0 z-[45] px-3"
+				style={{
+					top: "calc(env(safe-area-inset-top, 0px) + var(--deck-nav-height, 3.65rem) + 0.4rem)",
+				}}
 				initial={{ opacity: 0, y: -10 }}
 				animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -10 }}
 				transition={{ duration: 0.4, delay: 0.1 }}
@@ -75,7 +77,8 @@ export default function CompanionFilterBar({ value, onChange, visible }: Props) 
 
 	return (
 		<motion.div
-			className="pointer-events-auto absolute left-1/2 top-[4.75rem] z-40 -translate-x-1/2"
+			className="pointer-events-auto absolute left-1/2 z-[45] -translate-x-1/2"
+			style={{ top: "calc(var(--deck-nav-height, 5rem) + 0.5rem)" }}
 			initial={{ opacity: 0, y: -8 }}
 			animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -8 }}
 			transition={{ duration: 0.45, delay: 0.15 }}
