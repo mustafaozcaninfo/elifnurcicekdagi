@@ -49,7 +49,7 @@ describe("elif-nur-worker", () => {
 		});
 		expect(response.status).toBe(400);
 		const body = await response.json<{ error: string }>();
-		expect(body.error).toBe("Geçersiz JSON");
+		expect(body.error).toBe("Invalid JSON");
 	});
 
 	it("POST /api/contact rejects missing KVKK consent", async () => {
@@ -65,7 +65,7 @@ describe("elif-nur-worker", () => {
 		});
 		expect(response.status).toBe(400);
 		const body = await response.json<{ error: string }>();
-		expect(body.error).toContain("gizlilik politikasını");
+		expect(body.error).toContain("privacy policy");
 	});
 
 	it("POST /api/contact rejects missing fields", async () => {
@@ -76,7 +76,7 @@ describe("elif-nur-worker", () => {
 		});
 		expect(response.status).toBe(400);
 		const body = await response.json<{ error: string }>();
-		expect(body.error).toBe("Tüm alanlar zorunludur.");
+		expect(body.error).toBe("All fields are required.");
 	});
 
 	it("POST /api/contact rejects invalid email", async () => {
@@ -92,7 +92,7 @@ describe("elif-nur-worker", () => {
 		});
 		expect(response.status).toBe(400);
 		const body = await response.json<{ error: string }>();
-		expect(body.error).toBe("Geçersiz e-posta adresi.");
+		expect(body.error).toBe("Invalid email address.");
 	});
 
 	it("POST /api/contact returns 405 for non-POST", async () => {
@@ -117,7 +117,7 @@ describe("elif-nur-worker", () => {
 		expect(response.headers.get("content-type")).toContain("xml");
 		const xml = await response.text();
 		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/</loc>");
-		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/iletisim</loc>");
+		expect(xml).toContain("<loc>https://elifnurcicekdagi.com/contact</loc>");
 		expect(xml).toContain("<lastmod>");
 	});
 
@@ -126,7 +126,7 @@ describe("elif-nur-worker", () => {
 		expect(response.status).toBe(200);
 		const text = await response.text();
 		expect(text).toContain("# Elif Nur Çiçekdağı");
-		expect(text).toContain("/iletisim");
+		expect(text).toContain("/contact");
 		expect(text).toContain("/api/v1");
 	});
 
@@ -256,5 +256,95 @@ describe("elif-nur-worker", () => {
 		const site = await SELF.fetch(`${SITE}/api/v1/site`);
 		const body = await site.json<{ data: { settings: Record<string, unknown> } }>();
 		expect(body.data.settings["site.test"]).toEqual({ hello: "cms" });
+	});
+
+	it("admin travel-map CRUD and lookup", async () => {
+		const get = await SELF.fetch(`${SITE}/api/v1/admin/travel-map`, {
+			headers: adminHeaders,
+		});
+		expect(get.status).toBe(200);
+		const initial = await get.json<{ ok: boolean; data: { map: { cities: unknown[] } } }>();
+		expect(initial.ok).toBe(true);
+		expect(Array.isArray(initial.data.map.cities)).toBe(true);
+
+		const create = await SELF.fetch(`${SITE}/api/v1/admin/travel-map/cities`, {
+			method: "POST",
+			headers: adminHeaders,
+			body: JSON.stringify({
+				id: "test-city-ci",
+				name: "Test City",
+				country: "TR",
+				countryName: "Turkey",
+				lat: 41.0,
+				lng: 29.0,
+				role: "visited",
+				airportCode: "TST",
+			}),
+		});
+		expect(create.status).toBe(200);
+
+		const lookup = await SELF.fetch(`${SITE}/api/v1/admin/travel-map/lookup?q=IST&type=airport`, {
+			headers: adminHeaders,
+		});
+		expect(lookup.status).toBe(200);
+		const lookupBody = await lookup.json<{ ok: boolean; data: { results: { airportCode?: string }[] } }>();
+		expect(lookupBody.ok).toBe(true);
+		expect(lookupBody.data.results.some((r) => r.airportCode === "IST")).toBe(true);
+
+		const countryLookup = await SELF.fetch(
+			`${SITE}/api/v1/admin/travel-map/lookup?q=Germany&type=country`,
+			{ headers: adminHeaders },
+		);
+		expect(countryLookup.status).toBe(200);
+		const countryBody = await countryLookup.json<{
+			ok: boolean;
+			data: { results: { iso2: string; name: string }[] };
+		}>();
+		expect(countryBody.ok).toBe(true);
+		expect(countryBody.data.results.some((r) => r.iso2 === "DE")).toBe(true);
+
+		const isoLookup = await SELF.fetch(
+			`${SITE}/api/v1/admin/travel-map/lookup?q=TR&type=country`,
+			{ headers: adminHeaders },
+		);
+		const isoBody = await isoLookup.json<{
+			ok: boolean;
+			data: { results: { iso2: string }[] };
+		}>();
+		expect(isoBody.data.results[0]?.iso2).toBe("TR");
+
+		const del = await SELF.fetch(`${SITE}/api/v1/admin/travel-map/cities/test-city-ci`, {
+			method: "DELETE",
+			headers: adminHeaders,
+		});
+		expect(del.status).toBe(200);
+	});
+
+	it("computeStats counts continents from city countries (UN M49)", async () => {
+		const { countContinentsFromIso2, listContinentsFromIso2 } = await import(
+			"../src/api/v1/content/continents"
+		);
+		const { computeStats } = await import("../src/api/v1/content/travel-map-store");
+
+		const sample = ["US", "DE", "JP", "AU", "BR", "EG", "TR", "QA"];
+		expect(countContinentsFromIso2(sample)).toBe(6);
+		expect(listContinentsFromIso2(sample).sort()).toEqual(
+			["AF", "AS", "EU", "NA", "OC", "SA"].sort(),
+		);
+
+		const stats = computeStats({
+			version: 1,
+			title: "t",
+			subtitle: "s",
+			countries: [
+				{ iso2: "US", name: "United States", visited: true },
+				{ iso2: "FR", name: "France", visited: true },
+			],
+			cities: [
+				{ id: "nyc", name: "New York", country: "US", lat: 40.7, lng: -74.0 },
+				{ id: "paris", name: "Paris", country: "FR", lat: 48.8, lng: 2.3 },
+			],
+		});
+		expect(stats?.continents).toBe(2);
 	});
 });

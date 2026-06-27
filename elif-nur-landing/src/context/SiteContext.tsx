@@ -46,7 +46,7 @@ const DEFAULTS: Omit<SiteContextValue, "loading" | "live" | "navigation" | "page
 		heading: "Hi, I'm Elif",
 		tagline: "From cockpit views to city walks or the other way around.",
 		intro:
-			"First Officer · Travel storyteller · Between sky and the world's most beautiful places.",
+			"Airline Pilot · Travel storyteller · Between sky and the world's most beautiful places.",
 		portraitUrl: HERO_PORTRAIT,
 	},
 	about: { heading: "About Me", body: ABOUT_TEXT },
@@ -100,9 +100,16 @@ export function SiteProvider({ children }: { children: ReactNode }) {
 		const journeys =
 			projects.length > 0 ? projects.map(projectToJourney) : DEFAULTS.journeys;
 
-		const travelRaw = bundle?.travelMap ?? s["landing.travelMap"];
+		const travelRaw =
+			bundle?.travelMap ??
+			s["landing.travelmap"] ??
+			s["landing.travelMap"];
+		const fromApi =
+			normalizeTravelMap(travelRaw) ??
+			normalizeTravelMap(s["landing.travelmap"]) ??
+			normalizeTravelMap(s["landing.travelMap"]);
 		const travelMap =
-			normalizeTravelMap(travelRaw) ?? normalizeTravelMap(s["landing.travelMap"]) ?? DEFAULT_TRAVEL_MAP;
+			fromApi && fromApi.cities.length > 0 ? fromApi : DEFAULT_TRAVEL_MAP;
 
 		return {
 			loading,

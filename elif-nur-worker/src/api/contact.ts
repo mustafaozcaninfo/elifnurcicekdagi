@@ -73,8 +73,8 @@ async function sendBrevoNotification(
 		body: JSON.stringify({
 			sender: { name: "elifnurcicekdagi.com", email: "info@elifnurcicekdagi.com" },
 			to: [{ email: to }],
-			subject: `Yeni iletişim formu: ${name}`,
-			htmlContent: `<p><strong>Ad:</strong> ${escapeHtml(name)}</p><p><strong>E-posta:</strong> ${escapeHtml(email)}</p><p><strong>Mesaj:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+			subject: `New contact form: ${name}`,
+			htmlContent: `<p><strong>Name:</strong> ${escapeHtml(name)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p><strong>Message:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
 			replyTo: { email, name },
 		}),
 	});
@@ -99,7 +99,7 @@ export async function handleContact(
 
 	if (!(await checkRateLimit(env.RATE_LIMIT, ip))) {
 		return Response.json(
-			{ error: "Çok fazla istek. Lütfen daha sonra tekrar deneyin." },
+			{ error: "Too many requests. Please try again later." },
 			{ status: 429 },
 		);
 	}
@@ -108,7 +108,7 @@ export async function handleContact(
 	try {
 		payload = await request.json();
 	} catch {
-		return Response.json({ error: "Geçersiz JSON" }, { status: 400 });
+		return Response.json({ error: "Invalid JSON" }, { status: 400 });
 	}
 
 	if (payload.website) {
@@ -121,22 +121,22 @@ export async function handleContact(
 	const turnstileToken = payload["cf-turnstile-response"] ?? "";
 
 	if (!name || !email || !message) {
-		return Response.json({ error: "Tüm alanlar zorunludur." }, { status: 400 });
+		return Response.json({ error: "All fields are required." }, { status: 400 });
 	}
 	if (!payload.consent) {
 		return Response.json(
-			{ error: "KVKK kapsamında gizlilik politikasını kabul etmelisiniz." },
+			{ error: "You must accept the privacy policy." },
 			{ status: 400 },
 		);
 	}
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-		return Response.json({ error: "Geçersiz e-posta adresi." }, { status: 400 });
+		return Response.json({ error: "Invalid email address." }, { status: 400 });
 	}
 	if (!env.TURNSTILE_SECRET_KEY) {
-		return Response.json({ error: "Form henüz yapılandırılmadı." }, { status: 503 });
+		return Response.json({ error: "Form is not configured yet." }, { status: 503 });
 	}
 	if (!(await verifyTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, ip))) {
-		return Response.json({ error: "Güvenlik doğrulaması başarısız." }, { status: 403 });
+		return Response.json({ error: "Security verification failed." }, { status: 403 });
 	}
 
 	const ipHash = await hashIp(ip);
@@ -166,5 +166,5 @@ export async function handleContact(
 		);
 	}
 
-	return Response.json({ ok: true, message: "Mesajınız alındı." });
+	return Response.json({ ok: true, message: "Message received. Thank you!" });
 }

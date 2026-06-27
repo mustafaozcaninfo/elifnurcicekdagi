@@ -19,7 +19,7 @@ const secondaryStyle: CSSProperties = {
 
 /** Warm terracotta-to-mustard gradient pill CTA. */
 export default function ContactButton({
-	href = "/iletisim",
+	href = "/contact",
 	children = "Get in Touch",
 	className = "",
 	onClick,

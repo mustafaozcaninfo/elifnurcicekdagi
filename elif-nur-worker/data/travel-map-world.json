@@ -1,0 +1,2009 @@
+{
+  "version": 1,
+  "title": "Explorer",
+  "subtitle": "Every waypoint is a chapter — from Doha to cities across six continents",
+  "homeHub": {
+    "code": "DOH",
+    "city": "Doha",
+    "lat": 25.2854,
+    "lng": 51.531
+  },
+  "opening": {
+    "boot": "Preflight · Boeing 777",
+    "systems": "Atlas linked · 44 nations on chart",
+    "reveal": "I fly the world from this cockpit — every pin is a place I have lived, not just landed",
+    "hint": "Gold arcs connect the cities · ♥ with my husband · Solo chapters marked"
+  },
+  "stats": {
+    "countries": 44,
+    "cities": 104,
+    "continents": 6
+  },
+  "countries": [
+    {
+      "iso2": "US",
+      "name": "United States",
+      "visited": true,
+      "favorite": true,
+      "color": "#C25B3F",
+      "narrative": {
+        "tag": "North America",
+        "headline": "United States — coast to coast",
+        "body": "From Pacific Northwest rain to Atlantic skylines and Gulf warmth — ten American cities mapped with my husband, where aviation culture and urban discovery meet."
+      }
+    },
+    {
+      "iso2": "CA",
+      "name": "Canada",
+      "visited": true,
+      "color": "#D4A017",
+      "narrative": {
+        "tag": "North America",
+        "headline": "Canada — bilingual horizons",
+        "body": "Vancouver's mountains, Montreal's rhythm, and the fairy-tale streets of Quebec City — North America with a European soul."
+      }
+    },
+    {
+      "iso2": "IL",
+      "name": "Israel",
+      "visited": true,
+      "color": "#A8B5A2",
+      "narrative": {
+        "tag": "Middle East",
+        "headline": "Israel — Mediterranean edge",
+        "body": "Tel Aviv where the sea meets startup energy — a sharp, sunlit chapter on the eastern Mediterranean."
+      }
+    },
+    {
+      "iso2": "GB",
+      "name": "United Kingdom",
+      "visited": true,
+      "favorite": true,
+      "color": "#1E2A44",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "United Kingdom — four kingdoms, one map",
+        "body": "Edinburgh's drama, Liverpool's harbour, Birmingham's heart, and London's endless final approach — Britain explored together."
+      }
+    },
+    {
+      "iso2": "NL",
+      "name": "Netherlands",
+      "visited": true,
+      "color": "#8C7A6B",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Netherlands — below sea level, above ordinary",
+        "body": "Amsterdam's canals and golden-hour bridges — a city best discovered on foot after the wheels touch down."
+      }
+    },
+    {
+      "iso2": "DE",
+      "name": "Germany",
+      "visited": true,
+      "color": "#E8A87C",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Germany — precision and poetry",
+        "body": "Frankfurt's global crossroads, Kehl on the Rhine border, and Munich's Bavarian elegance — efficiency with depth."
+      }
+    },
+    {
+      "iso2": "FR",
+      "name": "France",
+      "visited": true,
+      "favorite": true,
+      "color": "#85B8CB",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "France — light, wine, and Alsace",
+        "body": "Paris at golden hour, Colmar's half-timbered lanes, and Strasbourg's cathedral spires — la vie in three registers."
+      }
+    },
+    {
+      "iso2": "IT",
+      "name": "Italy",
+      "visited": true,
+      "favorite": true,
+      "color": "#C38D9E",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Italy — art, appetite, and islands",
+        "body": "Venice at dawn, Milan's fashion pulse, Rome's eternal weight, Florence's Renaissance heart, and Sardinia's turquoise escape."
+      }
+    },
+    {
+      "iso2": "CH",
+      "name": "Switzerland",
+      "visited": true,
+      "favorite": true,
+      "color": "#41B3A3",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Switzerland — alpine precision",
+        "body": "Zurich's lake-and-alpine symmetry and Basel's Rhine tripoint — neutral ground, maximum beauty."
+      }
+    },
+    {
+      "iso2": "MY",
+      "name": "Malaysia",
+      "visited": true,
+      "color": "#E27D60",
+      "narrative": {
+        "tag": "Southeast Asia",
+        "headline": "Malaysia — towers and tropics",
+        "body": "Kuala Lumpur where Petronas steel rises above humid green — Southeast Asia's confident skyline."
+      }
+    },
+    {
+      "iso2": "AU",
+      "name": "Australia",
+      "visited": true,
+      "favorite": true,
+      "color": "#C25B3F",
+      "narrative": {
+        "tag": "Oceania",
+        "headline": "Australia — sun, surf, and solo miles",
+        "body": "Sydney's harbour, Queensland's coast, and wine country with my husband — plus Melbourne and Perth, written as solo chapters."
+      }
+    },
+    {
+      "iso2": "QA",
+      "name": "Qatar",
+      "visited": true,
+      "favorite": true,
+      "color": "#D4A017",
+      "narrative": {
+        "tag": "Gulf · Qatar",
+        "headline": "Qatar — where my routes begin",
+        "body": "Doha is home base — the city from which I reach every continent on this map."
+      }
+    },
+    {
+      "iso2": "TR",
+      "name": "Turkey",
+      "visited": true,
+      "favorite": true,
+      "color": "#A8B5A2",
+      "narrative": {
+        "tag": "Origin",
+        "headline": "Turkey — where I began",
+        "body": "Istanbul where continents meet, Ankara's wide skies, Antalya's coast, and Izmir's Aegean breeze — the origin I always return to."
+      }
+    },
+    {
+      "iso2": "CN",
+      "name": "China",
+      "visited": true,
+      "color": "#1E2A44",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "China — scale and contrast",
+        "body": "Shanghai's Pudong futurism, Guangzhou's Pearl River delta, and Beijing's imperial axis — three faces of a civilization in motion."
+      }
+    },
+    {
+      "iso2": "HK",
+      "name": "Hong Kong",
+      "visited": true,
+      "favorite": true,
+      "color": "#8C7A6B",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "Hong Kong — vertical harbour",
+        "body": "Victoria Harbour compressed between forested peaks and neon — density as an art form, explored together."
+      }
+    },
+    {
+      "iso2": "UG",
+      "name": "Uganda",
+      "visited": true,
+      "color": "#E8A87C",
+      "narrative": {
+        "tag": "East Africa",
+        "headline": "Uganda — green highlands",
+        "body": "Kampala's rolling hills — East Africa's understated capital and a reminder of how vast the continent feels from altitude."
+      }
+    },
+    {
+      "iso2": "TH",
+      "name": "Thailand",
+      "visited": true,
+      "color": "#85B8CB",
+      "narrative": {
+        "tag": "Southeast Asia",
+        "headline": "Thailand — temples and turquoise",
+        "body": "Bangkok's Chao Phraya rhythm and Phuket's Andaman shores — warmth, spice, and golden light."
+      }
+    },
+    {
+      "iso2": "EC",
+      "name": "Ecuador",
+      "visited": true,
+      "color": "#C38D9E",
+      "narrative": {
+        "tag": "South America",
+        "headline": "Ecuador — altitude and equator",
+        "body": "Quito perched high in the Andes — thin air, colonial geometry, and the middle of the world."
+      }
+    },
+    {
+      "iso2": "CO",
+      "name": "Colombia",
+      "visited": true,
+      "color": "#41B3A3",
+      "narrative": {
+        "tag": "South America",
+        "headline": "Colombia — Andean plateau",
+        "body": "Bogotá's mountain capital — cool air, bold coffee culture, and South American momentum."
+      }
+    },
+    {
+      "iso2": "AR",
+      "name": "Argentina",
+      "visited": true,
+      "color": "#E27D60",
+      "narrative": {
+        "tag": "South America",
+        "headline": "Argentina — tango and distance",
+        "body": "Buenos Aires where European elegance meets Latin fire — a city that rewards slow evenings."
+      }
+    },
+    {
+      "iso2": "BE",
+      "name": "Belgium",
+      "visited": true,
+      "color": "#C25B3F",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Belgium — EU heartland",
+        "body": "Brussels' diplomatic gravity and Liège's Meuse valley — compact countries, layered history."
+      }
+    },
+    {
+      "iso2": "BR",
+      "name": "Brazil",
+      "visited": true,
+      "color": "#D4A017",
+      "narrative": {
+        "tag": "South America",
+        "headline": "Brazil — megacity pulse",
+        "body": "São Paulo's endless urban fabric and Campinas nearby — the engine room of South America."
+      }
+    },
+    {
+      "iso2": "JP",
+      "name": "Japan",
+      "visited": true,
+      "favorite": true,
+      "color": "#A8B5A2",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "Japan — discipline and wonder",
+        "body": "Tokyo's neon, Kyoto's temples, Osaka and Kobe's Kansai soul — mostly with my husband, Nagoya as a solo chapter."
+      }
+    },
+    {
+      "iso2": "SE",
+      "name": "Sweden",
+      "visited": true,
+      "color": "#1E2A44",
+      "narrative": {
+        "tag": "Scandinavia",
+        "headline": "Sweden — Baltic light",
+        "body": "Stockholm's archipelago shimmer — Nordic clarity, design, and long summer evenings."
+      }
+    },
+    {
+      "iso2": "KE",
+      "name": "Kenya",
+      "visited": true,
+      "color": "#8C7A6B",
+      "narrative": {
+        "tag": "East Africa",
+        "headline": "Kenya — savannah gateway",
+        "body": "Nairobi where urban Africa meets the wild — a city that smells of rain and adventure."
+      }
+    },
+    {
+      "iso2": "MX",
+      "name": "Mexico",
+      "visited": true,
+      "color": "#E8A87C",
+      "narrative": {
+        "tag": "North America",
+        "headline": "Mexico — highland capital",
+        "body": "Mexico City's altitude, murals, and endless neighbourhoods — one of the world's great urban tapestries."
+      }
+    },
+    {
+      "iso2": "PH",
+      "name": "Philippines",
+      "visited": true,
+      "color": "#85B8CB",
+      "narrative": {
+        "tag": "Southeast Asia",
+        "headline": "Philippines — archipelago hub",
+        "body": "Manila's humid energy — gateway to seven thousand islands and Pacific warmth."
+      }
+    },
+    {
+      "iso2": "MV",
+      "name": "Maldives",
+      "visited": true,
+      "color": "#C38D9E",
+      "narrative": {
+        "tag": "Indian Ocean",
+        "headline": "Maldives — atoll capital",
+        "body": "Malé where turquoise infinity begins — the Indian Ocean at its most distilled."
+      }
+    },
+    {
+      "iso2": "NZ",
+      "name": "New Zealand",
+      "visited": true,
+      "favorite": true,
+      "color": "#41B3A3",
+      "narrative": {
+        "tag": "Oceania",
+        "headline": "New Zealand — Middle-earth mapped",
+        "body": "Twelve cities across both islands with my husband — from Auckland sails to Queenstown peaks. Dunedin remains the one pin still waiting."
+      }
+    },
+    {
+      "iso2": "PT",
+      "name": "Portugal",
+      "visited": true,
+      "favorite": true,
+      "color": "#E27D60",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Portugal — Atlantic soul",
+        "body": "Lisbon's seven hills, Cascais and Sintra's coast, Belém's monuments, and Porto's Douro — Iberia's quieter masterpiece."
+      }
+    },
+    {
+      "iso2": "MO",
+      "name": "Macau",
+      "visited": true,
+      "color": "#C25B3F",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "Macau — where cultures collide",
+        "body": "A compact peninsula of Portuguese heritage and Chinese scale — East meets West in a single afternoon."
+      }
+    },
+    {
+      "iso2": "KR",
+      "name": "South Korea",
+      "visited": true,
+      "favorite": true,
+      "color": "#D4A017",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "South Korea — Han River pulse",
+        "body": "Seoul's relentless creativity — K-culture, street food, and neon valleys explored together."
+      }
+    },
+    {
+      "iso2": "SG",
+      "name": "Singapore",
+      "visited": true,
+      "favorite": true,
+      "color": "#A8B5A2",
+      "narrative": {
+        "tag": "Southeast Asia",
+        "headline": "Singapore — garden city state",
+        "body": "A nation distilled to perfection — hawker stalls, orchids, and one of aviation's great hubs."
+      }
+    },
+    {
+      "iso2": "IN",
+      "name": "India",
+      "visited": true,
+      "color": "#1E2A44",
+      "narrative": {
+        "tag": "South Asia",
+        "headline": "India — gateway intensity",
+        "body": "Mumbai's monsoon energy and colonial harbour — India compressed into a single overwhelming arrival."
+      }
+    },
+    {
+      "iso2": "HU",
+      "name": "Hungary",
+      "visited": true,
+      "color": "#8C7A6B",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Hungary — Danube romance",
+        "body": "Budapest's thermal baths and illuminated bridges — the Paris of the East, explored together."
+      }
+    },
+    {
+      "iso2": "GR",
+      "name": "Greece",
+      "visited": true,
+      "favorite": true,
+      "color": "#E8A87C",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Greece — myth and light",
+        "body": "Athens' Acropolis, Santorini's caldera sunsets, and Milos' moonscape — the Aegean in three moods."
+      }
+    },
+    {
+      "iso2": "CZ",
+      "name": "Czech Republic",
+      "visited": true,
+      "color": "#85B8CB",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Czech Republic — golden spires",
+        "body": "Prague's medieval dreamscape — bridges, beer halls, and Gothic towers at every turn."
+      }
+    },
+    {
+      "iso2": "TW",
+      "name": "Taiwan",
+      "visited": true,
+      "favorite": true,
+      "color": "#C38D9E",
+      "narrative": {
+        "tag": "East Asia",
+        "headline": "Taiwan — night markets and peaks",
+        "body": "Taipei's 101 skyline and mountain-backed city — island China with its own rhythm."
+      }
+    },
+    {
+      "iso2": "SC",
+      "name": "Seychelles",
+      "visited": true,
+      "color": "#41B3A3",
+      "narrative": {
+        "tag": "Indian Ocean",
+        "headline": "Seychelles — granite and turquoise",
+        "body": "Victoria on Mahé — palm shadows, granite boulders, and the Indian Ocean at its most exclusive."
+      }
+    },
+    {
+      "iso2": "NG",
+      "name": "Nigeria",
+      "visited": true,
+      "color": "#E27D60",
+      "narrative": {
+        "tag": "West Africa",
+        "headline": "Nigeria — West African megacity",
+        "body": "Lagos' unstoppable momentum — Africa's most populous city and an education in energy."
+      }
+    },
+    {
+      "iso2": "SA",
+      "name": "Saudi Arabia",
+      "visited": true,
+      "color": "#C25B3F",
+      "narrative": {
+        "tag": "Middle East",
+        "headline": "Saudi Arabia — Red Sea gateway",
+        "body": "Jeddah's corniche and Red Sea horizon — ancient trade routes meeting modern aviation."
+      }
+    },
+    {
+      "iso2": "ES",
+      "name": "Spain",
+      "visited": true,
+      "color": "#D4A017",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Spain — Andalusia and beyond",
+        "body": "Seville, Córdoba, and Granada's Moorish soul with my husband — Zaragoza as a quiet solo interlude."
+      }
+    },
+    {
+      "iso2": "VA",
+      "name": "Vatican City",
+      "visited": true,
+      "favorite": true,
+      "color": "#A8B5A2",
+      "narrative": {
+        "tag": "Europe · Sacred",
+        "headline": "Vatican City — smallest nation",
+        "body": "A sovereign square kilometre of sacred art and silence — walked together beneath Michelangelo's dome."
+      }
+    },
+    {
+      "iso2": "AT",
+      "name": "Austria",
+      "visited": true,
+      "color": "#1E2A44",
+      "narrative": {
+        "tag": "Europe",
+        "headline": "Austria — imperial grace",
+        "body": "Vienna's coffee houses, waltz history, and Habsburg avenues — Central Europe at its most refined."
+      }
+    }
+  ],
+  "cities": [
+    {
+      "id": "portland",
+      "name": "Portland",
+      "lat": 45.5152,
+      "lng": -122.6784,
+      "airportCode": "PDX",
+      "visitedWith": "spouse",
+      "note": "Pacific Northwest",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "seattle",
+      "name": "Seattle",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "airportCode": "SEA",
+      "visitedWith": "spouse",
+      "note": "Emerald city approaches",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "new-york",
+      "name": "New York",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "airportCode": "JFK",
+      "visitedWith": "spouse",
+      "note": "The city that never sleeps",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "washington-dc",
+      "name": "Washington, D.C.",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "airportCode": "DCA",
+      "visitedWith": "spouse",
+      "note": "Monuments from above",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "miami",
+      "name": "Miami",
+      "lat": 25.7617,
+      "lng": -80.1918,
+      "airportCode": "MIA",
+      "visitedWith": "spouse",
+      "note": "Atlantic coast light",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "chicago",
+      "name": "Chicago",
+      "lat": 41.8781,
+      "lng": -87.6298,
+      "airportCode": "ORD",
+      "visitedWith": "spouse",
+      "note": "Windy city grid",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "boise",
+      "name": "Boise",
+      "lat": 43.615,
+      "lng": -116.2023,
+      "airportCode": "BOI",
+      "visitedWith": "spouse",
+      "note": "Idaho horizons",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "philadelphia",
+      "name": "Philadelphia",
+      "lat": 39.9526,
+      "lng": -75.1652,
+      "airportCode": "PHL",
+      "visitedWith": "spouse",
+      "note": "Historic corridors",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "atlanta",
+      "name": "Atlanta",
+      "lat": 33.749,
+      "lng": -84.388,
+      "airportCode": "ATL",
+      "visitedWith": "spouse",
+      "note": "Southern hub",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "honolulu",
+      "name": "Honolulu",
+      "lat": 21.3069,
+      "lng": -157.8583,
+      "airportCode": "HNL",
+      "visitedWith": "spouse",
+      "note": "Hawaii · Pacific arrival",
+      "country": "US",
+      "countryName": "United States",
+      "role": "visited"
+    },
+    {
+      "id": "vancouver",
+      "name": "Vancouver",
+      "lat": 49.2827,
+      "lng": -123.1207,
+      "airportCode": "YVR",
+      "note": "Mountains meet the Pacific",
+      "country": "CA",
+      "countryName": "Canada",
+      "role": "visited"
+    },
+    {
+      "id": "montreal",
+      "name": "Montreal",
+      "lat": 45.5017,
+      "lng": -73.5673,
+      "airportCode": "YUL",
+      "note": "French-Canadian rhythm",
+      "country": "CA",
+      "countryName": "Canada",
+      "role": "visited"
+    },
+    {
+      "id": "quebec-city",
+      "name": "Quebec City",
+      "lat": 46.8139,
+      "lng": -71.208,
+      "airportCode": "YQB",
+      "visitedWith": "spouse",
+      "note": "Old world charm",
+      "country": "CA",
+      "countryName": "Canada",
+      "role": "visited"
+    },
+    {
+      "id": "tel-aviv",
+      "name": "Tel Aviv",
+      "lat": 32.0853,
+      "lng": 34.7818,
+      "airportCode": "TLV",
+      "note": "Mediterranean shore",
+      "country": "IL",
+      "countryName": "Israel",
+      "role": "visited"
+    },
+    {
+      "id": "edinburgh",
+      "name": "Edinburgh",
+      "lat": 55.9533,
+      "lng": -3.1883,
+      "airportCode": "EDI",
+      "visitedWith": "spouse",
+      "note": "Castle skyline",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "role": "visited"
+    },
+    {
+      "id": "liverpool",
+      "name": "Liverpool",
+      "lat": 53.4084,
+      "lng": -2.9916,
+      "airportCode": "LPL",
+      "visitedWith": "spouse",
+      "note": "Mersey docks",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "role": "visited"
+    },
+    {
+      "id": "birmingham",
+      "name": "Birmingham",
+      "lat": 52.4862,
+      "lng": -1.8904,
+      "airportCode": "BHX",
+      "visitedWith": "spouse",
+      "note": "Heart of England",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "role": "visited"
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "airportCode": "LHR",
+      "visitedWith": "spouse",
+      "note": "Thames from final",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "role": "visited"
+    },
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "lat": 52.3676,
+      "lng": 4.9041,
+      "airportCode": "AMS",
+      "visitedWith": "spouse",
+      "note": "Canals and approaches",
+      "country": "NL",
+      "countryName": "Netherlands",
+      "role": "visited"
+    },
+    {
+      "id": "frankfurt",
+      "name": "Frankfurt",
+      "lat": 50.1109,
+      "lng": 8.6821,
+      "airportCode": "FRA",
+      "visitedWith": "spouse",
+      "note": "European crossroads",
+      "country": "DE",
+      "countryName": "Germany",
+      "role": "visited"
+    },
+    {
+      "id": "kehl",
+      "name": "Kehl",
+      "lat": 48.5741,
+      "lng": 7.815,
+      "note": "Rhine border town",
+      "country": "DE",
+      "countryName": "Germany",
+      "role": "visited"
+    },
+    {
+      "id": "munich",
+      "name": "Munich",
+      "lat": 48.1351,
+      "lng": 11.582,
+      "airportCode": "MUC",
+      "note": "Bavarian elegance",
+      "country": "DE",
+      "countryName": "Germany",
+      "role": "visited"
+    },
+    {
+      "id": "colmar",
+      "name": "Colmar",
+      "lat": 48.0794,
+      "lng": 7.3585,
+      "visitedWith": "spouse",
+      "note": "Alsace fairytale",
+      "country": "FR",
+      "countryName": "France",
+      "role": "visited"
+    },
+    {
+      "id": "strasbourg",
+      "name": "Strasbourg",
+      "lat": 48.5734,
+      "lng": 7.7521,
+      "airportCode": "SXB",
+      "visitedWith": "spouse",
+      "note": "Cathedral spires",
+      "country": "FR",
+      "countryName": "France",
+      "role": "visited"
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "airportCode": "CDG",
+      "visitedWith": "spouse",
+      "note": "City of light",
+      "country": "FR",
+      "countryName": "France",
+      "role": "visited"
+    },
+    {
+      "id": "venice",
+      "name": "Venice",
+      "lat": 45.4408,
+      "lng": 12.3155,
+      "airportCode": "VCE",
+      "visitedWith": "spouse",
+      "note": "Lagoon approaches",
+      "country": "IT",
+      "countryName": "Italy",
+      "role": "visited"
+    },
+    {
+      "id": "milan",
+      "name": "Milan",
+      "lat": 45.4642,
+      "lng": 9.19,
+      "airportCode": "MXP",
+      "visitedWith": "spouse",
+      "note": "Fashion capital",
+      "country": "IT",
+      "countryName": "Italy",
+      "role": "visited"
+    },
+    {
+      "id": "rome",
+      "name": "Rome",
+      "lat": 41.9028,
+      "lng": 12.4964,
+      "airportCode": "FCO",
+      "visitedWith": "spouse",
+      "note": "Eternal city",
+      "country": "IT",
+      "countryName": "Italy",
+      "role": "visited"
+    },
+    {
+      "id": "florence",
+      "name": "Florence",
+      "lat": 43.7696,
+      "lng": 11.2558,
+      "airportCode": "FLR",
+      "visitedWith": "spouse",
+      "note": "Renaissance heart",
+      "country": "IT",
+      "countryName": "Italy",
+      "role": "visited"
+    },
+    {
+      "id": "cagliari",
+      "name": "Cagliari",
+      "lat": 39.2238,
+      "lng": 9.1217,
+      "airportCode": "CAG",
+      "visitedWith": "spouse",
+      "note": "Sardinia",
+      "country": "IT",
+      "countryName": "Italy",
+      "role": "visited"
+    },
+    {
+      "id": "zurich",
+      "name": "Zurich",
+      "lat": 47.3769,
+      "lng": 8.5417,
+      "airportCode": "ZRH",
+      "visitedWith": "spouse",
+      "note": "Alpine precision",
+      "country": "CH",
+      "countryName": "Switzerland",
+      "role": "visited"
+    },
+    {
+      "id": "basel",
+      "name": "Basel",
+      "lat": 47.5596,
+      "lng": 7.5886,
+      "airportCode": "BSL",
+      "visitedWith": "spouse",
+      "note": "Rhine tripoint",
+      "country": "CH",
+      "countryName": "Switzerland",
+      "role": "visited"
+    },
+    {
+      "id": "kuala-lumpur",
+      "name": "Kuala Lumpur",
+      "lat": 3.139,
+      "lng": 101.6869,
+      "airportCode": "KUL",
+      "note": "Petronas towers",
+      "country": "MY",
+      "countryName": "Malaysia",
+      "role": "visited"
+    },
+    {
+      "id": "brisbane",
+      "name": "Brisbane",
+      "lat": -27.4698,
+      "lng": 153.0251,
+      "airportCode": "BNE",
+      "visitedWith": "spouse",
+      "note": "Queensland sun",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "noosa",
+      "name": "Noosa",
+      "lat": -26.3943,
+      "lng": 153.0883,
+      "visitedWith": "spouse",
+      "note": "Sunshine Coast",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "hunter-valley",
+      "name": "Hunter Valley",
+      "lat": -32.837,
+      "lng": 151.299,
+      "visitedWith": "spouse",
+      "note": "Wine country",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "lat": -33.8688,
+      "lng": 151.2093,
+      "airportCode": "SYD",
+      "visitedWith": "spouse",
+      "note": "Harbour bridge",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "lat": -37.8136,
+      "lng": 144.9631,
+      "airportCode": "MEL",
+      "visitedWith": "solo",
+      "note": "Solo chapter",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "perth",
+      "name": "Perth",
+      "lat": -31.9505,
+      "lng": 115.8605,
+      "airportCode": "PER",
+      "visitedWith": "solo",
+      "note": "Indian Ocean edge",
+      "country": "AU",
+      "countryName": "Australia",
+      "role": "visited"
+    },
+    {
+      "id": "doha",
+      "name": "Doha",
+      "lat": 25.2854,
+      "lng": 51.531,
+      "role": "visited",
+      "airportCode": "DOH",
+      "visitedWith": "spouse",
+      "note": "Gulf home base",
+      "country": "QA",
+      "countryName": "Qatar"
+    },
+    {
+      "id": "istanbul",
+      "name": "Istanbul",
+      "lat": 41.0082,
+      "lng": 28.9784,
+      "role": "home",
+      "airportCode": "IST",
+      "visitedWith": "spouse",
+      "note": "Where continents meet",
+      "country": "TR",
+      "countryName": "Turkey"
+    },
+    {
+      "id": "ankara",
+      "name": "Ankara",
+      "lat": 39.9334,
+      "lng": 32.8597,
+      "airportCode": "ESB",
+      "visitedWith": "spouse",
+      "note": "Capital horizons",
+      "country": "TR",
+      "countryName": "Turkey",
+      "role": "visited"
+    },
+    {
+      "id": "antalya",
+      "name": "Antalya",
+      "lat": 36.8969,
+      "lng": 30.7133,
+      "airportCode": "AYT",
+      "visitedWith": "spouse",
+      "note": "Mediterranean coast",
+      "country": "TR",
+      "countryName": "Turkey",
+      "role": "visited"
+    },
+    {
+      "id": "izmir",
+      "name": "Izmir",
+      "lat": 38.4192,
+      "lng": 27.1287,
+      "airportCode": "ADB",
+      "visitedWith": "spouse",
+      "note": "Aegean breeze",
+      "country": "TR",
+      "countryName": "Turkey",
+      "role": "visited"
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "airportCode": "PVG",
+      "note": "Pudong skyline",
+      "country": "CN",
+      "countryName": "China",
+      "role": "visited"
+    },
+    {
+      "id": "guangzhou",
+      "name": "Guangzhou",
+      "lat": 23.1291,
+      "lng": 113.2644,
+      "airportCode": "CAN",
+      "note": "Pearl River delta",
+      "country": "CN",
+      "countryName": "China",
+      "role": "visited"
+    },
+    {
+      "id": "beijing",
+      "name": "Beijing",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "airportCode": "PEK",
+      "note": "Imperial axis",
+      "country": "CN",
+      "countryName": "China",
+      "role": "visited"
+    },
+    {
+      "id": "hong-kong",
+      "name": "Hong Kong",
+      "lat": 22.3193,
+      "lng": 114.1694,
+      "airportCode": "HKG",
+      "visitedWith": "spouse",
+      "note": "Victoria Harbour",
+      "country": "HK",
+      "countryName": "Hong Kong",
+      "role": "visited"
+    },
+    {
+      "id": "kampala",
+      "name": "Kampala",
+      "lat": 0.3476,
+      "lng": 32.5825,
+      "airportCode": "EBB",
+      "note": "East African hills",
+      "country": "UG",
+      "countryName": "Uganda",
+      "role": "visited"
+    },
+    {
+      "id": "phuket",
+      "name": "Phuket",
+      "lat": 7.8804,
+      "lng": 98.3923,
+      "airportCode": "HKT",
+      "note": "Andaman shores",
+      "country": "TH",
+      "countryName": "Thailand",
+      "role": "visited"
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "airportCode": "BKK",
+      "note": "Chao Phraya rhythm",
+      "country": "TH",
+      "countryName": "Thailand",
+      "role": "visited"
+    },
+    {
+      "id": "quito",
+      "name": "Quito",
+      "lat": -0.1807,
+      "lng": -78.4678,
+      "airportCode": "UIO",
+      "note": "High altitude capital",
+      "country": "EC",
+      "countryName": "Ecuador",
+      "role": "visited"
+    },
+    {
+      "id": "bogota",
+      "name": "Bogotá",
+      "lat": 4.711,
+      "lng": -74.0721,
+      "airportCode": "BOG",
+      "note": "Andean plateau",
+      "country": "CO",
+      "countryName": "Colombia",
+      "role": "visited"
+    },
+    {
+      "id": "buenos-aires",
+      "name": "Buenos Aires",
+      "lat": -34.6037,
+      "lng": -58.3816,
+      "airportCode": "EZE",
+      "note": "Tango capital",
+      "country": "AR",
+      "countryName": "Argentina",
+      "role": "visited"
+    },
+    {
+      "id": "brussels",
+      "name": "Brussels",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "airportCode": "BRU",
+      "note": "EU heart",
+      "country": "BE",
+      "countryName": "Belgium",
+      "role": "visited"
+    },
+    {
+      "id": "liege",
+      "name": "Liège",
+      "lat": 50.6326,
+      "lng": 5.5797,
+      "airportCode": "LGG",
+      "note": "Meuse valley",
+      "country": "BE",
+      "countryName": "Belgium",
+      "role": "visited"
+    },
+    {
+      "id": "sao-paulo",
+      "name": "São Paulo",
+      "lat": -23.5505,
+      "lng": -46.6333,
+      "airportCode": "GRU",
+      "note": "South American megacity",
+      "country": "BR",
+      "countryName": "Brazil",
+      "role": "visited"
+    },
+    {
+      "id": "campinas",
+      "name": "Campinas",
+      "lat": -22.9099,
+      "lng": -47.0626,
+      "airportCode": "VCP",
+      "note": "São Paulo state",
+      "country": "BR",
+      "countryName": "Brazil",
+      "role": "visited"
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "airportCode": "HND",
+      "visitedWith": "spouse",
+      "note": "Neon horizons",
+      "country": "JP",
+      "countryName": "Japan",
+      "role": "visited"
+    },
+    {
+      "id": "osaka",
+      "name": "Osaka",
+      "lat": 34.6937,
+      "lng": 135.5023,
+      "airportCode": "KIX",
+      "visitedWith": "spouse",
+      "note": "Kansai energy",
+      "country": "JP",
+      "countryName": "Japan",
+      "role": "visited"
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto",
+      "lat": 35.0116,
+      "lng": 135.7681,
+      "airportCode": "ITM",
+      "visitedWith": "spouse",
+      "note": "Temple gardens",
+      "country": "JP",
+      "countryName": "Japan",
+      "role": "visited"
+    },
+    {
+      "id": "kobe",
+      "name": "Kobe",
+      "lat": 34.6901,
+      "lng": 135.1955,
+      "airportCode": "UKB",
+      "visitedWith": "spouse",
+      "note": "Harbour lights",
+      "country": "JP",
+      "countryName": "Japan",
+      "role": "visited"
+    },
+    {
+      "id": "nagoya",
+      "name": "Nagoya",
+      "lat": 35.1815,
+      "lng": 136.9066,
+      "airportCode": "NGO",
+      "visitedWith": "solo",
+      "note": "Solo chapter",
+      "country": "JP",
+      "countryName": "Japan",
+      "role": "visited"
+    },
+    {
+      "id": "stockholm",
+      "name": "Stockholm",
+      "lat": 59.3293,
+      "lng": 18.0686,
+      "airportCode": "ARN",
+      "note": "Baltic archipelago",
+      "country": "SE",
+      "countryName": "Sweden",
+      "role": "visited"
+    },
+    {
+      "id": "nairobi",
+      "name": "Nairobi",
+      "lat": -1.2921,
+      "lng": 36.8219,
+      "airportCode": "NBO",
+      "note": "Savannah gateway",
+      "country": "KE",
+      "countryName": "Kenya",
+      "role": "visited"
+    },
+    {
+      "id": "mexico-city",
+      "name": "Mexico City",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "airportCode": "MEX",
+      "note": "Highland capital",
+      "country": "MX",
+      "countryName": "Mexico",
+      "role": "visited"
+    },
+    {
+      "id": "manila",
+      "name": "Manila",
+      "lat": 14.5995,
+      "lng": 120.9842,
+      "airportCode": "MNL",
+      "note": "Island nation hub",
+      "country": "PH",
+      "countryName": "Philippines",
+      "role": "visited"
+    },
+    {
+      "id": "male",
+      "name": "Malé",
+      "lat": 4.1755,
+      "lng": 73.5093,
+      "airportCode": "MLE",
+      "note": "Atoll capital",
+      "country": "MV",
+      "countryName": "Maldives",
+      "role": "visited"
+    },
+    {
+      "id": "auckland",
+      "name": "Auckland",
+      "lat": -36.8485,
+      "lng": 174.7633,
+      "airportCode": "AKL",
+      "visitedWith": "spouse",
+      "note": "City of sails",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "wellington",
+      "name": "Wellington",
+      "lat": -41.2865,
+      "lng": 174.7762,
+      "airportCode": "WLG",
+      "visitedWith": "spouse",
+      "note": "Windy capital",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "christchurch",
+      "name": "Christchurch",
+      "lat": -43.5321,
+      "lng": 172.6362,
+      "airportCode": "CHC",
+      "visitedWith": "spouse",
+      "note": "Garden city",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "queenstown",
+      "name": "Queenstown",
+      "lat": -45.0312,
+      "lng": 168.6626,
+      "airportCode": "ZQN",
+      "visitedWith": "spouse",
+      "note": "Alpine adventure",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "rotorua",
+      "name": "Rotorua",
+      "lat": -38.1368,
+      "lng": 176.2497,
+      "airportCode": "ROT",
+      "visitedWith": "spouse",
+      "note": "Geothermal wonder",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "taupo",
+      "name": "Taupo",
+      "lat": -38.6857,
+      "lng": 176.0702,
+      "visitedWith": "spouse",
+      "note": "Lake country",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "hamilton",
+      "name": "Hamilton",
+      "lat": -37.787,
+      "lng": 175.2793,
+      "airportCode": "HLZ",
+      "visitedWith": "spouse",
+      "note": "Waikato region",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "napier",
+      "name": "Napier",
+      "lat": -39.4928,
+      "lng": 176.912,
+      "airportCode": "NPE",
+      "visitedWith": "spouse",
+      "note": "Art deco coast",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "tauranga",
+      "name": "Tauranga",
+      "lat": -37.6878,
+      "lng": 176.1651,
+      "airportCode": "TRG",
+      "visitedWith": "spouse",
+      "note": "Bay of Plenty",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "palmerston-north",
+      "name": "Palmerston North",
+      "lat": -40.3523,
+      "lng": 175.6082,
+      "airportCode": "PMR",
+      "visitedWith": "spouse",
+      "note": "Manawatu plains",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "wanaka",
+      "name": "Wanaka",
+      "lat": -44.7015,
+      "lng": 169.1322,
+      "airportCode": "WKA",
+      "visitedWith": "spouse",
+      "note": "Southern lakes",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "nelson",
+      "name": "Nelson",
+      "lat": -41.2706,
+      "lng": 173.284,
+      "airportCode": "NSN",
+      "visitedWith": "spouse",
+      "note": "Sunshine capital",
+      "country": "NZ",
+      "countryName": "New Zealand",
+      "role": "visited"
+    },
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "lat": 38.7223,
+      "lng": -9.1393,
+      "airportCode": "LIS",
+      "visitedWith": "spouse",
+      "note": "Seven hills",
+      "country": "PT",
+      "countryName": "Portugal",
+      "role": "visited"
+    },
+    {
+      "id": "cascais",
+      "name": "Cascais",
+      "lat": 38.6979,
+      "lng": -9.4215,
+      "visitedWith": "spouse",
+      "note": "Atlantic riviera",
+      "country": "PT",
+      "countryName": "Portugal",
+      "role": "visited"
+    },
+    {
+      "id": "sintra",
+      "name": "Sintra",
+      "lat": 38.8029,
+      "lng": -9.3817,
+      "visitedWith": "spouse",
+      "note": "Palace forests",
+      "country": "PT",
+      "countryName": "Portugal",
+      "role": "visited"
+    },
+    {
+      "id": "belem",
+      "name": "Belém",
+      "lat": 38.6979,
+      "lng": -9.2063,
+      "visitedWith": "spouse",
+      "note": "Lisbon · Monument coast",
+      "country": "PT",
+      "countryName": "Portugal",
+      "role": "visited"
+    },
+    {
+      "id": "porto",
+      "name": "Porto",
+      "lat": 41.1579,
+      "lng": -8.6291,
+      "airportCode": "OPO",
+      "visitedWith": "spouse",
+      "note": "Douro terraces",
+      "country": "PT",
+      "countryName": "Portugal",
+      "role": "visited"
+    },
+    {
+      "id": "macau",
+      "name": "Macau",
+      "lat": 22.1987,
+      "lng": 113.5439,
+      "airportCode": "MFM",
+      "note": "Pearl River gateway",
+      "country": "MO",
+      "countryName": "Macau",
+      "role": "visited"
+    },
+    {
+      "id": "seoul",
+      "name": "Seoul",
+      "lat": 37.5665,
+      "lng": 126.978,
+      "airportCode": "ICN",
+      "visitedWith": "spouse",
+      "note": "Han River pulse",
+      "country": "KR",
+      "countryName": "South Korea",
+      "role": "visited"
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "airportCode": "SIN",
+      "visitedWith": "spouse",
+      "note": "Garden city state",
+      "country": "SG",
+      "countryName": "Singapore",
+      "role": "visited"
+    },
+    {
+      "id": "mumbai",
+      "name": "Mumbai",
+      "lat": 19.076,
+      "lng": 72.8777,
+      "airportCode": "BOM",
+      "note": "Gateway of India",
+      "country": "IN",
+      "countryName": "India",
+      "role": "visited"
+    },
+    {
+      "id": "budapest",
+      "name": "Budapest",
+      "lat": 47.4979,
+      "lng": 19.0402,
+      "airportCode": "BUD",
+      "visitedWith": "spouse",
+      "note": "Danube bridges",
+      "country": "HU",
+      "countryName": "Hungary",
+      "role": "visited"
+    },
+    {
+      "id": "athens",
+      "name": "Athens",
+      "lat": 37.9838,
+      "lng": 23.7275,
+      "airportCode": "ATH",
+      "visitedWith": "spouse",
+      "note": "Acropolis views",
+      "country": "GR",
+      "countryName": "Greece",
+      "role": "visited"
+    },
+    {
+      "id": "santorini",
+      "name": "Santorini",
+      "lat": 36.3932,
+      "lng": 25.4615,
+      "airportCode": "JTR",
+      "visitedWith": "spouse",
+      "note": "Caldera light",
+      "country": "GR",
+      "countryName": "Greece",
+      "role": "visited"
+    },
+    {
+      "id": "milos",
+      "name": "Milos",
+      "lat": 36.7226,
+      "lng": 24.4267,
+      "airportCode": "MLO",
+      "visitedWith": "spouse",
+      "note": "Cycladic moonscape",
+      "country": "GR",
+      "countryName": "Greece",
+      "role": "visited"
+    },
+    {
+      "id": "prague",
+      "name": "Prague",
+      "lat": 50.0755,
+      "lng": 14.4378,
+      "airportCode": "PRG",
+      "visitedWith": "spouse",
+      "note": "Golden city spires",
+      "country": "CZ",
+      "countryName": "Czech Republic",
+      "role": "visited"
+    },
+    {
+      "id": "taipei",
+      "name": "Taipei",
+      "lat": 25.033,
+      "lng": 121.5654,
+      "airportCode": "TPE",
+      "visitedWith": "spouse",
+      "note": "Taipei 101 skyline",
+      "country": "TW",
+      "countryName": "Taiwan",
+      "role": "visited"
+    },
+    {
+      "id": "victoria",
+      "name": "Victoria",
+      "lat": -4.6236,
+      "lng": 55.454,
+      "airportCode": "SEZ",
+      "note": "Mahé island",
+      "country": "SC",
+      "countryName": "Seychelles",
+      "role": "visited"
+    },
+    {
+      "id": "lagos",
+      "name": "Lagos",
+      "lat": 6.5244,
+      "lng": 3.3792,
+      "airportCode": "LOS",
+      "note": "West African megacity",
+      "country": "NG",
+      "countryName": "Nigeria",
+      "role": "visited"
+    },
+    {
+      "id": "jeddah",
+      "name": "Jeddah",
+      "lat": 21.4858,
+      "lng": 39.1925,
+      "airportCode": "JED",
+      "note": "Red Sea gateway",
+      "country": "SA",
+      "countryName": "Saudi Arabia",
+      "role": "visited"
+    },
+    {
+      "id": "zaragoza",
+      "name": "Zaragoza",
+      "lat": 41.6488,
+      "lng": -0.8891,
+      "airportCode": "ZAZ",
+      "visitedWith": "solo",
+      "note": "Solo chapter",
+      "country": "ES",
+      "countryName": "Spain",
+      "role": "visited"
+    },
+    {
+      "id": "seville",
+      "name": "Seville",
+      "lat": 37.3891,
+      "lng": -5.9845,
+      "airportCode": "SVQ",
+      "visitedWith": "spouse",
+      "note": "Andalusian soul",
+      "country": "ES",
+      "countryName": "Spain",
+      "role": "visited"
+    },
+    {
+      "id": "cordoba",
+      "name": "Córdoba",
+      "lat": 37.8882,
+      "lng": -4.7794,
+      "airportCode": "ODB",
+      "visitedWith": "spouse",
+      "note": "Mezquita quarter",
+      "country": "ES",
+      "countryName": "Spain",
+      "role": "visited"
+    },
+    {
+      "id": "granada",
+      "name": "Granada",
+      "lat": 37.1773,
+      "lng": -3.5986,
+      "airportCode": "GRX",
+      "visitedWith": "spouse",
+      "note": "Alhambra silhouettes",
+      "country": "ES",
+      "countryName": "Spain",
+      "role": "visited"
+    },
+    {
+      "id": "vatican-city",
+      "name": "Vatican City",
+      "lat": 41.9029,
+      "lng": 12.4534,
+      "visitedWith": "spouse",
+      "note": "Sacred ground",
+      "country": "VA",
+      "countryName": "Vatican City",
+      "role": "visited"
+    },
+    {
+      "id": "vienna",
+      "name": "Vienna",
+      "lat": 48.2082,
+      "lng": 16.3738,
+      "airportCode": "VIE",
+      "visitedWith": "spouse",
+      "note": "Imperial avenues",
+      "country": "AT",
+      "countryName": "Austria",
+      "role": "visited"
+    }
+  ],
+  "routes": [
+    {
+      "from": "doha",
+      "to": "portland",
+      "type": "flight",
+      "label": "DOH → PDX"
+    },
+    {
+      "from": "doha",
+      "to": "vancouver",
+      "type": "flight",
+      "label": "DOH → YVR"
+    },
+    {
+      "from": "doha",
+      "to": "tel-aviv",
+      "type": "flight",
+      "label": "DOH → TLV"
+    },
+    {
+      "from": "doha",
+      "to": "edinburgh",
+      "type": "flight",
+      "label": "DOH → EDI"
+    },
+    {
+      "from": "doha",
+      "to": "amsterdam",
+      "type": "flight",
+      "label": "DOH → AMS"
+    },
+    {
+      "from": "doha",
+      "to": "frankfurt",
+      "type": "flight",
+      "label": "DOH → FRA"
+    },
+    {
+      "from": "doha",
+      "to": "colmar",
+      "type": "flight",
+      "label": "DOH → COL"
+    },
+    {
+      "from": "doha",
+      "to": "venice",
+      "type": "flight",
+      "label": "DOH → VCE"
+    },
+    {
+      "from": "doha",
+      "to": "zurich",
+      "type": "flight",
+      "label": "DOH → ZRH"
+    },
+    {
+      "from": "doha",
+      "to": "kuala-lumpur",
+      "type": "flight",
+      "label": "DOH → KUL"
+    },
+    {
+      "from": "doha",
+      "to": "brisbane",
+      "type": "flight",
+      "label": "DOH → BNE"
+    },
+    {
+      "from": "doha",
+      "to": "istanbul",
+      "type": "flight",
+      "label": "DOH → IST"
+    },
+    {
+      "from": "doha",
+      "to": "shanghai",
+      "type": "flight",
+      "label": "DOH → PVG"
+    },
+    {
+      "from": "doha",
+      "to": "hong-kong",
+      "type": "flight",
+      "label": "DOH → HKG"
+    },
+    {
+      "from": "doha",
+      "to": "kampala",
+      "type": "flight",
+      "label": "DOH → EBB"
+    },
+    {
+      "from": "doha",
+      "to": "phuket",
+      "type": "flight",
+      "label": "DOH → HKT"
+    },
+    {
+      "from": "doha",
+      "to": "quito",
+      "type": "flight",
+      "label": "DOH → UIO"
+    },
+    {
+      "from": "doha",
+      "to": "bogota",
+      "type": "flight",
+      "label": "DOH → BOG"
+    },
+    {
+      "from": "doha",
+      "to": "buenos-aires",
+      "type": "flight",
+      "label": "DOH → EZE"
+    },
+    {
+      "from": "doha",
+      "to": "brussels",
+      "type": "flight",
+      "label": "DOH → BRU"
+    },
+    {
+      "from": "doha",
+      "to": "sao-paulo",
+      "type": "flight",
+      "label": "DOH → GRU"
+    },
+    {
+      "from": "doha",
+      "to": "tokyo",
+      "type": "flight",
+      "label": "DOH → HND"
+    },
+    {
+      "from": "doha",
+      "to": "stockholm",
+      "type": "flight",
+      "label": "DOH → ARN"
+    },
+    {
+      "from": "doha",
+      "to": "nairobi",
+      "type": "flight",
+      "label": "DOH → NBO"
+    },
+    {
+      "from": "doha",
+      "to": "mexico-city",
+      "type": "flight",
+      "label": "DOH → MEX"
+    },
+    {
+      "from": "doha",
+      "to": "manila",
+      "type": "flight",
+      "label": "DOH → MNL"
+    },
+    {
+      "from": "doha",
+      "to": "male",
+      "type": "flight",
+      "label": "DOH → MLE"
+    },
+    {
+      "from": "doha",
+      "to": "auckland",
+      "type": "flight",
+      "label": "DOH → AKL"
+    },
+    {
+      "from": "doha",
+      "to": "lisbon",
+      "type": "flight",
+      "label": "DOH → LIS"
+    },
+    {
+      "from": "doha",
+      "to": "macau",
+      "type": "flight",
+      "label": "DOH → MFM"
+    },
+    {
+      "from": "doha",
+      "to": "seoul",
+      "type": "flight",
+      "label": "DOH → ICN"
+    },
+    {
+      "from": "doha",
+      "to": "singapore",
+      "type": "flight",
+      "label": "DOH → SIN"
+    },
+    {
+      "from": "doha",
+      "to": "mumbai",
+      "type": "flight",
+      "label": "DOH → BOM"
+    },
+    {
+      "from": "doha",
+      "to": "budapest",
+      "type": "flight",
+      "label": "DOH → BUD"
+    },
+    {
+      "from": "doha",
+      "to": "athens",
+      "type": "flight",
+      "label": "DOH → ATH"
+    },
+    {
+      "from": "doha",
+      "to": "prague",
+      "type": "flight",
+      "label": "DOH → PRG"
+    },
+    {
+      "from": "doha",
+      "to": "taipei",
+      "type": "flight",
+      "label": "DOH → TPE"
+    },
+    {
+      "from": "doha",
+      "to": "victoria",
+      "type": "flight",
+      "label": "DOH → SEZ"
+    },
+    {
+      "from": "doha",
+      "to": "lagos",
+      "type": "flight",
+      "label": "DOH → LOS"
+    },
+    {
+      "from": "doha",
+      "to": "jeddah",
+      "type": "flight",
+      "label": "DOH → JED"
+    },
+    {
+      "from": "doha",
+      "to": "zaragoza",
+      "type": "flight",
+      "label": "DOH → ZAZ"
+    },
+    {
+      "from": "doha",
+      "to": "vatican-city",
+      "type": "flight",
+      "label": "DOH → VAT"
+    },
+    {
+      "from": "doha",
+      "to": "vienna",
+      "type": "flight",
+      "label": "DOH → VIE"
+    },
+    {
+      "from": "istanbul",
+      "to": "doha",
+      "type": "flight",
+      "label": "IST → DOH"
+    }
+  ],
+  "globe": {
+    "atmosphereColor": "#C25B3F",
+    "pointColor": "#F5EDE4",
+    "arcColor": "#D4A017",
+    "autoRotateSpeed": 0.18
+  }
+}

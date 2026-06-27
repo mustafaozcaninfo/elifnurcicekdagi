@@ -45,6 +45,27 @@ export default {
 			return applySecurityHeaders(seo);
 		}
 
+		if (url.pathname === "/contact" || url.pathname === "/contact/") {
+			const contactPage = await env.ASSETS.fetch(
+				new Request(new URL("/contact/index.html", url.origin), request),
+			);
+			if (contactPage.ok) {
+				return applySecurityHeaders(
+					new Response(contactPage.body, {
+						status: 200,
+						headers: {
+							"content-type": "text/html; charset=utf-8",
+							"cache-control": "public, max-age=60, s-maxage=300",
+						},
+					}),
+				);
+			}
+		}
+
+		if (url.pathname === "/iletisim" || url.pathname === "/iletisim/") {
+			return Response.redirect(new URL("/contact", url.origin).toString(), 301);
+		}
+
 		if (url.pathname === "/admin" || url.pathname === "/admin/") {
 			const adminPage = await env.ASSETS.fetch(
 				new Request(new URL("/admin/index.html", url.origin), request),

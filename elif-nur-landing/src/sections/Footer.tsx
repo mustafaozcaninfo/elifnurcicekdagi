@@ -16,7 +16,7 @@ export default function Footer() {
 					<div>
 						<p className="font-kanit text-2xl font-semibold text-warm-light">{fullName}</p>
 						<p className="mt-2 font-body text-sm text-warm-muted">
-							First Officer · Travel &amp; Lifestyle
+							Airline Pilot · Travel &amp; Lifestyle
 						</p>
 						<p className="mt-4 font-body text-xs text-warm-muted/70">
 							<a href="https://elifnurcicekdagi.com" className="hover:text-warm-light">
@@ -34,11 +34,11 @@ export default function Footer() {
 			<div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 font-body text-xs text-warm-muted/60 md:flex-row">
 				<p>&copy; {year} Elif Nur Çiçekdağı Özcan. All rights reserved.</p>
 				<nav className="flex gap-6" aria-label="Alt bağlantılar">
-					<a href="/iletisim" className="transition-colors hover:text-warm-light">
-						İletişim
+					<a href="/contact" className="transition-colors hover:text-warm-light">
+						Contact
 					</a>
 					<a href="/gizlilik" className="transition-colors hover:text-warm-light">
-						Gizlilik
+						Privacy
 					</a>
 				</nav>
 			</div>

@@ -5,6 +5,7 @@ import { handleAdminAuth } from "./auth";
 import { handleAdminPages } from "./pages";
 import { handleAdminProjects } from "./projects";
 import { handleAdminSettings } from "./settings";
+import { handleAdminTravelMap } from "./travel-map";
 
 /** segments: admin, resource, ... */
 export async function handleAdminRouter(ctx: ApiContext): Promise<Response> {
@@ -23,6 +24,8 @@ export async function handleAdminRouter(ctx: ApiContext): Promise<Response> {
 			return handleAdminSettings(ctx);
 		case "audit":
 			return handleAdminAudit(ctx);
+		case "travel-map":
+			return handleAdminTravelMap(ctx);
 		default:
 			return jsonError("NOT_FOUND", "Admin endpoint bulunamadı.", ctx.meta, 404);
 	}

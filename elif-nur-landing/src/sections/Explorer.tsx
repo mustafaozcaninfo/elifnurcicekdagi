@@ -1,154 +1,161 @@
-import { Globe2, MapPin, Plane } from "lucide-react";
-import { useState } from "react";
-import FadeIn from "../components/FadeIn";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import CompanionFilterBar from "../components/CompanionFilter";
+import type { DeckPhase } from "../components/PilotHud";
+import DestinationPanel from "../components/DestinationPanel";
+import ExploreChrome from "../components/ExploreChrome";
+import JourneyLedger from "../components/JourneyLedger";
+import Navbar from "../components/Navbar";
+import PilotHud from "../components/PilotHud";
 import TravelGlobe from "../components/TravelGlobe";
+import WaypointRail from "../components/WaypointRail";
 import type { TravelMapCity } from "../data/travel-map";
+import { useCompanionFilter } from "../hooks/useCompanionFilter";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { useLiveFlights } from "../hooks/useLiveFlights";
 import { useSite } from "../hooks/useSite";
+import { filterTravelMapByCompanion } from "../utils/companion-filter";
+
+/** ~10s cinematic intro — Boeing 777 departure from Doha. Skippable anytime. */
+const PHASE_TIMELINE: { phase: DeckPhase; at: number }[] = [
+	{ phase: "boot", at: 0 },
+	{ phase: "systems", at: 1200 },
+	{ phase: "globe", at: 2800 },
+	{ phase: "departure", at: 4800 },
+	{ phase: "cruise", at: 7200 },
+	{ phase: "reveal", at: 10_000 },
+];
 
 export default function Explorer() {
-	const { travelMap } = useSite();
-	const [selected, setSelected] = useState<TravelMapCity | null>(null);
-
-	const visitedCountries = travelMap.countries.filter((c) => c.visited);
-
-	return (
-		<section
-			id="explorer"
-			className="relative overflow-hidden bg-warm-darker px-6 py-24 md:px-10 md:py-32"
-		>
-			<div className="pointer-events-none absolute inset-0 bg-texture opacity-60" />
-
-			<div className="relative z-10 mx-auto max-w-7xl">
-				<FadeIn>
-					<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-						<div>
-							<p className="font-kanit text-xs font-medium uppercase tracking-[0.28em] text-warm-terracotta">
-								Flight Deck Atlas
-							</p>
-							<h2
-								className="mt-3 font-kanit font-black tracking-tight text-gradient"
-								style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}
-							>
-								{travelMap.title}
-							</h2>
-							<p className="mt-4 max-w-xl font-body text-sm font-light text-warm-muted md:text-base">
-								{travelMap.subtitle}
-							</p>
-						</div>
-
-						<div className="flex gap-6 font-kanit">
-							<Stat
-								icon={Globe2}
-								value={travelMap.stats?.countries ?? visitedCountries.length}
-								label="Countries"
-							/>
-							<Stat
-								icon={MapPin}
-								value={travelMap.stats?.cities ?? travelMap.cities.length}
-								label="Cities"
-							/>
-							{travelMap.homeHub && (
-								<Stat icon={Plane} value={travelMap.homeHub.code} label="Home hub" />
-							)}
-						</div>
-					</div>
-				</FadeIn>
-
-				<FadeIn delay={0.15} className="mt-12 grid gap-8 lg:grid-cols-[1fr_320px]">
-					<TravelGlobe
-						data={travelMap}
-						selectedId={selected?.id ?? null}
-						onSelect={setSelected}
-					/>
-
-					<aside className="flex flex-col gap-6">
-						<div className="admin-card rounded-2xl border border-white/10 bg-warm-dark/60 p-6 backdrop-blur-sm">
-							<h3 className="font-kanit text-sm font-semibold uppercase tracking-wider text-warm-light">
-								Visited Countries
-							</h3>
-							<ul className="mt-4 space-y-2">
-								{visitedCountries.map((c) => (
-									<li
-										key={c.iso2}
-										className="flex items-center gap-3 font-body text-sm text-warm-light/90"
-									>
-										<span
-											className="h-2.5 w-2.5 rounded-full"
-											style={{ background: c.color ?? "#C25B3F" }}
-										/>
-										<span className="font-medium">{c.name}</span>
-										<span className="text-warm-muted">{c.iso2}</span>
-									</li>
-								))}
-							</ul>
-						</div>
-
-						<div className="admin-card rounded-2xl border border-white/10 bg-warm-dark/60 p-6 backdrop-blur-sm">
-							<h3 className="font-kanit text-sm font-semibold uppercase tracking-wider text-warm-light">
-								Cities
-							</h3>
-							<ul className="mt-4 space-y-1">
-								{travelMap.cities.map((city) => (
-									<li key={city.id}>
-										<button
-											type="button"
-											onClick={() => setSelected(city)}
-											className={`w-full rounded-xl px-3 py-2.5 text-left transition-colors ${
-												selected?.id === city.id
-													? "bg-warm-terracotta/20 text-warm-light"
-													: "text-warm-muted hover:bg-white/5 hover:text-warm-light"
-											}`}
-										>
-											<span className="font-kanit font-medium">{city.name}</span>
-											<span className="ml-2 text-xs uppercase text-warm-muted">
-												{city.countryName ?? city.country}
-											</span>
-											{city.note && (
-												<p className="mt-0.5 font-body text-xs text-warm-muted/80">
-													{city.note}
-												</p>
-											)}
-										</button>
-									</li>
-								))}
-							</ul>
-						</div>
-
-						{selected && (
-							<div className="rounded-2xl border border-warm-terracotta/30 bg-warm-terracotta/10 p-5">
-								<p className="font-kanit text-lg font-semibold text-warm-light">
-									{selected.name}
-								</p>
-								<p className="mt-1 text-sm text-warm-muted">
-									{selected.countryName ?? selected.country}
-									{selected.role ? ` · ${selected.role}` : ""}
-								</p>
-								{selected.note && (
-									<p className="mt-2 font-body text-sm text-warm-light/80">{selected.note}</p>
-								)}
-							</div>
-						)}
-					</aside>
-				</FadeIn>
-			</div>
-		</section>
+	const { travelMap, branding } = useSite();
+	const { companion, setCompanion } = useCompanionFilter();
+	const mapView = useMemo(
+		() => filterTravelMapByCompanion(travelMap, companion),
+		[travelMap, companion],
 	);
-}
+	const isMobile = useIsMobile();
+	const [phase, setPhase] = useState<DeckPhase>("boot");
+	const [exploreReady, setExploreReady] = useState(false);
+	const [selectedId, setSelectedId] = useState<string | null>(null);
+	const [panelOpen, setPanelOpen] = useState(false);
+	const [focusCityId, setFocusCityId] = useState<string | null>(null);
+	const [railOpen, setRailOpen] = useState(false);
 
-function Stat({
-	icon: Icon,
-	value,
-	label,
-}: {
-	icon: typeof Globe2;
-	value: string | number;
-	label: string;
-}) {
+	const interactive = exploreReady;
+	const flightsEnabled = phase === "departure" || phase === "cruise";
+	const { flights, primary } = useLiveFlights(mapView, flightsEnabled);
+	const mapGesturePriority = isMobile && !railOpen && !panelOpen;
+
+	const cityById = new Map(mapView.cities.map((c) => [c.id, c]));
+	const selected = selectedId ? (cityById.get(selectedId) ?? null) : null;
+
+	const siblingCities = selected
+		? mapView.cities
+				.filter((c) => c.country === selected.country)
+				.sort((a, b) => a.name.localeCompare(b.name))
+		: [];
+
+	useEffect(() => {
+		if (!selectedId) return;
+		if (!mapView.cities.some((c) => c.id === selectedId)) {
+			setSelectedId(null);
+			setPanelOpen(false);
+			setFocusCityId(null);
+		}
+	}, [selectedId, mapView.cities]);
+
+	const selectCity = useCallback((city: TravelMapCity) => {
+		setSelectedId(city.id);
+		setFocusCityId(city.id);
+		setPanelOpen(true);
+	}, []);
+
+	const skipIntro = useCallback(() => {
+		setPhase("reveal");
+		setExploreReady(true);
+	}, []);
+
+	useEffect(() => {
+		const timers = PHASE_TIMELINE.map(({ phase: p, at }) =>
+			window.setTimeout(() => setPhase(p), at),
+		);
+		return () => timers.forEach(clearTimeout);
+	}, []);
+
+	useEffect(() => {
+		if (phase !== "reveal" || exploreReady) return;
+		// Wait for reveal camera (2200ms) to finish before handing off
+		const t = window.setTimeout(() => setExploreReady(true), isMobile ? 2600 : 2800);
+		return () => clearTimeout(t);
+	}, [phase, exploreReady, isMobile]);
+
 	return (
-		<div className="text-center md:text-right">
-			<Icon className="mx-auto mb-1 h-5 w-5 text-warm-terracotta md:ml-auto" strokeWidth={1.5} />
-			<p className="text-2xl font-semibold text-warm-light">{value}</p>
-			<p className="text-[0.65rem] uppercase tracking-wider text-warm-muted">{label}</p>
+		<div id="explorer" className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden bg-[#030201] pt-0 md:pt-0">
+			<Navbar variant="deck" visible={phase !== "boot"} />
+
+			<CompanionFilterBar
+				value={companion}
+				onChange={setCompanion}
+				visible={interactive}
+			/>
+
+			<div className="absolute inset-0 z-0">
+				<TravelGlobe
+					variant="deck"
+					data={mapView}
+					selectedId={selectedId}
+					focusCityId={focusCityId}
+					onSelect={(city) => {
+						if (!interactive || !city) return;
+						selectCity(city);
+					}}
+					phase={phase}
+					primaryFlight={primary}
+					interactive={interactive}
+					gesturePriority={mapGesturePriority}
+				/>
+			</div>
+
+			<PilotHud
+				phase={phase}
+				primaryFlight={primary}
+				flights={flights}
+				travelMap={mapView}
+				branding={branding}
+				interactive={interactive}
+			/>
+
+			<ExploreChrome
+				visible={interactive}
+				showSkip={!interactive && phase !== "boot"}
+				onSkip={skipIntro}
+			/>
+
+			<WaypointRail
+				cities={mapView.cities}
+				countries={mapView.countries}
+				selectedId={selectedId}
+				visible={interactive}
+				onSelect={selectCity}
+				onOpenChange={setRailOpen}
+			/>
+
+			<JourneyLedger
+				countries={mapView.countries}
+				cities={mapView.cities}
+				visible={interactive}
+				companion={companion}
+				flightSummary={travelMap.flightSummary}
+			/>
+
+			<DestinationPanel
+				city={selected}
+				countries={mapView.countries}
+				siblingCities={siblingCities}
+				flightSummary={mapView.flightSummary}
+				open={panelOpen && interactive && selected !== null}
+				onClose={() => setPanelOpen(false)}
+				onSelectCity={selectCity}
+			/>
 		</div>
 	);
 }

@@ -1,0 +1,2723 @@
+{
+  "columns": [
+    "flight_route",
+    "col1_unused",
+    "A/C REG",
+    "BLOCK HRS",
+    "FTL HRS",
+    "TAKE-OFF & LANDING",
+    "DEADHEAD HRS",
+    "PIC HRS",
+    "CAPT ACTING AS FO HRS",
+    "FREIGHTER HRS"
+  ],
+  "uniqueAirports": [
+    "ADL",
+    "AKL",
+    "AMM",
+    "AMS",
+    "ARN",
+    "ATH",
+    "ATL",
+    "BGW",
+    "BKK",
+    "BNE",
+    "BOG",
+    "BOM",
+    "BRU",
+    "BUD",
+    "CAI",
+    "CAN",
+    "CDG",
+    "DAC",
+    "DFW",
+    "DMM",
+    "DOH",
+    "DXB",
+    "EBB",
+    "EBL",
+    "EZE",
+    "FCO",
+    "FRA",
+    "GRU",
+    "HKG",
+    "HKT",
+    "HND",
+    "IAD",
+    "IAH",
+    "ISB",
+    "IST",
+    "JED",
+    "JFK",
+    "JNB",
+    "KHI",
+    "KUL",
+    "KWI",
+    "LGG",
+    "LHE",
+    "LHR",
+    "LOS",
+    "MAA",
+    "MEL",
+    "MFM",
+    "MIA",
+    "MLE",
+    "MNL",
+    "MUC",
+    "MXP",
+    "NBO",
+    "NGO",
+    "NLU",
+    "NRT",
+    "ORD",
+    "OSL",
+    "PER",
+    "PHL",
+    "PKX",
+    "PTY",
+    "PVG",
+    "SCL",
+    "SEA",
+    "SEZ",
+    "SHJ",
+    "STN",
+    "SYD",
+    "UIO",
+    "VCP",
+    "WAW",
+    "ZAZ"
+  ],
+  "routes": [
+    {
+      "flight": "QR245",
+      "from": "DOH",
+      "to": "IST",
+      "blockHrs": 4.2333,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR246",
+      "from": "IST",
+      "to": "DOH",
+      "blockHrs": 4.0333,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR245",
+      "from": "DOH",
+      "to": "IST",
+      "blockHrs": 4.2833,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR246",
+      "from": "IST",
+      "to": "DOH",
+      "blockHrs": 4.1,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR007",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.5333,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR016",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.4667,
+      "acReg": "A7-BAI"
+    },
+    {
+      "flight": "QR844",
+      "from": "DOH",
+      "to": "KUL",
+      "blockHrs": 7.25,
+      "acReg": "A7-BET"
+    },
+    {
+      "flight": "QR845",
+      "from": "KUL",
+      "to": "DOH",
+      "blockHrs": 7.5333,
+      "acReg": "A7-BAF"
+    },
+    {
+      "flight": "QR273",
+      "from": "DOH",
+      "to": "AMS",
+      "blockHrs": 6.6667,
+      "acReg": "A7-BAH"
+    },
+    {
+      "flight": "QR274",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.25,
+      "acReg": "A7-BAX"
+    },
+    {
+      "flight": "QR719",
+      "from": "DOH",
+      "to": "SEA",
+      "blockHrs": 15.2167,
+      "acReg": "A7-BEH"
+    },
+    {
+      "flight": "QR720",
+      "from": "SEA",
+      "to": "DOH",
+      "blockHrs": 14.45,
+      "acReg": "A7-BED"
+    },
+    {
+      "flight": "QR556",
+      "from": "DOH",
+      "to": "BOM",
+      "blockHrs": 3.2,
+      "acReg": "A7-BEP"
+    },
+    {
+      "flight": "QR557",
+      "from": "BOM",
+      "to": "DOH",
+      "blockHrs": 3.6667,
+      "acReg": "A7-BEP"
+    },
+    {
+      "flight": "QR1070",
+      "from": "DOH",
+      "to": "KWI",
+      "blockHrs": 1.3833,
+      "acReg": "A7-BBD"
+    },
+    {
+      "flight": "QR1071",
+      "from": "KWI",
+      "to": "DOH",
+      "blockHrs": 1.3333,
+      "acReg": "A7-BBD"
+    },
+    {
+      "flight": "QR670",
+      "from": "DOH",
+      "to": "MLE",
+      "blockHrs": 4.3,
+      "acReg": "A7-BBH"
+    },
+    {
+      "flight": "QR675",
+      "from": "MLE",
+      "to": "DOH",
+      "blockHrs": 4.2667,
+      "acReg": "A7-BBH"
+    },
+    {
+      "flight": "QR777",
+      "from": "DOH",
+      "to": "MIA",
+      "blockHrs": 15.25,
+      "acReg": "A7-BEH"
+    },
+    {
+      "flight": "QR778",
+      "from": "MIA",
+      "to": "DOH",
+      "blockHrs": 14.2167,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR1076",
+      "from": "DOH",
+      "to": "KWI",
+      "blockHrs": 1.45,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR1077",
+      "from": "KWI",
+      "to": "DOH",
+      "blockHrs": 1.4,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR818",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 7.8667,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR817",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 8.05,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR705",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.9667,
+      "acReg": "A7-BBE"
+    },
+    {
+      "flight": "QR704",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.8667,
+      "acReg": "A7-BBC"
+    },
+    {
+      "flight": "QR818",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 8.5667,
+      "acReg": "A7-BOD"
+    },
+    {
+      "flight": "QR817",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 7.8333,
+      "acReg": "A7-BOI"
+    },
+    {
+      "flight": "QR870",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 8.8833,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR871",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 9.1,
+      "acReg": "A7-BAB"
+    },
+    {
+      "flight": "QR904",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.25,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR905",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 14.0833,
+      "acReg": "A7-BEI"
+    },
+    {
+      "flight": "QR1383",
+      "from": "DOH",
+      "to": "EBB",
+      "blockHrs": 5.3167,
+      "acReg": "A7-BAK"
+    },
+    {
+      "flight": "QR1384",
+      "from": "EBB",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BCT"
+    },
+    {
+      "flight": "QR840",
+      "from": "DOH",
+      "to": "HKT",
+      "blockHrs": 0.0,
+      "acReg": "A7-BBI"
+    },
+    {
+      "flight": "QR841",
+      "from": "HKT",
+      "to": "DOH",
+      "blockHrs": 6.3667,
+      "acReg": "A7-BBD"
+    },
+    {
+      "flight": "QR727",
+      "from": "DOH",
+      "to": "PHL",
+      "blockHrs": 14.1667,
+      "acReg": "A7-BAA"
+    },
+    {
+      "flight": "QR728",
+      "from": "PHL",
+      "to": "DOH",
+      "blockHrs": 12.5333,
+      "acReg": "A7-BEE"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 14.0167,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.8833,
+      "acReg": "A7-BET"
+    },
+    {
+      "flight": "QR1301",
+      "from": "DOH",
+      "to": "CAI",
+      "blockHrs": 3.05,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR1302",
+      "from": "CAI",
+      "to": "DOH",
+      "blockHrs": 3.1167,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR1086",
+      "from": "DOH",
+      "to": "KWI",
+      "blockHrs": 1.3167,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR1087",
+      "from": "KWI",
+      "to": "DOH",
+      "blockHrs": 1.25,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR731",
+      "from": "DOH",
+      "to": "DFW",
+      "blockHrs": 16.0,
+      "acReg": "A7-BBB"
+    },
+    {
+      "flight": "QR732",
+      "from": "DFW",
+      "to": "DOH",
+      "blockHrs": 15.0,
+      "acReg": "A7-BBG"
+    },
+    {
+      "flight": "QR830",
+      "from": "DOH",
+      "to": "BKK",
+      "blockHrs": 6.85,
+      "acReg": "A7-BAV"
+    },
+    {
+      "flight": "QR831",
+      "from": "BKK",
+      "to": "DOH",
+      "blockHrs": 6.5333,
+      "acReg": "A7-BAX"
+    },
+    {
+      "flight": "QR773",
+      "from": "DOH",
+      "to": "GRU",
+      "blockHrs": 15.6667,
+      "acReg": "A7-BBD"
+    },
+    {
+      "flight": "QR774",
+      "from": "GRU",
+      "to": "DOH",
+      "blockHrs": 14.8167,
+      "acReg": "A7-BBH"
+    },
+    {
+      "flight": "QR169",
+      "from": "DOH",
+      "to": "ARN",
+      "blockHrs": 6.6167,
+      "acReg": "A7-BEA"
+    },
+    {
+      "flight": "QR170",
+      "from": "ARN",
+      "to": "DOH",
+      "blockHrs": 6.7,
+      "acReg": "A7-BAY"
+    },
+    {
+      "flight": "QR898",
+      "from": "DOH",
+      "to": "BNE",
+      "blockHrs": 14.1667,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR899",
+      "from": "BNE",
+      "to": "DOH",
+      "blockHrs": 14.35,
+      "acReg": "A7-BAM"
+    },
+    {
+      "flight": "QR273",
+      "from": "DOH",
+      "to": "AMS",
+      "blockHrs": 6.65,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR274",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR812",
+      "from": "DOH",
+      "to": "HND",
+      "blockHrs": 9.9333,
+      "acReg": "A7-BEM"
+    },
+    {
+      "flight": "QR813",
+      "from": "HND",
+      "to": "DOH",
+      "blockHrs": 11.6,
+      "acReg": "A7-BEI"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.7833,
+      "acReg": "A7-BER"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.7667,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 15.25,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.25,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR988",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.1167,
+      "acReg": "A7-BED"
+    },
+    {
+      "flight": "QR905",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 14.35,
+      "acReg": "A7-BEW"
+    },
+    {
+      "flight": "QR755",
+      "from": "DOH",
+      "to": "ATL",
+      "blockHrs": 15.6333,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR756",
+      "from": "ATL",
+      "to": "DOH",
+      "blockHrs": 13.5833,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR237",
+      "from": "DOH",
+      "to": "IST",
+      "blockHrs": 4.3333,
+      "acReg": "A7-BOI"
+    },
+    {
+      "flight": "QR240",
+      "from": "IST",
+      "to": "DOH",
+      "blockHrs": 4.2,
+      "acReg": "A7-BOA"
+    },
+    {
+      "flight": "QR634",
+      "from": "DOH",
+      "to": "DAC",
+      "blockHrs": 5.1167,
+      "acReg": "A7-BAA"
+    },
+    {
+      "flight": "QR639",
+      "from": "DAC",
+      "to": "DOH",
+      "blockHrs": 5.85,
+      "acReg": "A7-BAX"
+    },
+    {
+      "flight": "QR8040",
+      "from": "DOH",
+      "to": "MUC",
+      "blockHrs": 6.1167,
+      "acReg": "A7-BFY"
+    },
+    {
+      "flight": "QR8048",
+      "from": "MUC",
+      "to": "DOH",
+      "blockHrs": 5.35,
+      "acReg": "A7-BFV"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 15.0833,
+      "acReg": "A7-BEI"
+    },
+    {
+      "flight": "QR8112",
+      "from": "ORD",
+      "to": "MXP",
+      "blockHrs": 8.65,
+      "acReg": "A7-BFG"
+    },
+    {
+      "flight": "QR8445",
+      "from": "MXP",
+      "to": "DOH",
+      "blockHrs": 5.6167,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR904",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.4833,
+      "acReg": "A7-BED"
+    },
+    {
+      "flight": "QR988",
+      "from": "MEL",
+      "to": "ADL",
+      "blockHrs": 1.4333,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR989",
+      "from": "ADL",
+      "to": "MEL",
+      "blockHrs": 1.2,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR989",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 13.8833,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR773",
+      "from": "DOH",
+      "to": "GRU",
+      "blockHrs": 15.4333,
+      "acReg": "A7-BBA"
+    },
+    {
+      "flight": "QR8157",
+      "from": "GRU",
+      "to": "EZE",
+      "blockHrs": 2.65,
+      "acReg": "A7-BFW"
+    },
+    {
+      "flight": "QR8157",
+      "from": "EZE",
+      "to": "UIO",
+      "blockHrs": 6.0833,
+      "acReg": "A7-BFJ"
+    },
+    {
+      "flight": "QR1442",
+      "from": "UIO",
+      "to": "BOG",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR2403",
+      "from": "DFW",
+      "to": "ATL",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8147",
+      "from": "BOG",
+      "to": "DFW",
+      "blockHrs": 5.7833,
+      "acReg": "A7-BFM"
+    },
+    {
+      "flight": "QR756",
+      "from": "ATL",
+      "to": "DOH",
+      "blockHrs": 12.8833,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR773",
+      "from": "DOH",
+      "to": "GRU",
+      "blockHrs": 15.3,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR774",
+      "from": "GRU",
+      "to": "DOH",
+      "blockHrs": 14.5,
+      "acReg": "A7-BAB"
+    },
+    {
+      "flight": "QR755",
+      "from": "DOH",
+      "to": "ATL",
+      "blockHrs": 16.0333,
+      "acReg": "A7-BER"
+    },
+    {
+      "flight": "QR336",
+      "from": "DFW",
+      "to": "MIA",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8131",
+      "from": "ATL",
+      "to": "DFW",
+      "blockHrs": 2.4167,
+      "acReg": "A7-BFO"
+    },
+    {
+      "flight": "QR8148",
+      "from": "MIA",
+      "to": "LGG",
+      "blockHrs": 8.25,
+      "acReg": "A7-BFX"
+    },
+    {
+      "flight": "QR8106",
+      "from": "BRU",
+      "to": "DOH",
+      "blockHrs": 6.1167,
+      "acReg": "A7-BFC"
+    },
+    {
+      "flight": "QR874",
+      "from": "DOH",
+      "to": "CAN",
+      "blockHrs": 6.7833,
+      "acReg": "A7-BAS"
+    },
+    {
+      "flight": "QR875",
+      "from": "CAN",
+      "to": "DOH",
+      "blockHrs": 9.4667,
+      "acReg": "A7-BAU"
+    },
+    {
+      "flight": "QR1335",
+      "from": "DOH",
+      "to": "NBO",
+      "blockHrs": 5.4167,
+      "acReg": "A7-BBH"
+    },
+    {
+      "flight": "QR1336",
+      "from": "NBO",
+      "to": "DOH",
+      "blockHrs": 4.5833,
+      "acReg": "A7-BBF"
+    },
+    {
+      "flight": "QR8960",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 7.65,
+      "acReg": "A7-BFP"
+    },
+    {
+      "flight": "QR871",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 10.55,
+      "acReg": "A7-BAA"
+    },
+    {
+      "flight": "QR8291",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.75,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR106",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.5833,
+      "acReg": "A7-BAI"
+    },
+    {
+      "flight": "QR8604",
+      "from": "DOH",
+      "to": "BOM",
+      "blockHrs": 3.0667,
+      "acReg": "A7-BFS"
+    },
+    {
+      "flight": "QR8605",
+      "from": "BOM",
+      "to": "DOH",
+      "blockHrs": 3.95,
+      "acReg": "A7-BFS"
+    },
+    {
+      "flight": "QR8249",
+      "from": "DOH",
+      "to": "LGG",
+      "blockHrs": 6.7,
+      "acReg": "A7-BFI"
+    },
+    {
+      "flight": "QR8101",
+      "from": "AMS",
+      "to": "ORD",
+      "blockHrs": 8.45,
+      "acReg": "A7-BFR"
+    },
+    {
+      "flight": "QR8140",
+      "from": "ORD",
+      "to": "BRU",
+      "blockHrs": 7.5333,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8099",
+      "from": "BRU",
+      "to": "DOH",
+      "blockHrs": 6.1,
+      "acReg": "A7-BFX"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 15.2,
+      "acReg": "A7-BER"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.4667,
+      "acReg": "A7-BEJ"
+    },
+    {
+      "flight": "QR779",
+      "from": "DOH",
+      "to": "GRU",
+      "blockHrs": 15.1333,
+      "acReg": "A7-BBA"
+    },
+    {
+      "flight": "QR8034",
+      "from": "GRU",
+      "to": "UIO",
+      "blockHrs": 5.8167,
+      "acReg": "A7-BFB"
+    },
+    {
+      "flight": "QR8158",
+      "from": "PTY",
+      "to": "AMS",
+      "blockHrs": 10.4,
+      "acReg": "A7-BFI"
+    },
+    {
+      "flight": "QR8158",
+      "from": "UIO",
+      "to": "PTY",
+      "blockHrs": 1.7333,
+      "acReg": "A7-BFI"
+    },
+    {
+      "flight": "QR8156",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.0333,
+      "acReg": "A7-BFE"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 14.05,
+      "acReg": "A7-BEM"
+    },
+    {
+      "flight": "QR2551",
+      "from": "IAH",
+      "to": "DFW",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8183",
+      "from": "JFK",
+      "to": "IAH",
+      "blockHrs": 3.95,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR8148",
+      "from": "DFW",
+      "to": "LGG",
+      "blockHrs": 9.1167,
+      "acReg": "A7-BFX"
+    },
+    {
+      "flight": "QR8158",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.3333,
+      "acReg": "A7-BFU"
+    },
+    {
+      "flight": "QR830",
+      "from": "DOH",
+      "to": "BKK",
+      "blockHrs": 6.0,
+      "acReg": "A7-BAB"
+    },
+    {
+      "flight": "QR831",
+      "from": "BKK",
+      "to": "DOH",
+      "blockHrs": 7.1,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR892",
+      "from": "DOH",
+      "to": "PKX",
+      "blockHrs": 8.0,
+      "acReg": "A7-BAV"
+    },
+    {
+      "flight": "QR893",
+      "from": "PKX",
+      "to": "DOH",
+      "blockHrs": 9.0,
+      "acReg": "A7-BAS"
+    },
+    {
+      "flight": "QR1014",
+      "from": "DOH",
+      "to": "DXB",
+      "blockHrs": 1.2,
+      "acReg": "A7-BAE"
+    },
+    {
+      "flight": "QR1015",
+      "from": "DXB",
+      "to": "DOH",
+      "blockHrs": 1.25,
+      "acReg": "A7-BAE"
+    },
+    {
+      "flight": "QR113",
+      "from": "DOH",
+      "to": "FCO",
+      "blockHrs": 5.7167,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR114",
+      "from": "FCO",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR069",
+      "from": "DOH",
+      "to": "FRA",
+      "blockHrs": 6.2167,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR070",
+      "from": "FRA",
+      "to": "DOH",
+      "blockHrs": 6.2667,
+      "acReg": "A7-BAI"
+    },
+    {
+      "flight": "QR806",
+      "from": "DOH",
+      "to": "NRT",
+      "blockHrs": 0.0,
+      "acReg": "A7-BEP"
+    },
+    {
+      "flight": "QR3087",
+      "from": "NRT",
+      "to": "NGO",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8909",
+      "from": "NGO",
+      "to": "NLU",
+      "blockHrs": 12.0333,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8306",
+      "from": "NLU",
+      "to": "MIA",
+      "blockHrs": 2.8,
+      "acReg": "A7-BFN"
+    },
+    {
+      "flight": "QR782",
+      "from": "MIA",
+      "to": "DOH",
+      "blockHrs": 14.15,
+      "acReg": "A7-BBI"
+    },
+    {
+      "flight": "QR928",
+      "from": "DOH",
+      "to": "MNL",
+      "blockHrs": 8.9833,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR933",
+      "from": "MNL",
+      "to": "DOH",
+      "blockHrs": 9.0167,
+      "acReg": "A7-BAU"
+    },
+    {
+      "flight": "QR8201",
+      "from": "DOH",
+      "to": "AMS",
+      "blockHrs": 7.0333,
+      "acReg": "A7-BFF"
+    },
+    {
+      "flight": "QR8206",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 5.9,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR904",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.7,
+      "acReg": "A7-BES"
+    },
+    {
+      "flight": "QR988",
+      "from": "MEL",
+      "to": "ADL",
+      "blockHrs": 1.8333,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR989",
+      "from": "ADL",
+      "to": "MEL",
+      "blockHrs": 1.2833,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR989",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 13.7333,
+      "acReg": "A7-BAE"
+    },
+    {
+      "flight": "QR8009",
+      "from": "DOH",
+      "to": "LGG",
+      "blockHrs": 6.55,
+      "acReg": "A7-BFR"
+    },
+    {
+      "flight": "QR8187",
+      "from": "AMS",
+      "to": "ORD",
+      "blockHrs": 8.9,
+      "acReg": "A7-BFX"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.0167,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR1383",
+      "from": "DOH",
+      "to": "EBB",
+      "blockHrs": 0.0,
+      "acReg": "A4O-DA"
+    },
+    {
+      "flight": "QR8722",
+      "from": "EBB",
+      "to": "NBO",
+      "blockHrs": 1.2833,
+      "acReg": "A7-BFK"
+    },
+    {
+      "flight": "QR8722",
+      "from": "NBO",
+      "to": "DOH",
+      "blockHrs": 4.9333,
+      "acReg": "A7-BFK"
+    },
+    {
+      "flight": "QR818",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 8.3833,
+      "acReg": "A7-BOD"
+    },
+    {
+      "flight": "QR8453",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 8.0167,
+      "acReg": "A7-BFM"
+    },
+    {
+      "flight": "QR005",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.1167,
+      "acReg": "A7-BER"
+    },
+    {
+      "flight": "QR108",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.8167,
+      "acReg": "A7-BBI"
+    },
+    {
+      "flight": "QR703",
+      "from": "DOH",
+      "to": "DOH",
+      "blockHrs": 0.5,
+      "acReg": "A7-BEW"
+    },
+    {
+      "flight": "QR703",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 14.0,
+      "acReg": "A7-BEW"
+    },
+    {
+      "flight": "QR704",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.0833,
+      "acReg": "A7-BAO"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.7667,
+      "acReg": "A7-BEQ"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 11.95,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR8749",
+      "from": "DOH",
+      "to": "JNB",
+      "blockHrs": 8.3333,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8749",
+      "from": "JNB",
+      "to": "NBO",
+      "blockHrs": 4.0833,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR1342",
+      "from": "NBO",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR846",
+      "from": "DOH",
+      "to": "HKT",
+      "blockHrs": 7.2333,
+      "acReg": "A7-BOE"
+    },
+    {
+      "flight": "QR847",
+      "from": "HKT",
+      "to": "DOH",
+      "blockHrs": 6.4333,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR847",
+      "from": "HKT",
+      "to": "HKT",
+      "blockHrs": 0.3833,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR203",
+      "from": "DOH",
+      "to": "ATH",
+      "blockHrs": 4.2833,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR204",
+      "from": "ATH",
+      "to": "DOH",
+      "blockHrs": 4.2333,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR402",
+      "from": "DOH",
+      "to": "AMM",
+      "blockHrs": 2.4667,
+      "acReg": "A7-BEC"
+    },
+    {
+      "flight": "QR403",
+      "from": "AMM",
+      "to": "DOH",
+      "blockHrs": 2.6,
+      "acReg": "A7-BEC"
+    },
+    {
+      "flight": "QR8251",
+      "from": "DOH",
+      "to": "BUD",
+      "blockHrs": 5.2833,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8252",
+      "from": "BUD",
+      "to": "CDG",
+      "blockHrs": 2.2333,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR042",
+      "from": "CDG",
+      "to": "DOH",
+      "blockHrs": 6.7667,
+      "acReg": "A7-BEH"
+    },
+    {
+      "flight": "QR037",
+      "from": "DOH",
+      "to": "CDG",
+      "blockHrs": 6.55,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR038",
+      "from": "CDG",
+      "to": "DOH",
+      "blockHrs": 6.8,
+      "acReg": "A7-BEW"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.95,
+      "acReg": "A7-BAI"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.65,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 0.0,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR8812",
+      "from": "JFK",
+      "to": "UIO",
+      "blockHrs": 5.8167,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8158",
+      "from": "PTY",
+      "to": "AMS",
+      "blockHrs": 10.3667,
+      "acReg": "A7-BFC"
+    },
+    {
+      "flight": "QR8158",
+      "from": "UIO",
+      "to": "PTY",
+      "blockHrs": 1.8,
+      "acReg": "A7-BFC"
+    },
+    {
+      "flight": "QR274",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.2833,
+      "acReg": "A7-BAT"
+    },
+    {
+      "flight": "QR005",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.1667,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR8447",
+      "from": "OSL",
+      "to": "DOH",
+      "blockHrs": 6.6333,
+      "acReg": "A7-BFM"
+    },
+    {
+      "flight": "QR8447",
+      "from": "STN",
+      "to": "OSL",
+      "blockHrs": 2.0,
+      "acReg": "A7-BFM"
+    },
+    {
+      "flight": "QR676",
+      "from": "DOH",
+      "to": "MLE",
+      "blockHrs": 4.7167,
+      "acReg": "A7-BOA"
+    },
+    {
+      "flight": "QR677",
+      "from": "MLE",
+      "to": "DOH",
+      "blockHrs": 4.3,
+      "acReg": "A7-BOI"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.7833,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.3,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR8888",
+      "from": "DOH",
+      "to": "BUD",
+      "blockHrs": 4.9833,
+      "acReg": "A7-BFD"
+    },
+    {
+      "flight": "QR8889",
+      "from": "BUD",
+      "to": "DOH",
+      "blockHrs": 5.65,
+      "acReg": "A7-BFD"
+    },
+    {
+      "flight": "QR806",
+      "from": "DOH",
+      "to": "NRT",
+      "blockHrs": 0.0,
+      "acReg": "A7-BED"
+    },
+    {
+      "flight": "QR3083",
+      "from": "NRT",
+      "to": "NGO",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8043",
+      "from": "NGO",
+      "to": "NLU",
+      "blockHrs": 12.1333,
+      "acReg": "A7-BFO"
+    },
+    {
+      "flight": "QR8324",
+      "from": "NLU",
+      "to": "SCL",
+      "blockHrs": 8.3,
+      "acReg": "A7-BTA"
+    },
+    {
+      "flight": "QR8324",
+      "from": "SCL",
+      "to": "VCP",
+      "blockHrs": 3.3833,
+      "acReg": "A7-BTA"
+    },
+    {
+      "flight": "QR8157",
+      "from": "GRU",
+      "to": "UIO",
+      "blockHrs": 5.7667,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8917",
+      "from": "PTY",
+      "to": "LGG",
+      "blockHrs": 9.95,
+      "acReg": "A7-BFD"
+    },
+    {
+      "flight": "QR8917",
+      "from": "UIO",
+      "to": "PTY",
+      "blockHrs": 2.1,
+      "acReg": "A7-BFD"
+    },
+    {
+      "flight": "QR8248",
+      "from": "BRU",
+      "to": "DOH",
+      "blockHrs": 6.5667,
+      "acReg": "A7-BFF"
+    },
+    {
+      "flight": "QR8221",
+      "from": "DOH",
+      "to": "WAW",
+      "blockHrs": 5.6333,
+      "acReg": "A7-BFC"
+    },
+    {
+      "flight": "QR8221",
+      "from": "WAW",
+      "to": "FRA",
+      "blockHrs": 1.6667,
+      "acReg": "A7-BFC"
+    },
+    {
+      "flight": "QR8224",
+      "from": "FRA",
+      "to": "DOH",
+      "blockHrs": 6.3167,
+      "acReg": "A7-BFT"
+    },
+    {
+      "flight": "QR874",
+      "from": "DOH",
+      "to": "CAN",
+      "blockHrs": 7.6833,
+      "acReg": "A7-BAY"
+    },
+    {
+      "flight": "QR875",
+      "from": "CAN",
+      "to": "DOH",
+      "blockHrs": 8.3833,
+      "acReg": "A7-BAU"
+    },
+    {
+      "flight": "QR614",
+      "from": "DOH",
+      "to": "ISB",
+      "blockHrs": 3.1333,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR615",
+      "from": "ISB",
+      "to": "DOH",
+      "blockHrs": 3.5833,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR8042",
+      "from": "DOH",
+      "to": "MFM",
+      "blockHrs": 7.6667,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8043",
+      "from": "MFM",
+      "to": "NGO",
+      "blockHrs": 3.95,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8909",
+      "from": "NGO",
+      "to": "NLU",
+      "blockHrs": 12.05,
+      "acReg": "A7-BFY"
+    },
+    {
+      "flight": "QR8079",
+      "from": "NLU",
+      "to": "IAH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BFB"
+    },
+    {
+      "flight": "QR8044",
+      "from": "IAH",
+      "to": "DOH",
+      "blockHrs": 14.5167,
+      "acReg": "A7-BFB"
+    },
+    {
+      "flight": "QR904",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.3667,
+      "acReg": "A7-BET"
+    },
+    {
+      "flight": "QR989",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 14.4,
+      "acReg": "A7-BEE"
+    },
+    {
+      "flight": "QR707",
+      "from": "DOH",
+      "to": "IAD",
+      "blockHrs": 14.7333,
+      "acReg": "A7-BEQ"
+    },
+    {
+      "flight": "QR1073",
+      "from": "IAD",
+      "to": "MIA",
+      "blockHrs": 0.0,
+      "acReg": ""
+    },
+    {
+      "flight": "QR8187",
+      "from": "MIA",
+      "to": "ORD",
+      "blockHrs": 3.2,
+      "acReg": "A7-BFF"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.35,
+      "acReg": "A7-BED"
+    },
+    {
+      "flight": "QR870",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 8.15,
+      "acReg": "A7-BAL"
+    },
+    {
+      "flight": "QR871",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 10.4833,
+      "acReg": "A7-BAJ"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 14.8167,
+      "acReg": "A7-BEX"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.3333,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR8094",
+      "from": "DOH",
+      "to": "LGG",
+      "blockHrs": 6.6833,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR8103",
+      "from": "LGG",
+      "to": "LGG",
+      "blockHrs": 0.3667,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8103",
+      "from": "LGG",
+      "to": "ORD",
+      "blockHrs": 9.0167,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BEP"
+    },
+    {
+      "flight": "QR015",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.3167,
+      "acReg": "A7-BEX"
+    },
+    {
+      "flight": "QR8447",
+      "from": "OSL",
+      "to": "DOH",
+      "blockHrs": 7.3167,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8447",
+      "from": "STN",
+      "to": "OSL",
+      "blockHrs": 1.8333,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 14.65,
+      "acReg": "A7-BER"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.0667,
+      "acReg": "A7-BEL"
+    },
+    {
+      "flight": "QR8476",
+      "from": "DOH",
+      "to": "SHJ",
+      "blockHrs": 1.0167,
+      "acReg": "A7-BFZ"
+    },
+    {
+      "flight": "QR8477",
+      "from": "SHJ",
+      "to": "DOH",
+      "blockHrs": 1.3333,
+      "acReg": "A7-BFZ"
+    },
+    {
+      "flight": "QR245",
+      "from": "DOH",
+      "to": "IST",
+      "blockHrs": 4.7667,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR246",
+      "from": "IST",
+      "to": "DOH",
+      "blockHrs": 3.75,
+      "acReg": "A7-BOC"
+    },
+    {
+      "flight": "QR245",
+      "from": "DOH",
+      "to": "IST",
+      "blockHrs": 4.4833,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR246",
+      "from": "IST",
+      "to": "DOH",
+      "blockHrs": 3.95,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR707",
+      "from": "DOH",
+      "to": "IAD",
+      "blockHrs": 15.4667,
+      "acReg": "A7-BET"
+    },
+    {
+      "flight": "QR708",
+      "from": "IAD",
+      "to": "DOH",
+      "blockHrs": 12.5,
+      "acReg": "A7-BAO"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 14.7,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.5,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 15.15,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR8142",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.15,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR8548",
+      "from": "DOH",
+      "to": "MFM",
+      "blockHrs": 7.1333,
+      "acReg": "A7-BFV"
+    },
+    {
+      "flight": "QR8301",
+      "from": "BKK",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BFT"
+    },
+    {
+      "flight": "QR8301",
+      "from": "MFM",
+      "to": "BKK",
+      "blockHrs": 2.9333,
+      "acReg": "A7-BFT"
+    },
+    {
+      "flight": "QR8187",
+      "from": "DOH",
+      "to": "AMS",
+      "blockHrs": 6.5833,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8202",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.6667,
+      "acReg": "A7-BFE"
+    },
+    {
+      "flight": "QR842",
+      "from": "DOH",
+      "to": "HKT",
+      "blockHrs": 6.6167,
+      "acReg": "A7-BOF"
+    },
+    {
+      "flight": "QR843",
+      "from": "HKT",
+      "to": "DOH",
+      "blockHrs": 7.0833,
+      "acReg": "A7-BOE"
+    },
+    {
+      "flight": "QR898",
+      "from": "DOH",
+      "to": "BNE",
+      "blockHrs": 14.0667,
+      "acReg": "A7-BAO"
+    },
+    {
+      "flight": "QR899",
+      "from": "BNE",
+      "to": "DOH",
+      "blockHrs": 14.5333,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR892",
+      "from": "DOH",
+      "to": "PKX",
+      "blockHrs": 0.0,
+      "acReg": "A7-BAN"
+    },
+    {
+      "flight": "QR893",
+      "from": "PKX",
+      "to": "DOH",
+      "blockHrs": 9.3833,
+      "acReg": "A7-BAA"
+    },
+    {
+      "flight": "QR1341",
+      "from": "DOH",
+      "to": "NBO",
+      "blockHrs": 5.0,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR1342",
+      "from": "NBO",
+      "to": "DOH",
+      "blockHrs": 4.9,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR1156",
+      "from": "DOH",
+      "to": "DMM",
+      "blockHrs": 0.8667,
+      "acReg": "A7-BOE"
+    },
+    {
+      "flight": "QR1157",
+      "from": "DMM",
+      "to": "DOH",
+      "blockHrs": 1.0667,
+      "acReg": "A7-BOE"
+    },
+    {
+      "flight": "QR707",
+      "from": "DOH",
+      "to": "IAD",
+      "blockHrs": 14.9167,
+      "acReg": "A7-BEX"
+    },
+    {
+      "flight": "QR708",
+      "from": "IAD",
+      "to": "DOH",
+      "blockHrs": 13.0833,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR707",
+      "from": "DOH",
+      "to": "IAD",
+      "blockHrs": 14.2167,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR708",
+      "from": "IAD",
+      "to": "DOH",
+      "blockHrs": 12.8,
+      "acReg": "A7-BAF"
+    },
+    {
+      "flight": "QR8844",
+      "from": "DOH",
+      "to": "BOM",
+      "blockHrs": 3.4,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8605",
+      "from": "BOM",
+      "to": "DOH",
+      "blockHrs": 3.3333,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8221",
+      "from": "BUD",
+      "to": "FRA",
+      "blockHrs": 1.7,
+      "acReg": "A7-BFE"
+    },
+    {
+      "flight": "QR8221",
+      "from": "DOH",
+      "to": "BUD",
+      "blockHrs": 5.0,
+      "acReg": "A7-BFE"
+    },
+    {
+      "flight": "QR8223",
+      "from": "FRA",
+      "to": "ATL",
+      "blockHrs": 9.5167,
+      "acReg": "A7-BFN"
+    },
+    {
+      "flight": "QR8228",
+      "from": "ATL",
+      "to": "DOH",
+      "blockHrs": 13.85,
+      "acReg": "A7-BFT"
+    },
+    {
+      "flight": "QR8478",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 8.65,
+      "acReg": "A7-BFX"
+    },
+    {
+      "flight": "QR815",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 8.4,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR199",
+      "from": "DOH",
+      "to": "BUD",
+      "blockHrs": 0.0,
+      "acReg": "A7-AHU"
+    },
+    {
+      "flight": "QR8835",
+      "from": "BUD",
+      "to": "DOH",
+      "blockHrs": 4.8333,
+      "acReg": "A7-BTB"
+    },
+    {
+      "flight": "QR719",
+      "from": "DOH",
+      "to": "SEA",
+      "blockHrs": 14.6,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR720",
+      "from": "SEA",
+      "to": "DOH",
+      "blockHrs": 14.7333,
+      "acReg": "A7-BAK"
+    },
+    {
+      "flight": "QR870",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 9.3,
+      "acReg": "A7-BAQ"
+    },
+    {
+      "flight": "QR871",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 9.5333,
+      "acReg": "A7-BAT"
+    },
+    {
+      "flight": "QR002",
+      "from": "DOH",
+      "to": "SYD",
+      "blockHrs": 13.8167,
+      "acReg": "A7-BEG"
+    },
+    {
+      "flight": "QR001",
+      "from": "SYD",
+      "to": "DOH",
+      "blockHrs": 14.45,
+      "acReg": "A7-BEL"
+    },
+    {
+      "flight": "QR755",
+      "from": "DOH",
+      "to": "ATL",
+      "blockHrs": 0.0,
+      "acReg": "A7-ANR"
+    },
+    {
+      "flight": "QR8171",
+      "from": "ATL",
+      "to": "DOH",
+      "blockHrs": 13.7167,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR8724",
+      "from": "DOH",
+      "to": "SHJ",
+      "blockHrs": 1.0833,
+      "acReg": "A7-BFG"
+    },
+    {
+      "flight": "QR8725",
+      "from": "SHJ",
+      "to": "DOH",
+      "blockHrs": 1.1,
+      "acReg": "A7-BFG"
+    },
+    {
+      "flight": "QR900",
+      "from": "DOH",
+      "to": "PER",
+      "blockHrs": 11.0333,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR901",
+      "from": "PER",
+      "to": "DOH",
+      "blockHrs": 10.7833,
+      "acReg": "A7-BAO"
+    },
+    {
+      "flight": "QR207",
+      "from": "DOH",
+      "to": "ATH",
+      "blockHrs": 0.0,
+      "acReg": "A7-ALY"
+    },
+    {
+      "flight": "QR212",
+      "from": "ATH",
+      "to": "DOH",
+      "blockHrs": 4.3833,
+      "acReg": "A7-BEH"
+    },
+    {
+      "flight": "QR988",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.4167,
+      "acReg": "A7-BEO"
+    },
+    {
+      "flight": "QR905",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 13.5333,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR8960",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 9.1667,
+      "acReg": "A7-BFL"
+    },
+    {
+      "flight": "QR8961",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 8.4,
+      "acReg": "A7-BFI"
+    },
+    {
+      "flight": "QR610",
+      "from": "DOH",
+      "to": "KHI",
+      "blockHrs": 2.55,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR611",
+      "from": "KHI",
+      "to": "DOH",
+      "blockHrs": 2.4,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR988",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.4167,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR905",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 13.5333,
+      "acReg": "A7-BAK"
+    },
+    {
+      "flight": "QR005",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.3333,
+      "acReg": "A7-BAW"
+    },
+    {
+      "flight": "QR012",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.2333,
+      "acReg": "A7-BAZ"
+    },
+    {
+      "flight": "QR725",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 15.2333,
+      "acReg": "A7-BAG"
+    },
+    {
+      "flight": "QR8151",
+      "from": "ORD",
+      "to": "AMS",
+      "blockHrs": 7.9667,
+      "acReg": "A7-BFI"
+    },
+    {
+      "flight": "QR274",
+      "from": "AMS",
+      "to": "DOH",
+      "blockHrs": 6.0833,
+      "acReg": "A7-BAT"
+    },
+    {
+      "flight": "QR015",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.2833,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR008",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.3667,
+      "acReg": "A7-BEA"
+    },
+    {
+      "flight": "QR8470",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 7.9333,
+      "acReg": "A7-BFB"
+    },
+    {
+      "flight": "QR8475",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 7.95,
+      "acReg": "A7-BFS"
+    },
+    {
+      "flight": "QR1014",
+      "from": "DOH",
+      "to": "DXB",
+      "blockHrs": 1.2167,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR1015",
+      "from": "DXB",
+      "to": "DOH",
+      "blockHrs": 1.2167,
+      "acReg": "A7-BOB"
+    },
+    {
+      "flight": "QR1188",
+      "from": "DOH",
+      "to": "JED",
+      "blockHrs": 2.35,
+      "acReg": "A7-BEC"
+    },
+    {
+      "flight": "QR1189",
+      "from": "JED",
+      "to": "DOH",
+      "blockHrs": 2.2333,
+      "acReg": "A7-BEC"
+    },
+    {
+      "flight": "QR988",
+      "from": "DOH",
+      "to": "MEL",
+      "blockHrs": 13.05,
+      "acReg": "A7-BEM"
+    },
+    {
+      "flight": "QR905",
+      "from": "MEL",
+      "to": "DOH",
+      "blockHrs": 14.7667,
+      "acReg": "A7-BEP"
+    },
+    {
+      "flight": "QR920",
+      "from": "DOH",
+      "to": "AKL",
+      "blockHrs": 15.65,
+      "acReg": "A7-BBI"
+    },
+    {
+      "flight": "QR921",
+      "from": "AKL",
+      "to": "DOH",
+      "blockHrs": 17.25,
+      "acReg": "A7-BBG"
+    },
+    {
+      "flight": "QR015",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.1167,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR016",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.45,
+      "acReg": "A7-BAF"
+    },
+    {
+      "flight": "QR8594",
+      "from": "DOH",
+      "to": "EBL",
+      "blockHrs": 2.25,
+      "acReg": "A7-BFK"
+    },
+    {
+      "flight": "QR8595",
+      "from": "EBL",
+      "to": "DOH",
+      "blockHrs": 2.1,
+      "acReg": "A7-BFK"
+    },
+    {
+      "flight": "QR928",
+      "from": "DOH",
+      "to": "MNL",
+      "blockHrs": 8.9333,
+      "acReg": "A7-BAX"
+    },
+    {
+      "flight": "QR929",
+      "from": "MNL",
+      "to": "DOH",
+      "blockHrs": 9.1,
+      "acReg": "A7-BAS"
+    },
+    {
+      "flight": "QR8092",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.3667,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8093",
+      "from": "LHR",
+      "to": "BRU",
+      "blockHrs": 1.2167,
+      "acReg": "A7-BFA"
+    },
+    {
+      "flight": "QR8164",
+      "from": "LGG",
+      "to": "ORD",
+      "blockHrs": 8.55,
+      "acReg": "A7-BFP"
+    },
+    {
+      "flight": "QR8167",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 13.1667,
+      "acReg": "A7-BFO"
+    },
+    {
+      "flight": "QR8233",
+      "from": "DOH",
+      "to": "LGG",
+      "blockHrs": 6.3167,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8234",
+      "from": "LGG",
+      "to": "FRA",
+      "blockHrs": 0.9,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8055",
+      "from": "FRA",
+      "to": "DOH",
+      "blockHrs": 5.8833,
+      "acReg": "A7-BFU"
+    },
+    {
+      "flight": "QR818",
+      "from": "DOH",
+      "to": "HKG",
+      "blockHrs": 7.5167,
+      "acReg": "A7-BOD"
+    },
+    {
+      "flight": "QR817",
+      "from": "HKG",
+      "to": "DOH",
+      "blockHrs": 9.3333,
+      "acReg": "A7-BOI"
+    },
+    {
+      "flight": "QR8281",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 7.3833,
+      "acReg": "A7-BFG"
+    },
+    {
+      "flight": "QR8282",
+      "from": "LHR",
+      "to": "MXP",
+      "blockHrs": 2.1333,
+      "acReg": "A7-BFG"
+    },
+    {
+      "flight": "QR107",
+      "from": "DOH",
+      "to": "LHR",
+      "blockHrs": 6.8,
+      "acReg": "A7-BEK"
+    },
+    {
+      "flight": "QR8214",
+      "from": "MXP",
+      "to": "DOH",
+      "blockHrs": 5.8833,
+      "acReg": "A7-BFE"
+    },
+    {
+      "flight": "QR108",
+      "from": "LHR",
+      "to": "DOH",
+      "blockHrs": 6.4167,
+      "acReg": "A7-BEV"
+    },
+    {
+      "flight": "QR870",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 7.5833,
+      "acReg": "A7-BAN"
+    },
+    {
+      "flight": "QR871",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 10.3667,
+      "acReg": "A7-BAB"
+    },
+    {
+      "flight": "QR8838",
+      "from": "DOH",
+      "to": "ORD",
+      "blockHrs": 14.2833,
+      "acReg": "A7-BFN"
+    },
+    {
+      "flight": "QR726",
+      "from": "ORD",
+      "to": "DOH",
+      "blockHrs": 12.95,
+      "acReg": "A7-BEI"
+    },
+    {
+      "flight": "QR8564",
+      "from": "DOH",
+      "to": "FRA",
+      "blockHrs": 6.4167,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR8224",
+      "from": "FRA",
+      "to": "DOH",
+      "blockHrs": 5.6333,
+      "acReg": "A7-BFQ"
+    },
+    {
+      "flight": "QR8734",
+      "from": "DOH",
+      "to": "BGW",
+      "blockHrs": 2.2833,
+      "acReg": "A7-BFW"
+    },
+    {
+      "flight": "QR8735",
+      "from": "BGW",
+      "to": "DOH",
+      "blockHrs": 1.85,
+      "acReg": "A7-BFW"
+    },
+    {
+      "flight": "QR628",
+      "from": "DOH",
+      "to": "LHE",
+      "blockHrs": 3.3167,
+      "acReg": "A7-BAT"
+    },
+    {
+      "flight": "QR629",
+      "from": "LHE",
+      "to": "DOH",
+      "blockHrs": 3.9,
+      "acReg": "A7-BAT"
+    },
+    {
+      "flight": "QR707",
+      "from": "DOH",
+      "to": "IAD",
+      "blockHrs": 15.9333,
+      "acReg": "A7-BEN"
+    },
+    {
+      "flight": "QR708",
+      "from": "IAD",
+      "to": "DOH",
+      "blockHrs": 11.7167,
+      "acReg": "A7-BAH"
+    },
+    {
+      "flight": "QR678",
+      "from": "DOH",
+      "to": "SEZ",
+      "blockHrs": 4.7333,
+      "acReg": "A7-BBH"
+    },
+    {
+      "flight": "QR679",
+      "from": "SEZ",
+      "to": "DOH",
+      "blockHrs": 4.55,
+      "acReg": "A7-BAK"
+    },
+    {
+      "flight": "QR8622",
+      "from": "DOH",
+      "to": "MAA",
+      "blockHrs": 4.05,
+      "acReg": "A7-BFP"
+    },
+    {
+      "flight": "QR8623",
+      "from": "MAA",
+      "to": "DOH",
+      "blockHrs": 4.5,
+      "acReg": "A7-BTB"
+    },
+    {
+      "flight": "QR8141",
+      "from": "DOH",
+      "to": "LOS",
+      "blockHrs": 7.9,
+      "acReg": "A7-BFV"
+    },
+    {
+      "flight": "QR1406",
+      "from": "LOS",
+      "to": "DOH",
+      "blockHrs": 0.0,
+      "acReg": "A7-BHP"
+    },
+    {
+      "flight": "QR932",
+      "from": "DOH",
+      "to": "MNL",
+      "blockHrs": 8.5833,
+      "acReg": "A7-BAN"
+    },
+    {
+      "flight": "QR3189",
+      "from": "MNL",
+      "to": "JED",
+      "blockHrs": 11.4,
+      "acReg": "A7-BAU"
+    },
+    {
+      "flight": "QR8814",
+      "from": "DAC",
+      "to": "ZAZ",
+      "blockHrs": 10.7833,
+      "acReg": "A7-BFZ"
+    },
+    {
+      "flight": "QR8844",
+      "from": "JED",
+      "to": "DAC",
+      "blockHrs": 0.0,
+      "acReg": "A7-BFZ"
+    },
+    {
+      "flight": "QR1301",
+      "from": "DOH",
+      "to": "CAI",
+      "blockHrs": 4.2833,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR1302",
+      "from": "CAI",
+      "to": "DOH",
+      "blockHrs": 3.3833,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR8916",
+      "from": "DOH",
+      "to": "MFM",
+      "blockHrs": 7.6833,
+      "acReg": "A7-BFY"
+    },
+    {
+      "flight": "QR8913",
+      "from": "MFM",
+      "to": "DOH",
+      "blockHrs": 8.3667,
+      "acReg": "A7-BTC"
+    },
+    {
+      "flight": "QR729",
+      "from": "DOH",
+      "to": "DFW",
+      "blockHrs": 17.0167,
+      "acReg": "A7-BBC"
+    },
+    {
+      "flight": "QR730",
+      "from": "DFW",
+      "to": "DOH",
+      "blockHrs": 14.3833,
+      "acReg": "A7-BBC"
+    },
+    {
+      "flight": "QR779",
+      "from": "DOH",
+      "to": "GRU",
+      "blockHrs": 0.0,
+      "acReg": "A7-ANN"
+    },
+    {
+      "flight": "QR8813",
+      "from": "GRU",
+      "to": "DOH",
+      "blockHrs": 13.8,
+      "acReg": "A7-BFH"
+    },
+    {
+      "flight": "QR701",
+      "from": "DOH",
+      "to": "JFK",
+      "blockHrs": 13.8,
+      "acReg": "A7-BEQ"
+    },
+    {
+      "flight": "QR702",
+      "from": "JFK",
+      "to": "DOH",
+      "blockHrs": 12.4167,
+      "acReg": "A7-BEF"
+    },
+    {
+      "flight": "QR870",
+      "from": "DOH",
+      "to": "PVG",
+      "blockHrs": 0.0,
+      "acReg": "A7-BAA"
+    },
+    {
+      "flight": "QR869",
+      "from": "PVG",
+      "to": "DOH",
+      "blockHrs": 8.9167,
+      "acReg": "A7-BEU"
+    },
+    {
+      "flight": "QR1150",
+      "from": "DOH",
+      "to": "DMM",
+      "blockHrs": 1.0833,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR1151",
+      "from": "DMM",
+      "to": "DOH",
+      "blockHrs": 0.95,
+      "acReg": "A7-BAC"
+    },
+    {
+      "flight": "QR898",
+      "from": "DOH",
+      "to": "BNE",
+      "blockHrs": 6.5833,
+      "acReg": "A7-BEX"
+    }
+  ],
+  "airportFrequency": {
+    "DOH": 306,
+    "JFK": 24,
+    "ORD": 24,
+    "LHR": 20,
+    "MEL": 20,
+    "AMS": 17,
+    "PVG": 14,
+    "HKG": 12,
+    "LGG": 12,
+    "GRU": 11,
+    "ATL": 10,
+    "DFW": 10,
+    "FRA": 10,
+    "IAD": 10,
+    "IST": 10,
+    "BUD": 8,
+    "HKT": 8,
+    "MIA": 8,
+    "NBO": 8,
+    "UIO": 8,
+    "BKK": 6,
+    "BOM": 6,
+    "KWI": 6,
+    "MFM": 6,
+    "MNL": 6,
+    "NGO": 6,
+    "NLU": 6,
+    "PTY": 6,
+    "BNE": 5,
+    "BRU": 5,
+    "ADL": 4,
+    "ATH": 4,
+    "CAI": 4,
+    "CAN": 4,
+    "CDG": 4,
+    "DAC": 4,
+    "DMM": 4,
+    "DXB": 4,
+    "EBB": 4,
+    "IAH": 4,
+    "JED": 4,
+    "MLE": 4,
+    "MXP": 4,
+    "NRT": 4,
+    "OSL": 4,
+    "PKX": 4,
+    "SEA": 4,
+    "SHJ": 4,
+    "AKL": 2,
+    "AMM": 2,
+    "ARN": 2,
+    "BGW": 2,
+    "BOG": 2,
+    "EBL": 2,
+    "EZE": 2,
+    "FCO": 2,
+    "HND": 2,
+    "ISB": 2,
+    "JNB": 2,
+    "KHI": 2,
+    "KUL": 2,
+    "LHE": 2,
+    "LOS": 2,
+    "MAA": 2,
+    "MUC": 2,
+    "PER": 2,
+    "PHL": 2,
+    "SCL": 2,
+    "SEZ": 2,
+    "STN": 2,
+    "SYD": 2,
+    "WAW": 2,
+    "VCP": 1,
+    "ZAZ": 1
+  }
+}

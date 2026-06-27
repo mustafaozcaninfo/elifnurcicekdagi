@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				kanit: ["Kanit", "system-ui", "sans-serif"],
 				body: ["Inter", "system-ui", "sans-serif"],
+				ui: ["Inter", "system-ui", "sans-serif"],
 			},
 			boxShadow: {
 				gallery: "0 25px 50px -12px rgba(15, 10, 5, 0.55)",

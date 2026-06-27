@@ -83,7 +83,7 @@ export const JOURNEYS: JourneyCard[] = [
 export const EXPERIENCES = [
 	{
 		num: "01",
-		title: "Airline Pilot (First Officer)",
+		title: "Airline Pilot",
 		desc: "Five years in the flight deck — precision, discipline, and the poetry of altitude.",
 	},
 	{
@@ -109,4 +109,4 @@ export const EXPERIENCES = [
 ] as const;
 
 export const ABOUT_TEXT =
-	"With more than five years as a First Officer and a lifelong passion for exploration, I capture the world from 35,000 feet and on the ground. I believe in the beauty of contrast — discipline in the cockpit and freedom in discovery. Let’s create meaningful memories together.";
+	"With more than five years as an Airline Pilot and a lifelong passion for exploration, I capture the world from 35,000 feet and on the ground. I believe in the beauty of contrast — discipline in the cockpit and freedom in discovery. Let’s create meaningful memories together.";

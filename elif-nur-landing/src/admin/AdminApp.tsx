@@ -5,8 +5,9 @@ import Login from "./Login";
 import PagesPanel from "./PagesPanel";
 import ProjectsPanel from "./ProjectsPanel";
 import SettingsPanel from "./SettingsPanel";
+import TravelMapAdmin from "./travel-map/TravelMapAdmin";
 
-type Tab = "pages" | "projects" | "settings";
+type Tab = "pages" | "projects" | "travel-map" | "settings";
 
 export default function AdminApp() {
 	const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -88,16 +89,22 @@ export default function AdminApp() {
 				</div>
 			</header>
 
-			<div className="mx-auto max-w-6xl px-6 py-6">
+			<div className={tab === "travel-map" ? "mx-auto max-w-[90rem] px-4 py-6" : "mx-auto max-w-6xl px-6 py-6"}>
 				<nav className="mb-6 flex flex-wrap gap-2">
-					{(["pages", "projects", "settings"] as Tab[]).map((t) => (
+					{(["pages", "projects", "travel-map", "settings"] as Tab[]).map((t) => (
 						<button
 							key={t}
 							type="button"
 							className={`admin-btn ${tab === t ? "admin-btn-primary" : "admin-btn-ghost"}`}
 							onClick={() => setTab(t)}
 						>
-							{t === "pages" ? "Sayfalar" : t === "projects" ? "Projeler" : "Ayarlar"}
+							{t === "pages"
+								? "Sayfalar"
+								: t === "projects"
+									? "Projeler"
+									: t === "travel-map"
+										? "Atlas Yönetimi"
+										: "Ayarlar"}
 						</button>
 					))}
 					<button
@@ -116,6 +123,7 @@ export default function AdminApp() {
 				{tab === "projects" && (
 					<ProjectsPanel projects={projects} onSaved={reload} notify={notify} />
 				)}
+				{tab === "travel-map" && <TravelMapAdmin notify={notify} />}
 				{tab === "settings" && (
 					<SettingsPanel settings={settings} onSaved={reload} notify={notify} />
 				)}

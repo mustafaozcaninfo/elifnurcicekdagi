@@ -1,0 +1,371 @@
+{
+  "generatedFrom": "/tmp/flight-stats-parsed.json",
+  "summary": {
+    "excelAirports": 74,
+    "excelFlights": 365,
+    "alreadyInSystem": 50,
+    "skippedCityDuplicates": 5,
+    "newCities": 19,
+    "newCountries": 11,
+    "lookupFailed": 0
+  },
+  "alreadyInSystem": [
+    "AKL",
+    "AMS",
+    "ARN",
+    "ATH",
+    "ATL",
+    "BKK",
+    "BNE",
+    "BOG",
+    "BOM",
+    "BRU",
+    "BUD",
+    "CAN",
+    "CDG",
+    "DFW",
+    "DOH",
+    "EBB",
+    "EZE",
+    "FCO",
+    "FRA",
+    "GRU",
+    "HKG",
+    "HKT",
+    "HND",
+    "IAH",
+    "IST",
+    "JED",
+    "JFK",
+    "KUL",
+    "LGG",
+    "LHR",
+    "LOS",
+    "MEL",
+    "MFM",
+    "MIA",
+    "MLE",
+    "MNL",
+    "MUC",
+    "MXP",
+    "NBO",
+    "NGO",
+    "ORD",
+    "PER",
+    "PHL",
+    "PVG",
+    "SEA",
+    "SEZ",
+    "SYD",
+    "UIO",
+    "VCP",
+    "ZAZ"
+  ],
+  "skippedDuplicates": [
+    {
+      "airportCode": "IAD",
+      "cityName": "Washington, D.C.",
+      "reason": "city already on map (alternate airport)"
+    },
+    {
+      "airportCode": "NLU",
+      "cityName": "Mexico City",
+      "reason": "city already on map (alternate airport)"
+    },
+    {
+      "airportCode": "NRT",
+      "cityName": "Tokyo",
+      "reason": "city already on map (alternate airport)"
+    },
+    {
+      "airportCode": "PKX",
+      "cityName": "Beijing",
+      "reason": "city already on map (alternate airport)"
+    },
+    {
+      "airportCode": "STN",
+      "cityName": "London",
+      "reason": "city already on map (alternate airport)"
+    }
+  ],
+  "lookupFailed": [],
+  "countries": [
+    {
+      "iso2": "AE",
+      "name": "United Arab Emirates",
+      "visited": true,
+      "color": "#5B7C99"
+    },
+    {
+      "iso2": "BD",
+      "name": "Bangladesh",
+      "visited": true,
+      "color": "#8B6B4A"
+    },
+    {
+      "iso2": "EG",
+      "name": "Egypt",
+      "visited": true,
+      "color": "#7A5C8A"
+    },
+    {
+      "iso2": "IQ",
+      "name": "Iraq",
+      "visited": true,
+      "color": "#3D6B6B"
+    },
+    {
+      "iso2": "JO",
+      "name": "Jordan",
+      "visited": true,
+      "color": "#C25B3F"
+    },
+    {
+      "iso2": "KW",
+      "name": "Kuwait",
+      "visited": true,
+      "color": "#D4A017"
+    },
+    {
+      "iso2": "NO",
+      "name": "Norway",
+      "visited": true,
+      "color": "#4A7C59"
+    },
+    {
+      "iso2": "PA",
+      "name": "Panama",
+      "visited": true,
+      "color": "#5B7C99"
+    },
+    {
+      "iso2": "PK",
+      "name": "Pakistan",
+      "visited": true,
+      "color": "#8B6B4A"
+    },
+    {
+      "iso2": "PL",
+      "name": "Poland",
+      "visited": true,
+      "color": "#7A5C8A"
+    },
+    {
+      "iso2": "ZA",
+      "name": "South Africa",
+      "visited": true,
+      "color": "#3D6B6B"
+    }
+  ],
+  "cities": [
+    {
+      "id": "adelaide",
+      "name": "Adelaide",
+      "country": "AU",
+      "countryName": "Australia",
+      "lat": -34.9449996948,
+      "lng": 138.5310058594,
+      "role": "visited",
+      "airportCode": "ADL",
+      "note": "Southern Australia approaches · 4 sectors · 5.7 block hrs"
+    },
+    {
+      "id": "amman",
+      "name": "Amman",
+      "country": "JO",
+      "countryName": "Jordan",
+      "lat": 31.7226009369,
+      "lng": 35.9931983948,
+      "role": "visited",
+      "airportCode": "AMM",
+      "note": "Desert plateau final · 2 sectors · 5.1 block hrs"
+    },
+    {
+      "id": "baghdad",
+      "name": "Baghdad",
+      "country": "IQ",
+      "countryName": "Iraq",
+      "lat": 33.2625007629,
+      "lng": 44.2346000671,
+      "role": "visited",
+      "airportCode": "BGW",
+      "note": "Tigris corridor · 2 sectors · 4.1 block hrs"
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "country": "EG",
+      "countryName": "Egypt",
+      "lat": 30.1219005585,
+      "lng": 31.4055995941,
+      "role": "visited",
+      "airportCode": "CAI",
+      "note": "Nile delta from above · 4 sectors · 13.8 block hrs"
+    },
+    {
+      "id": "dhaka",
+      "name": "Dhaka",
+      "country": "BD",
+      "countryName": "Bangladesh",
+      "lat": 23.843347,
+      "lng": 90.397783,
+      "role": "visited",
+      "airportCode": "DAC",
+      "note": "Monsoon delta approaches · 4 sectors · 21.8 block hrs"
+    },
+    {
+      "id": "dammam",
+      "name": "Dammam",
+      "country": "SA",
+      "countryName": "Saudi Arabia",
+      "lat": 26.471200943,
+      "lng": 49.7979011536,
+      "role": "visited",
+      "airportCode": "DMM",
+      "note": "Arabian Gulf industrial coast · 4 sectors · 4.0 block hrs"
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "country": "AE",
+      "countryName": "United Arab Emirates",
+      "lat": 25.2527999878,
+      "lng": 55.3643989563,
+      "role": "visited",
+      "airportCode": "DXB",
+      "note": "Gulf crossover hub · 4 sectors · 4.9 block hrs"
+    },
+    {
+      "id": "erbil",
+      "name": "Erbil",
+      "country": "IQ",
+      "countryName": "Iraq",
+      "lat": 36.2375984192,
+      "lng": 43.9631996155,
+      "role": "visited",
+      "airportCode": "EBL",
+      "note": "Kurdish highland gateway · 2 sectors · 4.3 block hrs"
+    },
+    {
+      "id": "islamabad",
+      "name": "Islamabad",
+      "country": "PK",
+      "countryName": "Pakistan",
+      "lat": 33.5490833333333,
+      "lng": 72.82565,
+      "role": "visited",
+      "airportCode": "ISB",
+      "note": "Margalla foothills · 2 sectors · 6.7 block hrs"
+    },
+    {
+      "id": "johannesburg",
+      "name": "Johannesburg",
+      "country": "ZA",
+      "countryName": "South Africa",
+      "lat": -26.133333,
+      "lng": 28.25,
+      "role": "visited",
+      "airportCode": "JNB",
+      "note": "Highveld night approaches · 2 sectors · 12.4 block hrs"
+    },
+    {
+      "id": "karachi",
+      "name": "Karachi",
+      "country": "PK",
+      "countryName": "Pakistan",
+      "lat": 24.9064998627,
+      "lng": 67.1607971191,
+      "role": "visited",
+      "airportCode": "KHI",
+      "note": "Arabian Sea coast · 2 sectors · 4.9 block hrs"
+    },
+    {
+      "id": "kuwait-city",
+      "name": "Kuwait City",
+      "country": "KW",
+      "countryName": "Kuwait",
+      "lat": 29.226600647,
+      "lng": 47.9688987732,
+      "role": "visited",
+      "airportCode": "KWI",
+      "note": "Gulf state approaches · 6 sectors · 8.1 block hrs"
+    },
+    {
+      "id": "lahore",
+      "name": "Lahore",
+      "country": "PK",
+      "countryName": "Pakistan",
+      "lat": 31.5216007233,
+      "lng": 74.4036026001,
+      "role": "visited",
+      "airportCode": "LHE",
+      "note": "Punjab plains · 2 sectors · 7.2 block hrs"
+    },
+    {
+      "id": "chennai",
+      "name": "Chennai",
+      "country": "IN",
+      "countryName": "India",
+      "lat": 12.9900054932,
+      "lng": 80.1692962646,
+      "role": "visited",
+      "airportCode": "MAA",
+      "note": "Coromandel coast · 2 sectors · 8.6 block hrs"
+    },
+    {
+      "id": "oslo",
+      "name": "Oslo",
+      "country": "NO",
+      "countryName": "Norway",
+      "lat": 60.193901062,
+      "lng": 11.100399971,
+      "role": "visited",
+      "airportCode": "OSL",
+      "note": "Fjord approaches · 4 sectors · 17.8 block hrs"
+    },
+    {
+      "id": "panama-city",
+      "name": "Panama City",
+      "country": "PA",
+      "countryName": "Panama",
+      "lat": 9.0713596344,
+      "lng": -79.3834991455,
+      "role": "visited",
+      "airportCode": "PTY",
+      "note": "Canal zone gateway · 6 sectors · 36.4 block hrs"
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago",
+      "country": "CL",
+      "countryName": "CHILE",
+      "lat": -33.3930015564,
+      "lng": -70.7857971191,
+      "role": "visited",
+      "airportCode": "SCL",
+      "note": "Andes long final · 2 sectors · 11.7 block hrs"
+    },
+    {
+      "id": "sharjah",
+      "name": "Sharjah",
+      "country": "AE",
+      "countryName": "United Arab Emirates",
+      "lat": 25.3285999298,
+      "lng": 55.51720047,
+      "role": "visited",
+      "airportCode": "SHJ",
+      "note": "Emirates coast · 4 sectors · 4.5 block hrs"
+    },
+    {
+      "id": "warsaw",
+      "name": "Warsaw",
+      "country": "PL",
+      "countryName": "Poland",
+      "lat": 52.1656990051,
+      "lng": 20.9671001434,
+      "role": "visited",
+      "airportCode": "WAW",
+      "note": "Vistula basin · 2 sectors · 7.3 block hrs"
+    }
+  ]
+}

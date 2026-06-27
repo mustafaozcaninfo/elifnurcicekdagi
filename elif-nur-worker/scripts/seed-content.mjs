@@ -4,6 +4,11 @@
  * Usage: source ../../all.env && node scripts/seed-content.mjs
  */
 
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dir = dirname(fileURLToPath(import.meta.url));
 const SITE = process.env.SITE_URL ?? "https://elifnurcicekdagi.com";
 const KEY = process.env.ADMIN_API_KEY?.trim();
 
@@ -70,78 +75,17 @@ await upsertSetting("site.branding", {
 await upsertSetting("landing.hero", {
 	heading: "Hi, I'm Elif",
 	tagline: "From cockpit views to city walks or the other way around.",
-	intro: "First Officer · Travel storyteller · Between sky and the world's most beautiful places.",
+	intro: "Airline Pilot · Travel storyteller · Between sky and the world's most beautiful places.",
 });
 
 await upsertSetting("landing.about", {
 	heading: "About Me",
-	body: "With more than five years as a First Officer and a lifelong passion for exploration, I capture the world from 35,000 feet and on the ground.",
+	body: "With more than five years as an Airline Pilot and a lifelong passion for exploration, I capture the world from 35,000 feet and on the ground.",
 });
 
-await upsertSetting("landing.travelMap", {
-	version: 1,
-	title: "Explorer Atlas",
-	subtitle: "Countries and cities from the flight deck and beyond",
-	homeHub: { code: "IST", city: "Istanbul", lat: 41.0082, lng: 28.9784 },
-	stats: { countries: 2, cities: 4, continents: 2 },
-	countries: [
-		{ iso2: "TR", name: "Turkey", visited: true, color: "#C25B3F" },
-		{ iso2: "QA", name: "Qatar", visited: true, color: "#D4A017" },
-	],
-	cities: [
-		{
-			id: "istanbul",
-			name: "Istanbul",
-			country: "TR",
-			countryName: "Turkey",
-			lat: 41.0082,
-			lng: 28.9784,
-			role: "home",
-			note: "Where continents meet",
-		},
-		{
-			id: "antalya",
-			name: "Antalya",
-			country: "TR",
-			countryName: "Turkey",
-			lat: 36.8969,
-			lng: 30.7133,
-			role: "visited",
-			note: "Mediterranean coast",
-		},
-		{
-			id: "ankara",
-			name: "Ankara",
-			country: "TR",
-			countryName: "Turkey",
-			lat: 39.9334,
-			lng: 32.8597,
-			role: "visited",
-			note: "Capital horizons",
-		},
-		{
-			id: "doha",
-			name: "Doha",
-			country: "QA",
-			countryName: "Qatar",
-			lat: 25.2854,
-			lng: 51.531,
-			role: "hub",
-			note: "Gulf connections",
-		},
-	],
-	routes: [
-		{ from: "istanbul", to: "doha", type: "flight", label: "IST → DOH" },
-		{ from: "istanbul", to: "antalya", type: "flight", label: "IST → AYT" },
-		{ from: "istanbul", to: "ankara", type: "flight", label: "IST → ESB" },
-	],
-	globe: {
-		atmosphereColor: "#C25B3F",
-		pointColor: "#F5EDE4",
-		arcColor: "#D4A017",
-		autoRotateSpeed: 0.35,
-	},
-});
+await upsertSetting("landing.travelMap", JSON.parse(
+	readFileSync(join(__dir, "../data/travel-map-world.json"), "utf8"),
+));
 
 await upsertPage({
 	slug: "hakkimda",
@@ -151,10 +95,10 @@ await upsertPage({
 	showInNav: true,
 	navLabel: "Hakkımda",
 	status: "published",
-	excerpt: "First Officer, gezgin ve içerik üreticisi.",
+	excerpt: "Airline Pilot, gezgin ve içerik üreticisi.",
 	bodyMd: `# Hakkımda
 
-Beş yılı aşkın First Officer deneyimim ve keşfetme tutkumla dünyayı hem 35.000 feet'ten hem de yerden görüntülüyorum.
+Beş yılı aşkın Airline Pilot deneyimim ve keşfetme tutkumla dünyayı hem 35.000 feet'ten hem de yerden görüntülüyorum.
 
 Kokpit disiplini ile özgür keşif arasındaki kontrastın güzelliğine inanıyorum.`,
 	seoTitle: "Hakkımda",

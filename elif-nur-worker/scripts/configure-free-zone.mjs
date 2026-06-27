@@ -5,27 +5,53 @@
  */
 
 const ZONE_ID = process.env.CLOUDFLARE_ZONE_ID || "d4a105f403a97cc7af26a2f4a7ee9667";
+const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 
-if (!TOKEN) {
-	console.error("CLOUDFLARE_API_TOKEN required");
-	process.exit(1);
+function requireEnv(name, value) {
+	if (!value) {
+		throw new Error(`Missing required environment variable: ${name}`);
+	}
+}
+
+function maskToken(token) {
+	if (!token) return "<missing>";
+	if (token.length <= 12) return `${token.slice(0, 2)}***${token.slice(-2)}`;
+	return `${token.slice(0, 8)}...${token.slice(-4)}`;
+}
+
+function toErrorDetails(payload) {
+	const firstError = payload?.errors?.[0];
+	return {
+		cloudflareErrorCode: firstError?.code ?? null,
+		cloudflareErrorMessage: firstError?.message ?? "Unknown Cloudflare error",
+	};
 }
 
 const api = async (method, path, body) => {
-	const res = await fetch(`https://api.cloudflare.com/client/v4${path}`, {
+	const url = `https://api.cloudflare.com/client/v4${path}`;
+	const headers = {
+		Authorization: `Bearer ${TOKEN}`,
+		"Content-Type": "application/json",
+	};
+	const res = await fetch(url, {
 		method,
-		headers: {
-			Authorization: `Bearer ${TOKEN}`,
-			"Content-Type": "application/json",
-		},
+		headers,
 		body: body ? JSON.stringify(body) : undefined,
 	});
-	const data = await res.json();
-	if (!data.success) {
-		throw new Error(`${method} ${path}: ${JSON.stringify(data.errors)}`);
+	const payload = await res.json();
+
+	if (!payload.success) {
+		const details = toErrorDetails(payload);
+		console.error("[Cloudflare API Error]", {
+			httpStatus: res.status,
+			requestPath: path,
+			cloudflareErrorCode: details.cloudflareErrorCode,
+			cloudflareErrorMessage: details.cloudflareErrorMessage,
+		});
+		throw new Error(`${method} ${path} failed`);
 	}
-	return data.result;
+	return payload.result;
 };
 
 const ZONE_SETTINGS = {
@@ -127,6 +153,26 @@ const REDIRECT_RULES = {
 };
 
 async function main() {
+	requireEnv("CLOUDFLARE_API_TOKEN", TOKEN);
+	requireEnv("CLOUDFLARE_ZONE_ID", ZONE_ID);
+	requireEnv("CLOUDFLARE_ACCOUNT_ID", ACCOUNT_ID);
+
+	console.log("Cloudflare auth debug:");
+	console.log(`  tokenPresent: ${Boolean(TOKEN)}`);
+	console.log(`  tokenMasked: ${maskToken(TOKEN)}`);
+	console.log("  authHeaderMode: Authorization: Bearer <CLOUDFLARE_API_TOKEN>");
+
+	// This token in our setup is account-owned, so /accounts/{account_id}/tokens/verify is correct.
+	const tokenCheck = await api("GET", `/accounts/${ACCOUNT_ID}/tokens/verify`);
+	console.log("Token verify result:", tokenCheck);
+
+	// Keep this explicit so failures report zone permission issues before changes.
+	await api("GET", `/zones/${ZONE_ID}`);
+	console.log(`Zone access verified for zone: ${ZONE_ID}`);
+
+	const dnssecState = await api("GET", `/zones/${ZONE_ID}/dnssec`);
+	console.log("DNSSEC state:", dnssecState.status);
+
 	console.log("Applying zone settings (free plan)...");
 	for (const [id, value] of Object.entries(ZONE_SETTINGS)) {
 		try {

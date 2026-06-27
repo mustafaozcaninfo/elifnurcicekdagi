@@ -19,11 +19,11 @@ export const PUBLIC_ROUTES: SiteRoute[] = [
 		description: "Elif Nur Çiçekdağı Özcan — pilot, gezgin ve içerik üreticisi",
 	},
 	{
-		path: "/iletisim",
+		path: "/contact",
 		changefreq: "monthly",
 		priority: 0.8,
-		title: "İletişim",
-		description: "İletişim formu ve KVKK onaylı mesaj gönderimi",
+		title: "Contact",
+		description: "Secure contact form with privacy consent",
 	},
 	{
 		path: "/gizlilik",
