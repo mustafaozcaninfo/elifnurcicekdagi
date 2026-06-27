@@ -108,6 +108,25 @@ export default {
 			return Response.redirect(new URL("/about", url.origin).toString(), 301);
 		}
 
+		if (url.pathname === "/" || url.pathname === "/index.html") {
+			const homePage = await env.ASSETS.fetch(
+				new Request(new URL("/index.html", url.origin), request),
+			);
+			if (homePage.ok) {
+				const withAnalytics = await injectAnalytics(
+					new Response(homePage.body, {
+						status: 200,
+						headers: {
+							"content-type": "text/html; charset=utf-8",
+							"cache-control": "public, max-age=0, must-revalidate, s-maxage=60",
+						},
+					}),
+					env.CF_WEB_ANALYTICS_TOKEN,
+				);
+				return applySecurityHeaders(withAnalytics);
+			}
+		}
+
 		if (url.pathname === "/admin" || url.pathname === "/admin/") {
 			const adminPage = await env.ASSETS.fetch(
 				new Request(new URL("/admin/index.html", url.origin), request),
