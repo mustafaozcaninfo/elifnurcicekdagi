@@ -19,6 +19,7 @@ import {
 	globeLabelSize,
 	globeLabelText,
 } from "../utils/globe-labels";
+import { globePointerEventsFilter } from "../utils/globe-pointer";
 
 const Globe = lazy(() => import("react-globe.gl"));
 
@@ -43,7 +44,10 @@ type Props = {
 	layoutSyncKey?: number;
 };
 
-const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+type GlobeInstance = GlobeCameraApi & {
+	pointerEventsFilter?: (fn: (obj: unknown, data: unknown) => boolean) => unknown;
+	enablePointerInteraction?: (enabled: boolean) => unknown;
+};
 
 function applyControls(
 	ctrl: GlobeControls,
@@ -120,7 +124,32 @@ export default function TravelGlobe({
 		const ctrl = g.controls();
 		if (!ctrl) return;
 		applyControls(ctrl, gesturesEnabled ? "interactive" : "locked", isMobile);
+		ctrl.update?.();
 	}, [interactive, gesturesEnabled, isMobile]);
+
+	const configurePointerLayer = useCallback((g: GlobeInstance) => {
+		g.pointerEventsFilter?.(globePointerEventsFilter);
+		g.enablePointerInteraction?.(true);
+	}, []);
+
+	const syncGlobeControls = useCallback(() => {
+		const g = globeRef.current;
+		if (!g) return;
+		const ctrl = g.controls();
+		if (!ctrl) return;
+
+		if (interactive) {
+			applyControls(ctrl, gesturesEnabled ? "interactive" : "locked", isMobile);
+		} else if (!isDeck) {
+			applyControls(ctrl, "idle", isMobile);
+		} else if (phase === "departure" || phase === "cruise" || phase === "globe") {
+			applyControls(ctrl, "intro", isMobile);
+		} else {
+			applyControls(ctrl, "idle", isMobile);
+			ctrl.autoRotate = false;
+		}
+		ctrl.update?.();
+	}, [interactive, gesturesEnabled, isMobile, isDeck, phase]);
 
 	const globeCenter =
 		data.cities.find((c) => c.id === "doha") ??
@@ -184,10 +213,10 @@ export default function TravelGlobe({
 	}, [data.cities, interactive]);
 
 	const onGlobeReady = useCallback(() => {
-		const g = globeRef.current;
+		const g = globeRef.current as GlobeInstance | null;
 		if (!g) return;
-		const ctrl = g.controls();
-		if (ctrl) applyControls(ctrl, interactive ? "interactive" : "idle", isMobile);
+		configurePointerLayer(g);
+		syncGlobeControls();
 		if (!globeReadyRef.current && globeCenter) {
 			globeReadyRef.current = true;
 			g.pointOfView(
@@ -195,7 +224,7 @@ export default function TravelGlobe({
 				0,
 			);
 		}
-	}, [globeCenter, interactive, isMobile]);
+	}, [globeCenter, configurePointerLayer, syncGlobeControls]);
 
 	useEffect(() => {
 		const el = containerRef.current;
@@ -257,6 +286,22 @@ export default function TravelGlobe({
 		}
 	}, [isDeck, phase]);
 
+	/** Keep orbit controls live after heavy layer updates (arcs, labels, polygons). */
+	useEffect(() => {
+		const g = globeRef.current as GlobeInstance | null;
+		if (!g) return;
+		configurePointerLayer(g);
+		syncGlobeControls();
+	}, [
+		syncGlobeControls,
+		configurePointerLayer,
+		showPoints,
+		labelCities.length,
+		arcs.length,
+		visitedPolygons.length,
+		countries.length,
+	]);
+
 	/** Re-apply orbit controls whenever explore mode or gesture lock changes. */
 	useEffect(() => {
 		if (!interactive) return;
@@ -266,23 +311,8 @@ export default function TravelGlobe({
 	/** Intro / idle camera controls before explore handoff. */
 	useEffect(() => {
 		if (interactive) return;
-		const g = globeRef.current;
-		if (!g) return;
-		const ctrl = g.controls();
-		if (!ctrl) return;
-
-		if (!isDeck) {
-			applyControls(ctrl, "idle", isMobile);
-			return;
-		}
-
-		if (phase === "departure" || phase === "cruise" || phase === "globe") {
-			applyControls(ctrl, "intro", isMobile);
-		} else {
-			applyControls(ctrl, "idle", isMobile);
-			ctrl.autoRotate = false;
-		}
-	}, [interactive, isDeck, phase, isMobile]);
+		syncGlobeControls();
+	}, [interactive, syncGlobeControls]);
 
 	/** Intro camera — one animation per phase, never re-triggered on flight ticks. */
 	useEffect(() => {
@@ -329,15 +359,15 @@ export default function TravelGlobe({
 		}
 		exploreHandoffRef.current = true;
 
-		const g = globeRef.current;
-		const ctrl = g.controls();
-		if (ctrl) applyControls(ctrl, "interactive", isMobile);
+		const g = globeRef.current as GlobeInstance;
+		configurePointerLayer(g);
+		syncGlobeControls();
 
 		const alreadyAtReveal = lastCameraPhaseRef.current === "reveal";
 		if (!alreadyAtReveal) {
 			recenterOverview(g, globeCenter.lat, globeCenter.lng, isMobile, 600);
 		}
-	}, [interactive, globeCenter, isMobile]);
+	}, [interactive, globeCenter, isMobile, configurePointerLayer, syncGlobeControls]);
 
 	useEffect(() => {
 		if (!focusCityId || !globeRef.current || !interactive) return;
@@ -389,6 +419,8 @@ export default function TravelGlobe({
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						ref={globeRef as any}
 						onGlobeReady={onGlobeReady}
+						enablePointerInteraction={interactive}
+						pointerEventsFilter={globePointerEventsFilter}
 						width={dims.w}
 						height={dims.h}
 						backgroundColor="rgba(3,2,1,0)"

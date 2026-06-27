@@ -141,7 +141,7 @@ export default function Explorer() {
 				visible={interactive}
 			/>
 
-			<div className="absolute inset-0 z-0">
+			<div className="absolute inset-0 z-[1]">
 				<TravelGlobe
 					variant="deck"
 					data={mapView}
