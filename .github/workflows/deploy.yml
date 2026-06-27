@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "elif-nur-worker/**"
+      - "elif-nur-landing/**"
       - ".github/workflows/**"
   workflow_dispatch:
 
@@ -26,7 +27,15 @@ jobs:
           cache: npm
           cache-dependency-path: elif-nur-worker/package-lock.json
 
-      - name: Install dependencies
+      - name: Install landing dependencies
+        working-directory: elif-nur-landing
+        run: npm ci
+
+      - name: Build landing page
+        working-directory: elif-nur-landing
+        run: npm run build
+
+      - name: Install worker dependencies
         working-directory: elif-nur-worker
         run: npm ci
 

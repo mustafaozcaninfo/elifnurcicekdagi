@@ -4,7 +4,10 @@ import { renderSitemapXml } from "./sitemap";
 
 const TEXT_CACHE = "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800";
 
-export function handleSeoRequest(pathname: string): Response | null {
+export async function handleSeoRequest(
+	pathname: string,
+	env: Env,
+): Promise<Response | null> {
 	switch (pathname) {
 		case "/robots.txt":
 			return new Response(renderRobotsTxt(), {
@@ -14,7 +17,7 @@ export function handleSeoRequest(pathname: string): Response | null {
 				},
 			});
 		case "/sitemap.xml":
-			return new Response(renderSitemapXml(), {
+			return new Response(await renderSitemapXml(env.DB), {
 				headers: {
 					"content-type": "application/xml; charset=utf-8",
 					"cache-control": TEXT_CACHE,

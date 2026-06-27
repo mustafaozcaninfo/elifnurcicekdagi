@@ -2,6 +2,11 @@ import { SELF } from "cloudflare:test";
 import { describe, it, expect } from "vitest";
 
 const SITE = "https://elifnurcicekdagi.com";
+const ADMIN_KEY = "test-admin-key-for-ci-only-32chars";
+const adminHeaders = {
+	Authorization: `Bearer ${ADMIN_KEY}`,
+	"content-type": "application/json",
+};
 
 describe("elif-nur-worker", () => {
 	it("GET /health returns ok JSON with security headers", async () => {
@@ -25,13 +30,15 @@ describe("elif-nur-worker", () => {
 		expect(html).toContain("/health");
 	});
 
-	it("GET / serves the landing page HTML", async () => {
+	it("GET / serves the production landing page shell", async () => {
 		const response = await SELF.fetch(`${SITE}/`);
 		expect(response.status).toBe(200);
 		expect(response.headers.get("content-type")).toContain("text/html");
 		const html = await response.text();
 		expect(html).toContain("Elif Nur Çiçekdağı");
 		expect(html).toContain("elifnurcicekdagi.com");
+		expect(html).toContain('id="root"');
+		expect(html).toContain("/assets/");
 	});
 
 	it("POST /api/contact rejects invalid JSON", async () => {
@@ -101,6 +108,7 @@ describe("elif-nur-worker", () => {
 		expect(text).toContain("Sitemap: https://elifnurcicekdagi.com/sitemap.xml");
 		expect(text).toContain("Disallow: /api/");
 		expect(text).toContain("Disallow: /health");
+		expect(text).toContain("Disallow: /admin");
 	});
 
 	it("GET /sitemap.xml lists public routes dynamically", async () => {
@@ -119,6 +127,7 @@ describe("elif-nur-worker", () => {
 		const text = await response.text();
 		expect(text).toContain("# Elif Nur Çiçekdağı");
 		expect(text).toContain("/iletisim");
+		expect(text).toContain("/api/v1");
 	});
 
 	it("GET /favicon.svg has valid UTF-8 Turkish name", async () => {
@@ -143,5 +152,109 @@ describe("elif-nur-worker", () => {
 		const html = await response.text();
 		expect(html).toContain("Sayfa bulunamadı");
 		expect(html).toContain('href="/"');
+	});
+
+	it("GET /api/v1 returns discovery envelope", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1`);
+		expect(response.status).toBe(200);
+		const body = await response.json<{
+			ok: boolean;
+			data: { version: string; endpoints: { public: string[] } };
+			meta: { requestId: string };
+		}>();
+		expect(body.ok).toBe(true);
+		expect(body.data.version).toBe("1");
+		expect(body.data.endpoints.public).toContain("GET /api/v1/pages");
+		expect(body.meta.requestId).toBeTruthy();
+	});
+
+	it("GET /api/v1/pages returns published list envelope", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1/pages`);
+		expect(response.status).toBe(200);
+		const body = await response.json<{ ok: boolean; data: { items: unknown[] } }>();
+		expect(body.ok).toBe(true);
+		expect(Array.isArray(body.data.items)).toBe(true);
+	});
+
+	it("GET /api/v1/admin/auth/me rejects without session", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1/admin/auth/me`);
+		expect(response.status).toBe(401);
+	});
+
+	it("POST /api/v1/admin/pages rejects unauthenticated write", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1/admin/pages`, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({ slug: "test", title: "Test" }),
+		});
+		expect([401, 503]).toContain(response.status);
+		const body = await response.json<{ ok: false; error: { code: string } }>();
+		expect(body.ok).toBe(false);
+		expect(["UNAUTHORIZED", "INTERNAL_ERROR"]).toContain(body.error.code);
+	});
+
+	it("GET /api/v1/unknown returns NOT_FOUND envelope", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1/unknown`);
+		expect(response.status).toBe(404);
+		const body = await response.json<{ ok: false; error: { code: string } }>();
+		expect(body.error.code).toBe("NOT_FOUND");
+	});
+
+	it("GET /api/v1/site returns public site bundle", async () => {
+		const response = await SELF.fetch(`${SITE}/api/v1/site`);
+		expect(response.status).toBe(200);
+		const body = await response.json<{
+			ok: boolean;
+			data: { pages: unknown[]; projects: unknown[]; navigation: unknown[]; settings: object };
+		}>();
+		expect(body.ok).toBe(true);
+		expect(Array.isArray(body.data.pages)).toBe(true);
+		expect(Array.isArray(body.data.navigation)).toBe(true);
+	});
+
+	it("admin CRUD: page lifecycle", async () => {
+		const slug = `test-page-${Date.now()}`;
+		const create = await SELF.fetch(`${SITE}/api/v1/admin/pages`, {
+			method: "POST",
+			headers: adminHeaders,
+			body: JSON.stringify({
+				slug,
+				path: `/${slug}`,
+				title: "Test Page",
+				pageType: "page",
+				status: "published",
+				bodyMd: "# Test\n\nHello CMS.",
+			}),
+		});
+		expect(create.status).toBe(201);
+
+		const pub = await SELF.fetch(`${SITE}/api/v1/pages/${slug}`);
+		expect(pub.status).toBe(200);
+
+		const resolve = await SELF.fetch(`${SITE}/api/v1/resolve?path=/${slug}`);
+		expect(resolve.status).toBe(200);
+
+		const html = await SELF.fetch(`${SITE}/${slug}`, {
+			headers: { accept: "text/html" },
+		});
+		expect(html.status).toBe(200);
+		expect(await html.text()).toContain("Test Page");
+
+		const del = await SELF.fetch(`${SITE}/api/v1/admin/pages/${slug}`, {
+			method: "DELETE",
+			headers: adminHeaders,
+		});
+		expect(del.status).toBe(200);
+	});
+
+	it("admin settings upsert and read", async () => {
+		await SELF.fetch(`${SITE}/api/v1/admin/settings/site.test`, {
+			method: "PUT",
+			headers: adminHeaders,
+			body: JSON.stringify({ value: { hello: "cms" } }),
+		});
+		const site = await SELF.fetch(`${SITE}/api/v1/site`);
+		const body = await site.json<{ data: { settings: Record<string, unknown> } }>();
+		expect(body.data.settings["site.test"]).toEqual({ hello: "cms" });
 	});
 });

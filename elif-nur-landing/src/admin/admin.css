@@ -1,0 +1,78 @@
+.admin-shell {
+	min-height: 100vh;
+	background: #0f0a05;
+	color: #f5ede4;
+	font-family: Inter, system-ui, sans-serif;
+}
+
+.admin-card {
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 1rem;
+}
+
+.admin-input {
+	width: 100%;
+	border-radius: 0.6rem;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: rgba(0, 0, 0, 0.25);
+	padding: 0.65rem 0.85rem;
+	color: #f5ede4;
+	font-size: 0.9rem;
+}
+
+.admin-input:focus {
+	outline: 2px solid rgba(194, 91, 63, 0.5);
+	border-color: #c25b3f;
+}
+
+.admin-btn {
+	border-radius: 999px;
+	padding: 0.55rem 1.25rem;
+	font-family: Kanit, sans-serif;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	transition: opacity 0.2s;
+}
+
+.admin-btn-primary {
+	background: linear-gradient(135deg, #c25b3f, #d4a017);
+	color: white;
+}
+
+.admin-btn-ghost {
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	color: #f5ede4;
+}
+
+.admin-btn:hover {
+	opacity: 0.85;
+}
+
+.admin-table th,
+.admin-table td {
+	padding: 0.75rem 1rem;
+	text-align: left;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	font-size: 0.85rem;
+}
+
+.admin-badge {
+	display: inline-block;
+	padding: 0.2rem 0.55rem;
+	border-radius: 999px;
+	font-size: 0.7rem;
+	font-weight: 600;
+}
+
+.admin-badge-published {
+	background: rgba(74, 124, 89, 0.25);
+	color: #a8d5b5;
+}
+
+.admin-badge-draft {
+	background: rgba(212, 160, 23, 0.2);
+	color: #e8c96a;
+}

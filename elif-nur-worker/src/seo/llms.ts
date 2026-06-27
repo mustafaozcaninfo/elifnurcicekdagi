@@ -26,9 +26,12 @@ ${pages}
 - OG görsel: ${SITE_ORIGIN}/og-image.png
 - Güvenlik: ${SITE_ORIGIN}/.well-known/security.txt
 
-## API (geliştirme aşamasında)
+## API v1
 
-- Durum: ${SITE_ORIGIN}/health
-- İletişim API: POST ${SITE_ORIGIN}/api/contact
+- Keşif: GET ${SITE_ORIGIN}/api/v1
+- Site bundle (SPA): GET ${SITE_ORIGIN}/api/v1/site
+- İçerik: GET ${SITE_ORIGIN}/api/v1/pages, /api/v1/projects, /api/v1/resolve?path=/...
+- Admin yazma: Bearer veya X-Admin-Key (sunucu secret; robots /api/ disallow)
+- İletişim (legacy): POST ${SITE_ORIGIN}/api/contact
 `;
 }

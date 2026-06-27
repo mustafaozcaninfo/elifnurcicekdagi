@@ -64,7 +64,8 @@ flowchart TB
 | Yol | Açıklama |
 |-----|----------|
 | `elif-nur-worker/` | Cloudflare Worker kaynak kodu |
-| `elif-nur-worker/public/` | HTML, CSS, iletişim sayfası |
+| `elif-nur-landing/` | React + Vite ana sayfa (build → `public/`) |
+| `elif-nur-worker/public/` | Build çıktısı + iletişim / gizlilik HTML |
 | `elif-nur-worker/scripts/` | DNS, Brevo, UptimeRobot, expiry araçları |
 | `OPERATIONS.md` | Bu dosya |
 | `all.env` | **Yerel gizliler** (gitignore) |
@@ -104,6 +105,7 @@ cd elif-nur-worker
 | `TURNSTILE_SECRET_KEY` | İletişim formu Turnstile doğrulama |
 | `BREVO_API_KEY` | Form gönderilince Brevo transactional mail |
 | `CF_WEB_ANALYTICS_TOKEN` | Analytics script token |
+| `ADMIN_API_KEY` | API v1 admin yazma (`Bearer` veya `X-Admin-Key`) |
 
 Public env (`wrangler.jsonc` → `vars`):
 
@@ -289,6 +291,26 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | 2026-06-10 | `/health` genişletildi + `/health/dashboard` operasyon paneli |
 | 2026-06-10 | Dinamik `robots.txt`, `sitemap.xml`, `llms.txt` + özel `404` sayfası |
 | 2026-06-10 | Favicon/OG düzeltmesi — UTF-8 `ğı`, `og-image.png`, `apple-touch-icon.png` |
+| 2026-06-10 | API v1 — içerik (pages/projects), admin key, rate limit, audit log, CORS |
+| 2026-06-10 | Premium landing page — React/Vite/Tailwind/Framer (`elif-nur-landing/`) |
+
+---
+
+## Ana sayfa (landing)
+
+Kaynak: `elif-nur-landing/` — React 18, TypeScript, Vite, Tailwind, Framer Motion, Lucide.
+
+Bölümler (sıra): Hero → Marquee → About → Experiences → Journeys → Footer.
+
+```bash
+cd elif-nur-landing && npm ci && npm run build
+# çıktı: elif-nur-worker/public/index.html + assets/
+cd ../elif-nur-worker && npm run deploy
+```
+
+- Ana sayfa `GET /api/v1/site` ile dinamik (hero, about, journeys, nav)
+- Admin UI: **https://elifnurcicekdagi.com/admin/** — key yalnızca girişte; oturum HttpOnly çerez (JS erişemez)
+- Görseller: Unsplash fallback; `landing.hero.portraitUrl` veya proje `meta.images` ile değiştir
 
 ---
 
@@ -302,6 +324,70 @@ v-add-letsencrypt-domain admin elifnurcicekdagi.com webmail.elifnurcicekdagi.com
 | `404` | `public/404.html` | Bilinmeyen HTML yolları |
 
 Yeni sayfa eklerken: `src/seo/site-routes.ts` → `PUBLIC_ROUTES` güncelle (sitemap + llms otomatik).
+
+---
+
+## API v1 (içerik — güvenlik öncelikli)
+
+| Katman | Uygulama |
+|--------|----------|
+| Routing | `GET/POST/PATCH/DELETE` → `/api/v1/*` (`src/api/v1/router.ts`) |
+| Yanıt | `{ ok, data\|error, meta }` — `requestId` her istekte |
+| CORS | Yalnızca `https://elifnurcicekdagi.com` ve `www` — wildcard yok |
+| Rate limit | KV: okuma 120/dk/IP, admin 30/dk/IP |
+| Public | Yalnızca `GET`; D1 `status = 'published'` |
+| Admin | `ADMIN_API_KEY` (curl/script) veya **HttpOnly oturum çerezi** (tarayıcı UI, 8 saat, KV) |
+| Legacy | `POST /api/contact` ayrı (Turnstile) — değiştirilmedi |
+
+### Endpoint özeti
+
+| Yöntem | Yol | Kimlik |
+|--------|-----|--------|
+| GET | `/api/v1` | Keşif / şema |
+| GET | `/api/v1/site` | Tüm public veri (pages, projects, nav, settings) |
+| GET | `/api/v1/resolve?path=/hakkimda` | Path → içerik |
+| GET | `/api/v1/pages`, `/pages/:slug`, `/pages/by-path/...` | Yayınlanmış |
+| GET | `/api/v1/pages?type=blog` | Blog filtresi |
+| GET | `/api/v1/projects` | Yayınlanmış projeler |
+| GET | `/api/v1/admin/pages` | Tüm sayfalar (draft dahil) |
+| GET/POST/PATCH/DELETE | `/api/v1/admin/pages/:slug` | Admin CRUD |
+| GET/POST/PATCH/DELETE | `/api/v1/admin/projects/:slug` | Admin CRUD |
+| GET/PUT/PATCH/DELETE | `/api/v1/admin/settings/:key` | Site ayarları (JSON) |
+| GET | `/api/v1/admin/audit?limit=50` | Audit log |
+
+Dinamik HTML: D1’de `published` + `page_type != landing` olan path’ler Worker tarafından render edilir (`/hakkimda` vb.). Statik dosyalar (`/iletisim`) önceliklidir.
+
+### D1 tabloları
+
+- `content_pages` — slug, **path**, page_type, meta_json, SEO, nav, status
+- `content_projects` — journeys; meta_json, SEO
+- `site_settings` — `landing.*`, `site.*` JSON blob’ları
+- `api_audit_log` — admin işlemleri (IP hash)
+
+Migration: `0003_content_api.sql`, `0004_dynamic_cms.sql`
+
+### Kurulum (ilk kez veya yeni migration)
+
+```bash
+set -a && source all.env && set +a
+cd elif-nur-worker
+npx wrangler d1 migrations apply elif-nur-db --remote
+openssl rand -hex 32   # ADMIN_API_KEY üret → all.env
+npm run admin:apply-secret
+npm run content:seed
+npm run deploy
+```
+
+Örnek admin isteği:
+
+```bash
+curl -sS -X POST "https://elifnurcicekdagi.com/api/v1/admin/pages" \
+  -H "Authorization: Bearer $ADMIN_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"slug":"hakkimda","title":"Hakkımda","bodyMd":"...","status":"published"}'
+```
+
+`robots.txt` tüm `/api/` yolunu disallow eder (admin dahil).
 
 ---
 

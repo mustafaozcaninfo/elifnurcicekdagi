@@ -16,7 +16,7 @@ export const PUBLIC_ROUTES: SiteRoute[] = [
 		changefreq: "weekly",
 		priority: 1.0,
 		title: "Ana sayfa",
-		description: "Elif Nur Çiçekdağı resmi web sitesi",
+		description: "Elif Nur Çiçekdağı Özcan — pilot, gezgin ve içerik üreticisi",
 	},
 	{
 		path: "/iletisim",

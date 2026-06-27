@@ -42,6 +42,7 @@ export type HealthReport = {
 		turnstile: boolean;
 		brevo: boolean;
 		analytics: boolean;
+		adminApi: boolean;
 	};
 	config: {
 		contactNotifyEmail: string;
@@ -136,6 +137,7 @@ export async function buildHealthReport(
 		turnstile: Boolean(env.TURNSTILE_SECRET_KEY),
 		brevo: Boolean(env.BREVO_API_KEY),
 		analytics: Boolean(env.CF_WEB_ANALYTICS_TOKEN),
+		adminApi: Boolean(env.ADMIN_API_KEY),
 	};
 
 	const degraded =
@@ -176,12 +178,19 @@ export async function buildHealthReport(
 				{ method: "GET", path: "/robots.txt", description: "Robots (dinamik)" },
 				{ method: "GET", path: "/sitemap.xml", description: "Site haritası (dinamik)" },
 				{ method: "GET", path: "/llms.txt", description: "LLM özet dosyası" },
-				{ method: "POST", path: "/api/contact", description: "İletişim formu" },
+				{ method: "GET", path: "/api/v1", description: "API v1 keşif / meta" },
+				{ method: "GET", path: "/api/v1/site", description: "Tüm public site verisi (SPA)" },
+				{ method: "GET", path: "/api/v1/resolve", description: "Path ile içerik çözümleme" },
+				{ method: "GET", path: "/api/v1/pages", description: "Yayınlanmış sayfalar" },
+				{ method: "GET", path: "/api/v1/projects", description: "Yayınlanmış projeler" },
+				{ method: "GET", path: "/api/v1/admin/pages", description: "Admin — tüm sayfalar (key)" },
+				{ method: "GET", path: "/api/v1/admin/settings", description: "Admin — site ayarları (key)" },
+				{ method: "POST", path: "/api/contact", description: "İletişim formu (legacy)" },
 			],
 			planned: [
-				"REST API v1 (içerik, portfolyo, vb.)",
-				"Kimlik doğrulama / admin",
+				"Admin UI paneli",
 				"Webhook entegrasyonları",
+				"İçerik revizyon geçmişi",
 			],
 		},
 	};

@@ -12,6 +12,8 @@
     "dns:email": "node scripts/setup-hestia-mail-dns.mjs",
     "brevo:verify": "node scripts/verify-brevo-mail.mjs",
     "brevo:apply-secret": "node scripts/apply-brevo-secret.mjs",
+    "admin:apply-secret": "node scripts/apply-admin-secret.mjs",
+    "content:seed": "node scripts/seed-content.mjs",
     "analytics:apply": "node scripts/apply-analytics-token.mjs",
     "expiry:check": "node scripts/check-expiry.mjs",
     "uptimerobot:setup": "node scripts/setup-uptimerobot.mjs",

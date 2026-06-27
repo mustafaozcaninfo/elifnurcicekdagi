@@ -1,9 +1,9 @@
 export const CSP = [
 	"default-src 'self'",
 	"script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com",
-	"style-src 'self' 'unsafe-inline'",
+	"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 	"img-src 'self' data: https:",
-	"font-src 'self'",
+	"font-src 'self' https://fonts.gstatic.com",
 	"connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com",
 	"frame-src https://challenges.cloudflare.com",
 	"base-uri 'self'",

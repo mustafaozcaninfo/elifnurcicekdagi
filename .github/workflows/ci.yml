@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - "elif-nur-worker/**"
+      - "elif-nur-landing/**"
       - ".github/workflows/**"
   push:
     branches: [main]
     paths:
       - "elif-nur-worker/**"
+      - "elif-nur-landing/**"
       - ".github/workflows/**"
 
 concurrency:
@@ -30,7 +32,15 @@ jobs:
           cache: npm
           cache-dependency-path: elif-nur-worker/package-lock.json
 
-      - name: Install dependencies
+      - name: Install landing dependencies
+        working-directory: elif-nur-landing
+        run: npm ci
+
+      - name: Build landing page
+        working-directory: elif-nur-landing
+        run: npm run build
+
+      - name: Install worker dependencies
         run: npm ci
 
       - name: Generate Worker types

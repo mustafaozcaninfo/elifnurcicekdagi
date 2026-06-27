@@ -1,6 +1,8 @@
 import { injectAnalytics } from "./analytics";
 import { handleContact } from "./api/contact";
 import { handleHealth } from "./api/health";
+import { handleApiV1 } from "./api/v1/router";
+import { fetchPublishedPageByPath, renderDynamicPageHtml } from "./content/render-page";
 import { renderHealthDashboard } from "./health/dashboard-page";
 import { applySecurityHeaders } from "./security-headers";
 import { handleSeoRequest, shouldServeNotFoundPage } from "./seo/handlers";
@@ -34,9 +36,30 @@ export default {
 			return response;
 		}
 
-		const seo = handleSeoRequest(url.pathname);
+		if (url.pathname === "/api/v1" || url.pathname.startsWith("/api/v1/")) {
+			return applySecurityHeaders(await handleApiV1(request, env));
+		}
+
+		const seo = await handleSeoRequest(url.pathname, env);
 		if (seo) {
 			return applySecurityHeaders(seo);
+		}
+
+		if (url.pathname === "/admin" || url.pathname === "/admin/") {
+			const adminPage = await env.ASSETS.fetch(
+				new Request(new URL("/admin/index.html", url.origin), request),
+			);
+			if (adminPage.ok) {
+				return applySecurityHeaders(
+					new Response(adminPage.body, {
+						status: 200,
+						headers: {
+							"content-type": "text/html; charset=utf-8",
+							"cache-control": "no-store",
+						},
+					}),
+				);
+			}
 		}
 
 		const assetResponse = await env.ASSETS.fetch(request);
@@ -45,6 +68,28 @@ export default {
 			assetResponse.status === 404 &&
 			shouldServeNotFoundPage(request, url.pathname)
 		) {
+			const pagePath = url.pathname === "/" ? "/" : url.pathname.replace(/\/$/, "") || "/";
+			if (pagePath !== "/") {
+				try {
+					const dynamicPage = await fetchPublishedPageByPath(env.DB, pagePath);
+					if (dynamicPage && dynamicPage.page_type !== "landing") {
+						const html = renderDynamicPageHtml(dynamicPage);
+						const withAnalytics = await injectAnalytics(
+							new Response(html, {
+								status: 200,
+								headers: {
+									"content-type": "text/html; charset=utf-8",
+									"cache-control": "public, max-age=60, s-maxage=300",
+								},
+							}),
+							env.CF_WEB_ANALYTICS_TOKEN,
+						);
+						return applySecurityHeaders(withAnalytics);
+					}
+				} catch {
+					/* D1 unavailable */
+				}
+			}
 			const notFoundPage = await env.ASSETS.fetch(
 				new Request(new URL("/404.html", url.origin), {
 					method: "GET",
